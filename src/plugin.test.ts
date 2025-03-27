@@ -35,7 +35,11 @@ describe('intl-watcher plugin tests', () => {
 
 	function getNormalizedConsoleOutput(): string {
 		const output = logSpy.mock.calls.join('\n')
-		return output.replaceAll(TIMING_REGEX, 'Finished in <timing>')
+		return output
+			.replaceAll(TIMING_REGEX, 'Finished in <timing>')
+			.split('\n')
+			.map((line) => line.trim())
+			.join('\n')
 	}
 
 	beforeEach(async () => {
