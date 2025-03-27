@@ -9,5 +9,8 @@
 		":pinDependencies",
 		":pinDevDependencies",
 		"group:allNonMajor"
-	]
+	],
+	"labels": ["dependencies"],
+	"minimumReleaseAge": "7 days",
+	"pinDigests": false
 }
