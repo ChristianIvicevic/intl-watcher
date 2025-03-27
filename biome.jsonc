@@ -8,7 +8,14 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["**/.idea/**", "**/.next/**", "**/dist/**", "**/lib/**", "**/node_modules/**"]
+		"ignore": [
+			"**/.idea/**",
+			"**/.next/**",
+			"**/dist/**",
+			"**/lib/**",
+			"**/node_modules/**",
+			".all-contributorsrc"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -36,5 +43,27 @@
 			"quoteStyle": "single",
 			"semicolons": "asNeeded"
 		}
-	}
+	},
+	"overrides": [
+		{
+			"include": ["**/*.config.ts"],
+			"linter": {
+				"rules": {
+					"style": {
+						"noDefaultExport": "off"
+					}
+				}
+			}
+		},
+		{
+			"include": ["src/index.ts"],
+			"linter": {
+				"rules": {
+					"performance": {
+						"noBarrelFile": "off"
+					}
+				}
+			}
+		}
+	]
 }
