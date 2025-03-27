@@ -1,0 +1,27 @@
+{
+	"badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"👪 All Contributors: <%= contributors.length %>\" src=\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\" /></a>",
+	"contributors": [
+		{
+			"avatar_url": "https://avatars.githubusercontent.com/u/45569997?v=4",
+			"contributions": [
+				"code",
+				"content",
+				"doc",
+				"ideas",
+				"infra",
+				"maintenance",
+				"projectManagement",
+				"tool"
+			],
+			"login": "ChristianIvicevic",
+			"name": "Christian Ivicevic",
+			"profile": ""
+		}
+	],
+	"contributorsSortAlphabetically": true,
+	"projectName": "intl-watcher",
+	"projectOwner": "ChristianIvicevic",
+	"repoType": "github",
+	"commitConvention": "angular"
+}
+

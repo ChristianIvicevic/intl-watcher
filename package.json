@@ -1,0 +1,56 @@
+{
+	"name": "intl-watcher",
+	"version": "0.0.0",
+	"description": "Automated translation key extraction and dictionary management plugin",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ChristianIvicevic/intl-watcher.git"
+	},
+	"license": "MIT",
+	"author": {
+		"email": "mail@christian-ivicevic.com"
+	},
+	"type": "module",
+	"main": "lib/index.js",
+	"files": [
+		"LICENSE.md",
+		"README.md",
+		"lib/",
+		"package.json"
+	],
+	"scripts": {
+		"build": "tsup",
+		"format": "prettier .",
+		"lint": "eslint . --max-warnings 0",
+		"prepare": "husky",
+		"test": "vitest",
+		"tsc": "tsc"
+	},
+	"lint-staged": {
+		"*": "prettier --ignore-unknown --write"
+	},
+	"devDependencies": {
+		"@eslint/js": "9.22.0",
+		"@release-it/conventional-changelog": "10.0.0",
+		"@types/node": "22.13.10",
+		"@vitest/coverage-v8": "3.0.9",
+		"@vitest/eslint-plugin": "1.1.38",
+		"console-fail-test": "0.5.0",
+		"eslint": "9.22.0",
+		"husky": "9.1.7",
+		"lint-staged": "15.5.0",
+		"prettier": "3.5.3",
+		"release-it": "18.1.2",
+		"tsup": "8.4.0",
+		"typescript": "5.8.2",
+		"typescript-eslint": "8.26.1",
+		"vitest": "3.0.9"
+	},
+	"packageManager": "pnpm@10.4.0",
+	"engines": {
+		"node": ">=18.3.0"
+	},
+	"publishConfig": {
+		"provenance": true
+	}
+}
