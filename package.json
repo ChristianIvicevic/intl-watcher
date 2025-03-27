@@ -55,7 +55,7 @@
 	"peerDependencies": {
 		"next": "^14.0.0 || ^15.0.0"
 	},
-	"packageManager": "pnpm@10.4.0",
+	"packageManager": "pnpm@10.6.5",
 	"engines": {
 		"node": ">=18.3.0"
 	},
