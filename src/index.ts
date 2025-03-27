@@ -1,2 +1,2 @@
-export { greet } from './greet.js'
-export type { GreetOptions } from './types.js'
+export { createIntlWatcher } from './plugin.js'
+export type { CreateIntlWatcherOptions } from './types.js'
