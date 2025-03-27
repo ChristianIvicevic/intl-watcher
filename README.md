@@ -1,6 +1,6 @@
-<h1 align="center">Intl Watcher</h1>
+<h1 align="center">intl-watcher</h1>
 
-<p align="center">Automated translation key extraction and dictionary management plugin</p>
+<p align="center">Automated translation key extraction and dictionary management plugin for Next.js</p>
 
 <p align="center">
 	<!-- prettier-ignore-start -->
@@ -52,6 +52,3 @@ Thanks! 💖
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- spellchecker: enable -->
 
-<!-- You can remove this notice if you don't want it 🙂 no worries! -->
-
-> 💝 This package was templated with [`create-typescript-app`](https://github.com/JoshuaKGoldberg/create-typescript-app) using the [Bingo engine](https://create.bingo).

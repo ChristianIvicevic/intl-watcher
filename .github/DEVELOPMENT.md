@@ -24,7 +24,7 @@ pnpm build --watch
 
 ## Formatting
 
-[Prettier](https://prettier.io) is used to format code.
+[Biome](https://biomejs.dev) is used to format code.
 It should be applied automatically when you save files in VS Code or make a Git commit.
 
 To manually reformat all files, you can run:
@@ -38,17 +38,9 @@ pnpm format --write
 This package includes several forms of linting to enforce consistent code quality and styling.
 Each should be shown in VS Code, and can be run manually on the command-line:
 
-- `pnpm lint` ([ESLint](https://eslint.org) with [typescript-eslint](https://typescript-eslint.io)): Lints JavaScript and TypeScript source files
+- `pnpm lint` ([Biome](https://biomejs.dev)): Lints JavaScript and TypeScript source files
 
 Read the individual documentation for each linter to understand how it can be configured and used best.
-
-For example, ESLint can be run with `--fix` to auto-fix some lint rule complaints:
-
-```shell
-pnpm run lint --fix
-```
-
-Note that you'll need to run `pnpm build` before `pnpm lint` so that lint rules which check the file system can pick up on any built files.
 
 ## Testing
 
@@ -64,9 +56,6 @@ Add the `--coverage` flag to compute test coverage and place reports in the `cov
 ```shell
 pnpm run test --coverage
 ```
-
-Note that [console-fail-test](https://github.com/JoshuaKGoldberg/console-fail-test) is enabled for all test runs.
-Calls to `console.log`, `console.warn`, and other console methods will cause a test to fail.
 
 ## Type Checking
 

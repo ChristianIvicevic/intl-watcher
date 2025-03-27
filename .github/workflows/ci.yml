@@ -12,15 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: biomejs/setup-biome@c016c38f26f2c4a6eb3662679143614a254263fd # v2
+        with:
+          version: latest
       - uses: ./.github/actions/prepare
       - run: pnpm lint
-  prettier:
-    name: Prettier
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: ./.github/actions/prepare
-      - run: pnpm format --list-different
   test:
     name: Test
     runs-on: ubuntu-latest
