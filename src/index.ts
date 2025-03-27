@@ -1,2 +1,2 @@
 export { greet } from './greet.js'
-export { GreetOptions } from './types.js'
+export type { GreetOptions } from './types.js'
