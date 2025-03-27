@@ -1,0 +1,13 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:best-practices",
+		"customManagers:biomeVersions",
+		"schedule:weekly",
+		":disableRateLimiting",
+		":rebaseStalePrs",
+		":pinDependencies",
+		":pinDevDependencies",
+		"group:allNonMajor"
+	]
+}
