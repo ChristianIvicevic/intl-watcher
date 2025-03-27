@@ -26,6 +26,8 @@ jobs:
       - run: pnpm run test --coverage
       - if: always()
         uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   type_check:
     name: Type Check
     runs-on: ubuntu-latest

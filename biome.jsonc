@@ -14,6 +14,7 @@
 			"**/dist/**",
 			"**/lib/**",
 			"**/node_modules/**",
+			"**/coverage/**",
 			".all-contributorsrc"
 		]
 	},
