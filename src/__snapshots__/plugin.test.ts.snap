@@ -16,20 +16,20 @@ exports[`intl-watcher plugin tests > should be idempotent 1`] = `
 `;
 
 exports[`intl-watcher plugin tests > should be idempotent 2`] = `
-"○ Scanning...
-⚠ Unused i18n key \`unusedVariable\`
-✓ Added new i18n key \`newCustomClientVariable\`
-✓ Added new i18n key \`customApple\`
-✓ Added new i18n key \`customAppleDescription\`
-✓ Added new i18n key \`customBanana\`
-✓ Added new i18n key \`customBananaDescription\`
-✓ Added new i18n key \`customOrange\`
-✓ Added new i18n key \`customOrangeDescription\`
-✓ Added new i18n key \`newCustomServerVariable\`
-✓ Finished in <timing>
-○ Scanning...
-⚠ Unused i18n key \`unusedVariable\`
-✓ Finished in <timing>"
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newCustomClientVariable\`
+Added new i18n key \`customApple\`
+Added new i18n key \`customAppleDescription\`
+Added new i18n key \`customBanana\`
+Added new i18n key \`customBananaDescription\`
+Added new i18n key \`customOrange\`
+Added new i18n key \`customOrangeDescription\`
+Added new i18n key \`newCustomServerVariable\`
+Finished in <timing>
+Scanning...
+Unused i18n key \`unusedVariable\`
+Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin tests > should be possible to change names of translation functions for partitioning 1`] = `
@@ -68,17 +68,17 @@ exports[`intl-watcher plugin tests > should be possible to change names of trans
 `;
 
 exports[`intl-watcher plugin tests > should be possible to change names of translation functions for partitioning 4`] = `
-"○ Scanning...
-⚠ Unused i18n key \`unusedVariable\`
-✓ Added new i18n key \`newCustomClientVariable\`
-✓ Added new i18n key \`customApple\`
-✓ Added new i18n key \`customAppleDescription\`
-✓ Added new i18n key \`customBanana\`
-✓ Added new i18n key \`customBananaDescription\`
-✓ Added new i18n key \`customOrange\`
-✓ Added new i18n key \`customOrangeDescription\`
-✓ Added new i18n key \`newCustomServerVariable\`
-✓ Finished in <timing>"
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newCustomClientVariable\`
+Added new i18n key \`customApple\`
+Added new i18n key \`customAppleDescription\`
+Added new i18n key \`customBanana\`
+Added new i18n key \`customBananaDescription\`
+Added new i18n key \`customOrange\`
+Added new i18n key \`customOrangeDescription\`
+Added new i18n key \`newCustomServerVariable\`
+Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin tests > should be possible to change the default fallback values for new keys 1`] = `
@@ -97,17 +97,17 @@ exports[`intl-watcher plugin tests > should be possible to change the default fa
 `;
 
 exports[`intl-watcher plugin tests > should be possible to change the default fallback values for new keys 2`] = `
-"○ Scanning...
-⚠ Unused i18n key \`unusedVariable\`
-✓ Added new i18n key \`newClientVariable\`
-✓ Added new i18n key \`apple\`
-✓ Added new i18n key \`appleDescription\`
-✓ Added new i18n key \`banana\`
-✓ Added new i18n key \`bananaDescription\`
-✓ Added new i18n key \`newServerVariable\`
-✓ Added new i18n key \`orange\`
-✓ Added new i18n key \`orangeDescription\`
-✓ Finished in <timing>"
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles 1`] = `
@@ -146,17 +146,17 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 `;
 
 exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles 4`] = `
-"○ Scanning...
-⚠ Unused i18n key \`unusedVariable\`
-✓ Added new i18n key \`newClientVariable\`
-✓ Added new i18n key \`apple\`
-✓ Added new i18n key \`appleDescription\`
-✓ Added new i18n key \`banana\`
-✓ Added new i18n key \`bananaDescription\`
-✓ Added new i18n key \`newServerVariable\`
-✓ Added new i18n key \`orange\`
-✓ Added new i18n key \`orangeDescription\`
-✓ Finished in <timing>"
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 1`] = `
@@ -230,17 +230,17 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 `;
 
 exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 7`] = `
-"○ Scanning...
-⚠ Unused i18n key \`unusedVariable\`
-✓ Added new i18n key \`newClientVariable\`
-✓ Added new i18n key \`apple\`
-✓ Added new i18n key \`appleDescription\`
-✓ Added new i18n key \`banana\`
-✓ Added new i18n key \`bananaDescription\`
-✓ Added new i18n key \`newServerVariable\`
-✓ Added new i18n key \`orange\`
-✓ Added new i18n key \`orangeDescription\`
-✓ Finished in <timing>"
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin tests > should remove unused keys 1`] = `
@@ -258,17 +258,17 @@ exports[`intl-watcher plugin tests > should remove unused keys 1`] = `
 `;
 
 exports[`intl-watcher plugin tests > should remove unused keys 2`] = `
-"○ Scanning...
-✓ Removed unused i18n key \`unusedVariable\`
-✓ Added new i18n key \`newClientVariable\`
-✓ Added new i18n key \`apple\`
-✓ Added new i18n key \`appleDescription\`
-✓ Added new i18n key \`banana\`
-✓ Added new i18n key \`bananaDescription\`
-✓ Added new i18n key \`newServerVariable\`
-✓ Added new i18n key \`orange\`
-✓ Added new i18n key \`orangeDescription\`
-✓ Finished in <timing>"
+"Scanning...
+Removed unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin tests > should work with the default options 1`] = `
@@ -287,17 +287,17 @@ exports[`intl-watcher plugin tests > should work with the default options 1`] = 
 `;
 
 exports[`intl-watcher plugin tests > should work with the default options 2`] = `
-"○ Scanning...
-⚠ Unused i18n key \`unusedVariable\`
-✓ Added new i18n key \`newClientVariable\`
-✓ Added new i18n key \`apple\`
-✓ Added new i18n key \`appleDescription\`
-✓ Added new i18n key \`banana\`
-✓ Added new i18n key \`bananaDescription\`
-✓ Added new i18n key \`newServerVariable\`
-✓ Added new i18n key \`orange\`
-✓ Added new i18n key \`orangeDescription\`
-✓ Finished in <timing>"
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin tests > should work with the default options for multiple languages 1`] = `
@@ -331,15 +331,15 @@ exports[`intl-watcher plugin tests > should work with the default options for mu
 `;
 
 exports[`intl-watcher plugin tests > should work with the default options for multiple languages 3`] = `
-"○ Scanning...
-⚠ Unused i18n key \`unusedVariable\`
-✓ Added new i18n key \`newClientVariable\`
-✓ Added new i18n key \`apple\`
-✓ Added new i18n key \`appleDescription\`
-✓ Added new i18n key \`banana\`
-✓ Added new i18n key \`bananaDescription\`
-✓ Added new i18n key \`newServerVariable\`
-✓ Added new i18n key \`orange\`
-✓ Added new i18n key \`orangeDescription\`
-✓ Finished in <timing>"
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Finished in <timing>"
 `;
