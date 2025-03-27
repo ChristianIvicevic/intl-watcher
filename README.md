@@ -1,4 +1,4 @@
-<h1 align="center">🌐 Next.js intl-watcher Plugin</h1>
+<h1 align="center">🌐 intl-watcher plugin for Next.js </h1>
 
 <p align="center">
 	<!-- prettier-ignore-start -->

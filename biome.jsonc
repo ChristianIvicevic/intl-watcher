@@ -31,6 +31,9 @@
 			"all": true,
 			"correctness": {
 				"noNodejsModules": "off"
+			},
+			"style": {
+				"noParameterProperties": "off"
 			}
 		}
 	},
