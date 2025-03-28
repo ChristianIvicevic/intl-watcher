@@ -48,8 +48,10 @@ describe('intl-watcher plugin tests', () => {
 	}
 
 	beforeEach(async () => {
+		const fixturePath = path.join(__dirname, '../test/fixture')
 		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'fixture-'))
-		await fs.copy(path.join(__dirname, '../test/fixture'), tempDir)
+		await fs.remove(path.join(fixturePath, 'node_modules'))
+		await fs.copy(fixturePath, tempDir)
 		logSpy = vi.spyOn(console, 'log').mockImplementation(() => {
 			// noop
 		})
