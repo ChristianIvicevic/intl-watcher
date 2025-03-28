@@ -11,9 +11,26 @@
 		"name": "Christian Ivicevic",
 		"email": "mail@christian-ivicevic.com"
 	},
+	"funding": [
+		{
+			"type": "individual",
+			"url": "https://github.com/sponsors/ChristianIvicevic"
+		}
+	],
 	"type": "module",
 	"main": "lib/index.js",
 	"files": ["LICENSE.md", "README.md", "lib/", "package.json"],
+	"keywords": [
+		"react",
+		"intl",
+		"i18n",
+		"internationalization",
+		"localization",
+		"translate",
+		"translation",
+		"next",
+		"next.js"
+	],
 	"scripts": {
 		"build": "tsup",
 		"format": "biome check --write .",
