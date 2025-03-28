@@ -13,6 +13,7 @@
 	<img alt="💪 TypeScript: Strict" src="https://img.shields.io/badge/%F0%9F%92%AA_typescript-strict-21bb42.svg" />
 </p>
 
+![Showcase](./assets/showcase.gif)
 
 Automatically scans your Next.js project's source files to manage internationalization (i18n) translation keys.
 It keeps your translation dictionaries up-to-date by extracting new keys, removing unused ones, and optionally partitioning keys into separate client and server dictionaries.
