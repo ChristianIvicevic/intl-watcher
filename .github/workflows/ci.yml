@@ -25,7 +25,7 @@ jobs:
       - uses: ./.github/actions/prepare
       - run: pnpm run test --coverage
       - if: always()
-        uses: codecov/codecov-action@ab904c41d6ece82784817410c45d8b8c02684457 # v3
+        uses: codecov/codecov-action@0565863a31f2c772f9f0395002a31e3f06189574 # v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
   type_check:
