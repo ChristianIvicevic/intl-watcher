@@ -34,7 +34,7 @@ export function writeDictionaryFile(filepath: string, messages: Record<string, s
 
 export function formatDuration(ms: number): string {
 	if (ms < 1_000) {
-		return `${ms.toFixed(2).toLocaleString()}ms`
+		return `${ms.toFixed(0).toLocaleString()}ms`
 	}
 	return `${(ms / 1_000).toPrecision(2).toLocaleString()}s`
 }
