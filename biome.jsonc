@@ -73,7 +73,7 @@
 			}
 		},
 		{
-			"include": ["test/**/*"],
+			"include": ["examples/**/*", "test/**/*"],
 			"linter": {
 				"rules": {
 					"all": false

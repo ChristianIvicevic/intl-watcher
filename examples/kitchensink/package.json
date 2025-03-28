@@ -1,0 +1,25 @@
+{
+	"name": "intl-watcher-kitchensink",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"clean": "git clean -xdf .next node_modules",
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"@types/node": "22.13.13",
+		"@types/react": "19.0.12",
+		"@types/react-dom": "19.0.4",
+		"intl-watcher": "../..",
+		"next": "15.2.3",
+		"next-intl": "4.0.2",
+		"react": "19.0.0",
+		"react-dom": "19.0.0",
+		"typescript": "5.8.2"
+	},
+	"pnpm": {
+		"onlyBuiltDependencies": ["sharp"]
+	}
+}
