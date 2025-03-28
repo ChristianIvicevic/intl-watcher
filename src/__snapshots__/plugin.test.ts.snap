@@ -2,14 +2,15 @@
 
 exports[`intl-watcher plugin tests > should be idempotent 1`] = `
 "{
-	"customApple": "[NYT: customApple]",
-	"customAppleDescription": "[NYT: customAppleDescription]",
-	"customBanana": "[NYT: customBanana]",
-	"customBananaDescription": "[NYT: customBananaDescription]",
-	"customOrange": "[NYT: customOrange]",
-	"customOrangeDescription": "[NYT: customOrangeDescription]",
-	"newCustomClientVariable": "[NYT: newCustomClientVariable]",
-	"newCustomServerVariable": "[NYT: newCustomServerVariable]",
+	"apple": "[NYT: apple]",
+	"appleDescription": "[NYT: appleDescription]",
+	"banana": "[NYT: banana]",
+	"bananaDescription": "[NYT: bananaDescription]",
+	"newClientVariable": "[NYT: newClientVariable]",
+	"newServerVariable": "[NYT: newServerVariable]",
+	"orange": "[NYT: orange]",
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
 	"unusedVariable": "No longer referenced in any source file"
 }
 "
@@ -18,14 +19,15 @@ exports[`intl-watcher plugin tests > should be idempotent 1`] = `
 exports[`intl-watcher plugin tests > should be idempotent 2`] = `
 "Scanning...
 Unused i18n key \`unusedVariable\`
-Added new i18n key \`newCustomClientVariable\`
-Added new i18n key \`customApple\`
-Added new i18n key \`customAppleDescription\`
-Added new i18n key \`customBanana\`
-Added new i18n key \`customBananaDescription\`
-Added new i18n key \`customOrange\`
-Added new i18n key \`customOrangeDescription\`
-Added new i18n key \`newCustomServerVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
 Finished in <timing>
 Scanning...
 Unused i18n key \`unusedVariable\`
@@ -91,6 +93,7 @@ exports[`intl-watcher plugin tests > should be possible to change the default fa
 	"newServerVariable": "[Missing translation: newServerVariable]",
 	"orange": "[Missing translation: orange]",
 	"orangeDescription": "[Missing translation: orangeDescription]",
+	"richText": "[Missing translation: richText]",
 	"unusedVariable": "No longer referenced in any source file"
 }
 "
@@ -107,6 +110,7 @@ Added new i18n key \`bananaDescription\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
@@ -120,6 +124,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
 	"unusedVariable": "No longer referenced in any source file"
 }
 "
@@ -140,7 +145,8 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"bananaDescription": "[NYT: bananaDescription]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]"
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]"
 }
 "
 `;
@@ -156,6 +162,7 @@ Added new i18n key \`bananaDescription\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
@@ -169,6 +176,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
 	"unusedVariable": "No longer referenced in any source file"
 }
 "
@@ -184,6 +192,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
 	"unusedVariable": "In keiner Datei mehr genutzt"
 }
 "
@@ -204,7 +213,8 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"bananaDescription": "[NYT: bananaDescription]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]"
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]"
 }
 "
 `;
@@ -224,7 +234,8 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"bananaDescription": "[NYT: bananaDescription]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]"
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]"
 }
 "
 `;
@@ -240,6 +251,7 @@ Added new i18n key \`bananaDescription\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
@@ -252,7 +264,8 @@ exports[`intl-watcher plugin tests > should remove unused keys 1`] = `
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]"
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]"
 }
 "
 `;
@@ -268,6 +281,7 @@ Added new i18n key \`bananaDescription\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
@@ -281,6 +295,7 @@ exports[`intl-watcher plugin tests > should work with the default options 1`] = 
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
 	"unusedVariable": "No longer referenced in any source file"
 }
 "
@@ -297,6 +312,7 @@ Added new i18n key \`bananaDescription\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
@@ -310,6 +326,7 @@ exports[`intl-watcher plugin tests > should work with the default options for mu
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
 	"unusedVariable": "No longer referenced in any source file"
 }
 "
@@ -325,6 +342,7 @@ exports[`intl-watcher plugin tests > should work with the default options for mu
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
 	"unusedVariable": "In keiner Datei mehr genutzt"
 }
 "
@@ -341,5 +359,6 @@ Added new i18n key \`bananaDescription\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
 Finished in <timing>"
 `;

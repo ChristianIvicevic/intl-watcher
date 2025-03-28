@@ -19,7 +19,7 @@ describe('intl-watcher plugin tests', () => {
 			debounceDelay: IntlWatcherOptionsDefaults.debounceDelay,
 			defaultTranslationGeneratorFn: IntlWatcherOptionsDefaults.defaultTranslationGeneratorFn,
 			i18nDictionaryPaths,
-			partitioningOptions: IntlWatcherOptionsDefaults.partitioningOptions,
+			partitioningOptions: { ...IntlWatcherOptionsDefaults.partitioningOptions },
 			removeUnusedKeys: IntlWatcherOptionsDefaults.removeUnusedKeys,
 			sourceDirectory: path.join(tempDir, 'src'),
 			tsConfigFilePath: path.join(tempDir, 'tsconfig.json'),
@@ -66,8 +66,8 @@ describe('intl-watcher plugin tests', () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
-		// When
 		const watcher = new IntlWatcher(watcherOptions)
+		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		// Then
 		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
@@ -81,8 +81,8 @@ describe('intl-watcher plugin tests', () => {
 		const [main, client, server] = getDictionaryPaths()
 		const [mainDe, clientDe, serverDe] = getDictionaryPaths('de')
 		const watcherOptions = createDefaultWatcherOptions([main, mainDe])
-		// When
 		const watcher = new IntlWatcher(watcherOptions)
+		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		// Then
 		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
@@ -99,8 +99,8 @@ describe('intl-watcher plugin tests', () => {
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
 		watcherOptions.removeUnusedKeys = true
-		// When
 		const watcher = new IntlWatcher(watcherOptions)
+		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		// Then
 		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
@@ -114,8 +114,8 @@ describe('intl-watcher plugin tests', () => {
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
 		watcherOptions.applyPartitioning = true
-		// When
 		const watcher = new IntlWatcher(watcherOptions)
+		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		// Then
 		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
@@ -130,8 +130,8 @@ describe('intl-watcher plugin tests', () => {
 		const [mainDe, clientDe, serverDe] = getDictionaryPaths('de')
 		const watcherOptions = createDefaultWatcherOptions([main, mainDe])
 		watcherOptions.applyPartitioning = true
-		// When
 		const watcher = new IntlWatcher(watcherOptions)
+		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		// Then
 		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
@@ -148,8 +148,8 @@ describe('intl-watcher plugin tests', () => {
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
 		watcherOptions.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
-		// When
 		const watcher = new IntlWatcher(watcherOptions)
+		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		// Then
 		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
@@ -165,8 +165,8 @@ describe('intl-watcher plugin tests', () => {
 		watcherOptions.applyPartitioning = true
 		watcherOptions.partitioningOptions.clientFunction = 'translate'
 		watcherOptions.partitioningOptions.serverFunction = 'translateOnServer'
-		// When
 		const watcher = new IntlWatcher(watcherOptions)
+		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		// Then
 		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
@@ -179,8 +179,8 @@ describe('intl-watcher plugin tests', () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
-		// When
 		const watcher = new IntlWatcher(watcherOptions)
+		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		await setTimeout(watcherOptions.debounceDelay * 1.5)
 		watcher.scanSourceFilesForTranslationKeys()
