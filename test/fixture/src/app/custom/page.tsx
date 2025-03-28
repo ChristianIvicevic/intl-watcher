@@ -15,13 +15,13 @@ export default async function Page() {
 
 	return (
 		<>
-			{/* @ts-expect-error */}
+			{/* @ts-expect-error: This won't compile until the plugin picks it up for the first time. */}
 			<p>{tCustom('newCustomServerVariable')}</p>
-			{/*@ts-expect-error */}
+			{/* @ts-expect-error: This won't compile until the plugin picks it up for the first time. */}
 			<p>{tCustom(fruit)}</p>
-			{/* @ts-expect-error */}
+			{/* @ts-expect-error: This won't compile until the plugin picks it up for the first time. */}
 			<p>{tCustom(`${fruit}Description`)}</p>
-			{/* @ts-expect-error */}
+			{/* @ts-expect-error: This won't compile until the plugin picks it up for the first time. */}
 			<p>{tCustom(apiResponse.data)}</p>
 		</>
 	)

@@ -6,7 +6,7 @@ export function ClientComponent() {
 	const tCustom = translate()
 	return (
 		<>
-			{/* @ts-expect-error */}
+			{/* @ts-expect-error: This won't compile until the plugin picks it up for the first time. */}
 			<p>{tCustom('newCustomClientVariable')}</p>
 		</>
 	)

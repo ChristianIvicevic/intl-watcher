@@ -1,27 +1,16 @@
 'use client'
 
-import { type AbstractIntlMessages, NextIntlClientProvider, useTranslations } from 'next-intl'
+import { NextIntlClientProvider, useTranslations } from 'next-intl'
 import type { ReactNode } from 'react'
 
 export function Providers({
 	children,
-	messages,
 	locale,
 }: {
 	children: ReactNode
-	messages: AbstractIntlMessages
 	locale: string
 }) {
-	return (
-		<NextIntlClientProvider
-			messages={messages}
-			locale={locale}
-			getMessageFallback={(info) => `[NYT: ${info.key}]`}
-			timeZone="UTC"
-		>
-			{children}
-		</NextIntlClientProvider>
-	)
+	return <NextIntlClientProvider locale={locale}>{children}</NextIntlClientProvider>
 }
 
 export function ClientComponent() {
@@ -29,7 +18,7 @@ export function ClientComponent() {
 
 	return (
 		<>
-			{/* @ts-expect-error */}
+			{/* @ts-expect-error: This won't compile until the plugin picks it up for the first time. */}
 			<p>{t('newClientVariable')}</p>
 		</>
 	)

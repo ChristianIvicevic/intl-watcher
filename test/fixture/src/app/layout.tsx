@@ -10,9 +10,7 @@ export default async function RootLayout({ children }: { children: ReactNode }) 
 	return (
 		<html lang={locale}>
 			<body>
-				<Providers messages={{}} locale={locale}>
-					{children}
-				</Providers>
+				<Providers locale={locale}>{children}</Providers>
 			</body>
 		</html>
 	)
