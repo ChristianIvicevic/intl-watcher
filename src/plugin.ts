@@ -107,17 +107,20 @@ function setupIntlWatcher(options: IntlWatcherOptions): void {
 export class IntlWatcher {
 	private _isSelfTriggerGuardActive = false
 
-	public constructor(private readonly options: IntlWatcherOptions) {}
+	public constructor(private readonly _options: IntlWatcherOptions) {}
 
 	public startWatching(): void {
-		const debouncedScan = debounce(() => this.scanSourceFilesForTranslationKeys(), this.options.debounceDelay)
+		const debouncedScan = debounce(
+			() => this.scanSourceFilesForTranslationKeys(),
+			this._options.debounceDelay,
+		)
 		const watcher = chokidar
-			.watch(this.options.sourceDirectory, { ignoreInitial: true })
+			.watch(this._options.sourceDirectory, { ignoreInitial: true })
 			.on('all', (_event, filename) => {
 				const absoluteFilename = path.resolve(filename)
 				if (
 					!this.shouldProcessFile(absoluteFilename) ||
-					(this.options.i18nDictionaryPaths.includes(absoluteFilename) && this._isSelfTriggerGuardActive)
+					(this._options.i18nDictionaryPaths.includes(absoluteFilename) && this._isSelfTriggerGuardActive)
 				) {
 					return
 				}
@@ -134,9 +137,9 @@ export class IntlWatcher {
 		const startTime = process.hrtime.bigint()
 
 		let skipLogging = false
-		const [clientTranslationKeys, serverTranslationKeys] = extractTranslationKeysFromProject(this.options)
+		const [clientTranslationKeys, serverTranslationKeys] = extractTranslationKeysFromProject(this._options)
 
-		for (const dictionaryPath of this.options.i18nDictionaryPaths) {
+		for (const dictionaryPath of this._options.i18nDictionaryPaths) {
 			this.synchronizeDictionaryFile(
 				dictionaryPath,
 				clientTranslationKeys,
@@ -165,7 +168,7 @@ export class IntlWatcher {
 				(key) => !(clientTranslationKeys.includes(key) || serverTranslationKeys.includes(key)),
 			)
 			for (const key of unusedKeys) {
-				if (this.options.removeUnusedKeys) {
+				if (this._options.removeUnusedKeys) {
 					existingMessages[key] = undefined
 					if (!skipLogging) {
 						log.success(`Removed unused i18n key \`${key}\``)
@@ -179,14 +182,14 @@ export class IntlWatcher {
 				if (existingMessages[key] === undefined && !skipLogging) {
 					log.success(`Added new i18n key \`${key}\``)
 				}
-				existingMessages[key] ??= this.options.defaultTranslationGeneratorFn(key)
+				existingMessages[key] ??= this._options.defaultTranslationGeneratorFn(key)
 			}
 
 			const updatedMessages = lodash.pick(existingMessages, objectKeys(existingMessages).toSorted())
 			this.enabledSelfTriggerGuard()
 			writeDictionaryFile(dictionaryPath, updatedMessages)
 
-			if (this.options.applyPartitioning) {
+			if (this._options.applyPartitioning) {
 				this.partitionTranslationKeys(
 					updatedMessages,
 					clientTranslationKeys,
@@ -201,7 +204,7 @@ export class IntlWatcher {
 
 	private shouldProcessFile(filename: string): boolean {
 		const isTsFile = filename.endsWith('.ts') || filename.endsWith('.tsx')
-		const isDictionary = this.options.i18nDictionaryPaths.includes(filename)
+		const isDictionary = this._options.i18nDictionaryPaths.includes(filename)
 		const isDeclarationFile = filename.endsWith('.d.ts') || filename.endsWith('.d.json.ts')
 
 		return (isTsFile || isDictionary) && !isDeclarationFile
@@ -228,6 +231,6 @@ export class IntlWatcher {
 		this._isSelfTriggerGuardActive = true
 		setTimeout(() => {
 			this._isSelfTriggerGuardActive = false
-		}, this.options.debounceDelay)
+		}, this._options.debounceDelay)
 	}
 }
