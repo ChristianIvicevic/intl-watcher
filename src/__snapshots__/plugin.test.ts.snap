@@ -6,6 +6,7 @@ exports[`intl-watcher plugin tests > should be idempotent 1`] = `
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
@@ -24,6 +25,7 @@ Added new i18n key \`apple\`
 Added new i18n key \`appleDescription\`
 Added new i18n key \`banana\`
 Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
@@ -89,6 +91,7 @@ exports[`intl-watcher plugin tests > should be possible to change the default fa
 	"appleDescription": "[Missing translation: appleDescription]",
 	"banana": "[Missing translation: banana]",
 	"bananaDescription": "[Missing translation: bananaDescription]",
+	"literal": "[Missing translation: literal]",
 	"newClientVariable": "[Missing translation: newClientVariable]",
 	"newServerVariable": "[Missing translation: newServerVariable]",
 	"orange": "[Missing translation: orange]",
@@ -107,6 +110,7 @@ Added new i18n key \`apple\`
 Added new i18n key \`appleDescription\`
 Added new i18n key \`banana\`
 Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
@@ -120,6 +124,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
@@ -143,6 +148,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
@@ -159,6 +165,7 @@ Added new i18n key \`apple\`
 Added new i18n key \`appleDescription\`
 Added new i18n key \`banana\`
 Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
@@ -172,6 +179,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
@@ -188,6 +196,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
@@ -211,6 +220,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
@@ -232,6 +242,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
 	"orangeDescription": "[NYT: orangeDescription]",
@@ -248,6 +259,7 @@ Added new i18n key \`apple\`
 Added new i18n key \`appleDescription\`
 Added new i18n key \`banana\`
 Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
@@ -261,6 +273,7 @@ exports[`intl-watcher plugin tests > should remove unused keys 1`] = `
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
@@ -278,6 +291,7 @@ Added new i18n key \`apple\`
 Added new i18n key \`appleDescription\`
 Added new i18n key \`banana\`
 Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
@@ -291,6 +305,7 @@ exports[`intl-watcher plugin tests > should work with the default options 1`] = 
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
@@ -309,6 +324,7 @@ Added new i18n key \`apple\`
 Added new i18n key \`appleDescription\`
 Added new i18n key \`banana\`
 Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
@@ -322,6 +338,7 @@ exports[`intl-watcher plugin tests > should work with the default options for mu
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
@@ -338,6 +355,7 @@ exports[`intl-watcher plugin tests > should work with the default options for mu
 	"appleDescription": "[NYT: appleDescription]",
 	"banana": "[NYT: banana]",
 	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
 	"newClientVariable": "[NYT: newClientVariable]",
 	"newServerVariable": "[NYT: newServerVariable]",
 	"orange": "[NYT: orange]",
@@ -356,6 +374,7 @@ Added new i18n key \`apple\`
 Added new i18n key \`appleDescription\`
 Added new i18n key \`banana\`
 Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
 Added new i18n key \`newServerVariable\`
 Added new i18n key \`orange\`
 Added new i18n key \`orangeDescription\`
