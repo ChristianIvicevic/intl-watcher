@@ -42,20 +42,20 @@ pnpm add intl-watcher
 Wrap your Next.js configuration with the provided `createIntlWatcher` function:
 
 ```ts
-// next.config.mjs or next.config.js
+// next.config.ts
 import { createIntlWatcher } from 'intl-watcher'
 
 const withIntlWatcher = createIntlWatcher({
-	debounceDelay: 500,
 	i18nDictionaryPaths: ['./locales/en.json'],
-	sourceDirectory: './src',
+	applyPartitioning: true,
+	debounceDelay: 500,
+	defaultTranslationGeneratorFn: (key) => `[NYT: ${key}]`,
 	partitioningOptions: {
 		clientFunction: 'useTranslations',
 		serverFunction: 'getTranslations',
 	},
 	removeUnusedKeys: true,
-	applyPartitioning: true,
-	defaultTranslationGeneratorFn: (key) => `[NYT: ${key}]`,
+	sourceDirectory: './src'
 })
 
 export default withIntlWatcher({
@@ -66,16 +66,65 @@ export default withIntlWatcher({
 
 ## Configuration Options
 
-| Option                                | Type                                                      | Default                                                                   | Description                                                                                       |
-| ------------------------------------- | --------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| **`debounceDelay`**                   | `number`                                                  | `500`                                                                     | Delay (ms) for debouncing scans after file changes.                                               |
-| **`sourceDirectory`**                 | `string`                                                  | `'./src'`                                                                 | Directory to scan for translation keys.                                                           |
-| **`i18nDictionaryPaths`** *(required)*| `string[]`                                                | –                                                                         | Paths to JSON dictionary files to manage.                                                         |
-| **`partitioningOptions`**             | `{ clientFunction?: string; serverFunction?: string }`    | `{ clientFunction: 'useTranslations', serverFunction: 'getTranslations' }`| Identifiers to distinguish client/server translation functions.                                   |
-| **`removeUnusedKeys`**                | `boolean`                                                 | `false`                                                                   | Removes unused translation keys if `true`; otherwise, logs a warning.                             |
-| **`applyPartitioning`**               | `boolean`                                                 | `false`                                                                   | Enables splitting of translation keys into separate client/server dictionaries.                   |
-| **`defaultTranslationGeneratorFn`**   | `(key: string) => string`                                 | ``(key) => `[NYT: ${key}]` ``                                             | Function to generate default values for new translation keys.                                     |
-| **`tsConfigFilePath`**                | `string`                                                  | `'tsconfig.json'`                                                         | Path to the tsconfig file to resolve file scanning criteria.                                      |
+### Required Options
+
+#### `i18nDictionaryPaths`
+
+- **Type:** `string[]`
+- **Description:** Paths to JSON dictionary files to manage.
+
+### Optional Options
+
+#### `applyPartitioning`
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Enables splitting of translation keys into separate client/server dictionaries.
+
+#### `debounceDelay`
+
+- **Type:** `number`
+- **Default:** `500`
+- **Description:** Delay (ms) for debouncing scans after file changes.
+
+#### `defaultTranslationGeneratorFn`
+
+- **Type**: `(key: string) => string`
+- **Default**:
+  ```js
+  (key) => `[NYT: ${key}]`
+  ```
+- **Description**: Function to generate default values for new translation keys.
+
+#### `partitioningOptions`
+
+- **Type:** `{ clientFunction?: string; serverFunction?: string }`
+- **Default:**
+  ```json5
+  {
+    clientFunction: 'useTranslations',
+    serverFunction: 'getTranslations'
+  }
+  ```
+- **Description**: Identifiers to distinguish client/server translation functions.
+
+#### `removeUnusedKeys`
+
+- **Type**: `boolean`
+- **Default**: `false`
+- **Description**: Removes unused translation keys if true; otherwise, logs a warning.
+
+#### `sourceDirectory`
+
+- **Type:** `string`
+- **Default:** `'./src'`
+- **Description:** Directory to scan for translation keys.
+
+#### `tsConfigFilePath`
+
+- **Type**: `string`
+- **Default**: `tsconfig.json`
+- **Description**: Path to the tsconfig file to resolve file scanning criteria.
 
 ## Dictionary Partitioning
 

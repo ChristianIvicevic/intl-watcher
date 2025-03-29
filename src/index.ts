@@ -23,19 +23,22 @@ export type { CreateIntlWatcherOptions }
  *
  * @example
  * const withIntlWatcher = createIntlWatcher({
- *   debounceDelay: 600,
- *   i18nDictionaryPaths: ['./locales/i18n.json'],
- *   sourceDirectory: './src',
- *   partitioningOptions: { clientFunction: 'translate', serverFunction: 'translateOnServer' },
- *   removeUnusedKeys: true,
- *   applyPartitioning: true,
- *   defaultTranslationGeneratorFn: (key) => `Missing: ${key}`,
- * });
+ * 	i18nDictionaryPaths: ['./locales/en.json'],
+ * 	applyPartitioning: true,
+ * 	debounceDelay: 500,
+ * 	defaultTranslationGeneratorFn: (key) => `[NYT: ${key}]`,
+ * 	partitioningOptions: {
+ * 		clientFunction: 'useTranslations',
+ * 		serverFunction: 'getTranslations',
+ * 	},
+ * 	removeUnusedKeys: true,
+ * 	sourceDirectory: './src'
+ * })
  *
  * export default withIntlWatcher({
  *   reactStrictMode: true,
  *   // other Next.js config options
- * });
+ * })
  */
 export function createIntlWatcher(options: CreateIntlWatcherOptions): (config: NextConfig) => NextConfig {
 	const fullOptions = buildIntlWatcherOptions(options)
