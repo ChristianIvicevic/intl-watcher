@@ -4,7 +4,7 @@ import { setTimeout } from 'node:timers/promises'
 import fs from 'fs-extra'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { ERROR, SUCCESS, WAITING, WARN } from './logger.js'
-import { IntlWatcher, IntlWatcherOptionsDefaults } from './plugin.js'
+import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
 import type { IntlWatcherOptions } from './types.js'
 
 const TIMING_REGEX = /Finished in \d+(\.\d+)?(ms|s)/g
@@ -14,16 +14,11 @@ describe('intl-watcher plugin tests', () => {
 	let logSpy: ReturnType<typeof vi.spyOn>
 
 	function createDefaultWatcherOptions(i18nDictionaryPaths: string[]): IntlWatcherOptions {
-		return {
-			applyPartitioning: IntlWatcherOptionsDefaults.applyPartitioning,
-			debounceDelay: IntlWatcherOptionsDefaults.debounceDelay,
-			defaultTranslationGeneratorFn: IntlWatcherOptionsDefaults.defaultTranslationGeneratorFn,
+		return buildIntlWatcherOptions({
 			i18nDictionaryPaths,
-			partitioningOptions: { ...IntlWatcherOptionsDefaults.partitioningOptions },
-			removeUnusedKeys: IntlWatcherOptionsDefaults.removeUnusedKeys,
 			sourceDirectory: path.join(tempDir, 'src'),
 			tsConfigFilePath: path.join(tempDir, 'tsconfig.json'),
-		}
+		})
 	}
 
 	function getDictionaryPaths(language = 'en') {

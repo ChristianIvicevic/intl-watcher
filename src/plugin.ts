@@ -3,105 +3,27 @@ import { setTimeout } from 'node:timers'
 import chokidar from 'chokidar'
 import debounce from 'debounce'
 import lodash from 'lodash'
-import type { NextConfig } from 'next'
-import pc from 'picocolors'
 import properLockfile from 'proper-lockfile'
 import { objectKeys } from 'ts-extras'
 import { log } from './logger.js'
 import { extractTranslationKeysFromProject } from './parser.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
-import { formatDuration, readDictionaryFile, runOnce, writeDictionaryFile } from './utils.js'
+import { formatDuration, readDictionaryFile, writeDictionaryFile } from './utils.js'
 
-export const IntlWatcherOptionsDefaults = {
-	debounceDelay: 500,
-	sourceDirectory: './src',
-	partitioningOptions: {
-		clientFunction: 'useTranslations',
-		serverFunction: 'getTranslations',
-	},
-	removeUnusedKeys: false,
-	applyPartitioning: false,
-	defaultTranslationGeneratorFn: (key: string) => `[NYT: ${key}]`,
-	tsConfigFilePath: 'tsconfig.json',
-} as const
-
-/**
- * Initializes and configures the intl-watcher plugin for Next.js.
- *
- * This function creates a higher-order function that wraps your Next.js configuration. It sets up a file watcher to
- * scan your source files for i18n translation keys and synchronizes these keys with JSON dictionary files. The options
- * allow you to adjust debouncing, specify the source directory, define the dictionary file paths, partition keys for
- * client and server translation functions, decide whether to remove unused keys, and customize the default value
- * generation for new keys.
- *
- * @param options - Configuration options for the i18n watcher.
- *
- * @returns A function that takes a Next.js configuration, initializes the watcher, and returns the modified
- * configuration.
- *
- * @example
- * const withIntlWatcher = createIntlWatcher({
- *   debounceDelay: 600,
- *   i18nDictionaryPaths: ['./locales/i18n.json'],
- *   sourceDirectory: './src',
- *   partitioningOptions: { clientFunction: 'translate', serverFunction: 'translateOnServer' },
- *   removeUnusedKeys: true,
- *   applyPartitioning: true,
- *   defaultTranslationGeneratorFn: (key) => `Missing: ${key}`,
- * });
- *
- * export default withIntlWatcher({
- *   reactStrictMode: true,
- *   // other Next.js config options
- * });
- */
-export function createIntlWatcher({
-	debounceDelay = IntlWatcherOptionsDefaults.debounceDelay,
-	i18nDictionaryPaths,
-	sourceDirectory = IntlWatcherOptionsDefaults.sourceDirectory,
-	partitioningOptions,
-	removeUnusedKeys = IntlWatcherOptionsDefaults.removeUnusedKeys,
-	applyPartitioning = IntlWatcherOptionsDefaults.applyPartitioning,
-	defaultTranslationGeneratorFn = IntlWatcherOptionsDefaults.defaultTranslationGeneratorFn,
-	tsConfigFilePath = IntlWatcherOptionsDefaults.tsConfigFilePath,
-}: CreateIntlWatcherOptions): (config: NextConfig) => NextConfig {
-	return function withIntlWatcher(config) {
-		runOnce(() =>
-			setupIntlWatcher({
-				debounceDelay,
-				i18nDictionaryPaths: i18nDictionaryPaths.map((dictionaryPath) => path.resolve(dictionaryPath)),
-				sourceDirectory,
-				partitioningOptions: {
-					clientFunction:
-						partitioningOptions?.clientFunction ??
-						IntlWatcherOptionsDefaults.partitioningOptions.clientFunction,
-					serverFunction:
-						partitioningOptions?.serverFunction ??
-						IntlWatcherOptionsDefaults.partitioningOptions.serverFunction,
-				},
-				removeUnusedKeys,
-				applyPartitioning,
-				defaultTranslationGeneratorFn,
-				tsConfigFilePath,
-			}),
-		)
-		return config
+export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): IntlWatcherOptions {
+	return {
+		debounceDelay: options.debounceDelay ?? 500,
+		i18nDictionaryPaths: options.i18nDictionaryPaths.map((dictionaryPath) => path.resolve(dictionaryPath)),
+		sourceDirectory: options.sourceDirectory ?? './src',
+		partitioningOptions: {
+			clientFunction: options.partitioningOptions?.clientFunction ?? 'useTranslations',
+			serverFunction: options.partitioningOptions?.serverFunction ?? 'getTranslations',
+		},
+		removeUnusedKeys: options.removeUnusedKeys ?? false,
+		applyPartitioning: options.applyPartitioning ?? false,
+		defaultTranslationGeneratorFn: options.defaultTranslationGeneratorFn ?? ((key) => `[NYT: ${key}]`),
+		tsConfigFilePath: options.tsConfigFilePath ?? 'tsconfig.json',
 	}
-}
-
-function setupIntlWatcher(options: IntlWatcherOptions): void {
-	const env = process.env['NODE_ENV'.trim()]
-	if (env !== 'development') {
-		return
-	}
-
-	log.info(`   🌐 ${pc.blue(pc.bold('intl-watcher plugin for Next.js'))}`)
-	log.info()
-	log.success('Starting...')
-	const watcher = new IntlWatcher(options)
-	watcher.scanSourceFilesForTranslationKeys()
-	log.info()
-	watcher.startWatching()
 }
 
 export class IntlWatcher {
