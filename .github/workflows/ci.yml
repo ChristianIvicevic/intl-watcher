@@ -3,7 +3,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: ./.github/actions/prepare
       - run: pnpm build
       - run: node lib/index.js
@@ -11,8 +11,8 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: biomejs/setup-biome@v2
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: biomejs/setup-biome@f382a98e582959e6aaac8e5f8b17b31749018780 # v2
         with:
           version: latest
       - uses: ./.github/actions/prepare
@@ -21,18 +21,18 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: ./.github/actions/prepare
       - run: pnpm run test --coverage
       - if: always()
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@0565863a31f2c772f9f0395002a31e3f06189574 # v5
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
   type_check:
     name: Type Check
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: ./.github/actions/prepare
       - run: pnpm tsc
 
