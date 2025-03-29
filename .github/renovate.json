@@ -7,10 +7,10 @@
 		":disableRateLimiting",
 		":rebaseStalePrs",
 		":pinDependencies",
-		":pinDevDependencies",
-		"group:allNonMajor"
+		":pinDevDependencies"
 	],
 	"labels": ["dependencies"],
+	"gitIgnoredAuthors": ["mail@christian-ivicevic.com"],
 	"minimumReleaseAge": "7 days",
 	"pinDigests": false
 }

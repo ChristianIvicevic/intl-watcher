@@ -1,5 +1,5 @@
 concurrency:
-  group: ${{ github.workflow }}
+  group: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
@@ -12,10 +12,16 @@ jobs:
           token: ${{ secrets.ACCESS_TOKEN }}
       - uses: ./.github/actions/prepare
       - run: pnpm build
-      - env:
+      - id: changesets
+        uses: changesets/action@v1
+        with:
+          version: pnpm changeset version
+          publish: pnpm changeset publish
+          title: "chore: release"
+          commit: "chore: release"
+        env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        uses: JoshuaKGoldberg/release-it-action@v0.3.1
 
 name: Release
 
@@ -27,3 +33,4 @@ on:
 permissions:
   contents: write
   id-token: write
+  pull-requests: write

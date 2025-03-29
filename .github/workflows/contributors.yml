@@ -1,5 +1,6 @@
 jobs:
   contributors:
+    name: Update
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

@@ -1,0 +1,20 @@
+name: Renovate
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, labeled]
+
+jobs:
+  renovate:
+    name: Add Changeset
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'dependencies')
+    steps:
+      - name: Update PR
+        uses: mscharley/dependency-changesets-action@v1.0.5
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          use-conventional-commits: true
+          use-semantic-commits: true
+          author-name: Christian Ivicevic
+          author-email: mail@christian-ivicevic.com

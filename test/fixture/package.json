@@ -8,7 +8,7 @@
 		"build": "next build",
 		"start": "next start"
 	},
-	"dependencies": {
+	"devDependencies": {
 		"@types/node": "22.13.13",
 		"@types/react": "19.0.12",
 		"@types/react-dom": "19.0.4",

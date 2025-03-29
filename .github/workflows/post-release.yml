@@ -1,5 +1,6 @@
 jobs:
   post_release:
+    name: Add Release Comment
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
