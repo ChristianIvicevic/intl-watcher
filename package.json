@@ -63,7 +63,6 @@
 		"fs-extra": "11.3.0",
 		"husky": "9.1.7",
 		"lint-staged": "15.5.0",
-		"release-it": "18.1.2",
 		"tsup": "8.4.0",
 		"type-fest": "4.38.0",
 		"typescript": "5.8.2",
