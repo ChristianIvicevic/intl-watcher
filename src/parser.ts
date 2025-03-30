@@ -36,15 +36,19 @@ export function extractTranslationKeysFromProject(options: IntlWatcherOptions) {
 	return [Array.from(clientTranslationKeys).toSorted(), Array.from(serverTranslationKeys).toSorted()] as const
 }
 
-function isTranslationFunctionCandidate(
-	variableDeclaration: ts.VariableDeclaration,
-	translationType: string,
-) {
-	// TODO: Investigate how to make this way more robust. This prohibits parameters and strict equalities would need
-	//		to take into account keywords such as await. The change to add the parenthese was necessary in the first place
-	//		since we only compared against `translationType` which would give false positives if it was a suffix such as
-	//		`translate` and `translateOnServer`.
-	return variableDeclaration.initializer?.getText()?.includes(`${translationType}()`)
+function isTranslationFunctionCandidate(variableDeclaration: ts.VariableDeclaration, functionName: string) {
+	let currentExpression = variableDeclaration.initializer
+	if (currentExpression === undefined) {
+		return false
+	}
+	while (ts.isAwaitExpression(currentExpression)) {
+		currentExpression = currentExpression.expression
+	}
+	return (
+		ts.isCallExpression(currentExpression) &&
+		ts.isIdentifier(currentExpression.expression) &&
+		currentExpression.expression.getText() === functionName
+	)
 }
 
 function extractTranslationKeysFromSourceFile(

@@ -3,7 +3,7 @@ import path from 'node:path'
 import { setTimeout } from 'node:timers/promises'
 import fs from 'fs-extra'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
-import { ERROR, SUCCESS, WAITING, WARN } from './logger.js'
+import { ERROR, SUCCESS, TRACE, WAITING, WARN } from './logger.js'
 import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
 import type { IntlWatcherOptions } from './types.js'
 
@@ -37,6 +37,7 @@ describe('intl-watcher plugin tests', () => {
 			.replaceAll(WARN, '')
 			.replaceAll(ERROR, '')
 			.replaceAll(WAITING, '')
+			.replaceAll(TRACE, '')
 			.split('\n')
 			.map((line) => line.trim())
 			.join('\n')
