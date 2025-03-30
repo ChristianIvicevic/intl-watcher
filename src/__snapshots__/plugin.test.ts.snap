@@ -1,6 +1,88 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`intl-watcher plugin tests > should be idempotent 1`] = `
+exports[`intl-watcher plugin tests > custom fallback for new keys 1`] = `
+"{
+	"apple": "[Missing translation: apple]",
+	"appleDescription": "[Missing translation: appleDescription]",
+	"banana": "[Missing translation: banana]",
+	"bananaDescription": "[Missing translation: bananaDescription]",
+	"literal": "[Missing translation: literal]",
+	"newClientVariable": "[Missing translation: newClientVariable]",
+	"newServerVariable": "[Missing translation: newServerVariable]",
+	"orange": "[Missing translation: orange]",
+	"orangeDescription": "[Missing translation: orangeDescription]",
+	"richText": "[Missing translation: richText]",
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > custom fallback for new keys 2`] = `
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
+Finished in <timing>"
+`;
+
+exports[`intl-watcher plugin tests > custom partitioning function names 1`] = `
+"{
+	"customApple": "[NYT: customApple]",
+	"customAppleDescription": "[NYT: customAppleDescription]",
+	"customBanana": "[NYT: customBanana]",
+	"customBananaDescription": "[NYT: customBananaDescription]",
+	"customOrange": "[NYT: customOrange]",
+	"customOrangeDescription": "[NYT: customOrangeDescription]",
+	"newCustomClientVariable": "[NYT: newCustomClientVariable]",
+	"newCustomServerVariable": "[NYT: newCustomServerVariable]",
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > custom partitioning function names 2`] = `
+"{
+	"newCustomClientVariable": "[NYT: newCustomClientVariable]"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > custom partitioning function names 3`] = `
+"{
+	"customApple": "[NYT: customApple]",
+	"customAppleDescription": "[NYT: customAppleDescription]",
+	"customBanana": "[NYT: customBanana]",
+	"customBananaDescription": "[NYT: customBananaDescription]",
+	"customOrange": "[NYT: customOrange]",
+	"customOrangeDescription": "[NYT: customOrangeDescription]",
+	"newCustomServerVariable": "[NYT: newCustomServerVariable]"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > custom partitioning function names 4`] = `
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newCustomClientVariable\`
+Added new i18n key \`customApple\`
+Added new i18n key \`customAppleDescription\`
+Added new i18n key \`customBanana\`
+Added new i18n key \`customBananaDescription\`
+Added new i18n key \`customOrange\`
+Added new i18n key \`customOrangeDescription\`
+Added new i18n key \`newCustomServerVariable\`
+Finished in <timing>"
+`;
+
+exports[`intl-watcher plugin tests > default options (multiple languages) 1`] = `
 "{
 	"apple": "[NYT: apple]",
 	"appleDescription": "[NYT: appleDescription]",
@@ -17,7 +99,90 @@ exports[`intl-watcher plugin tests > should be idempotent 1`] = `
 "
 `;
 
-exports[`intl-watcher plugin tests > should be idempotent 2`] = `
+exports[`intl-watcher plugin tests > default options (multiple languages) 2`] = `
+"{
+	"apple": "[NYT: apple]",
+	"appleDescription": "[NYT: appleDescription]",
+	"banana": "[NYT: banana]",
+	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
+	"newClientVariable": "[NYT: newClientVariable]",
+	"newServerVariable": "[NYT: newServerVariable]",
+	"orange": "[NYT: orange]",
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
+	"unusedVariable": "In keiner Datei mehr genutzt"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > default options (multiple languages) 3`] = `
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
+Finished in <timing>"
+`;
+
+exports[`intl-watcher plugin tests > default options 1`] = `
+"{
+	"apple": "[NYT: apple]",
+	"appleDescription": "[NYT: appleDescription]",
+	"banana": "[NYT: banana]",
+	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
+	"newClientVariable": "[NYT: newClientVariable]",
+	"newServerVariable": "[NYT: newServerVariable]",
+	"orange": "[NYT: orange]",
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > default options 2`] = `
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
+Finished in <timing>"
+`;
+
+exports[`intl-watcher plugin tests > idempotency 1`] = `
+"{
+	"apple": "[NYT: apple]",
+	"appleDescription": "[NYT: appleDescription]",
+	"banana": "[NYT: banana]",
+	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
+	"newClientVariable": "[NYT: newClientVariable]",
+	"newServerVariable": "[NYT: newServerVariable]",
+	"orange": "[NYT: orange]",
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > idempotency 2`] = `
 "Scanning...
 Unused i18n key \`unusedVariable\`
 Added new i18n key \`newClientVariable\`
@@ -36,89 +201,7 @@ Unused i18n key \`unusedVariable\`
 Finished in <timing>"
 `;
 
-exports[`intl-watcher plugin tests > should be possible to change names of translation functions for partitioning 1`] = `
-"{
-	"customApple": "[NYT: customApple]",
-	"customAppleDescription": "[NYT: customAppleDescription]",
-	"customBanana": "[NYT: customBanana]",
-	"customBananaDescription": "[NYT: customBananaDescription]",
-	"customOrange": "[NYT: customOrange]",
-	"customOrangeDescription": "[NYT: customOrangeDescription]",
-	"newCustomClientVariable": "[NYT: newCustomClientVariable]",
-	"newCustomServerVariable": "[NYT: newCustomServerVariable]",
-	"unusedVariable": "No longer referenced in any source file"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to change names of translation functions for partitioning 2`] = `
-"{
-	"newCustomClientVariable": "[NYT: newCustomClientVariable]"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to change names of translation functions for partitioning 3`] = `
-"{
-	"customApple": "[NYT: customApple]",
-	"customAppleDescription": "[NYT: customAppleDescription]",
-	"customBanana": "[NYT: customBanana]",
-	"customBananaDescription": "[NYT: customBananaDescription]",
-	"customOrange": "[NYT: customOrange]",
-	"customOrangeDescription": "[NYT: customOrangeDescription]",
-	"newCustomServerVariable": "[NYT: newCustomServerVariable]"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to change names of translation functions for partitioning 4`] = `
-"Scanning...
-Unused i18n key \`unusedVariable\`
-Added new i18n key \`newCustomClientVariable\`
-Added new i18n key \`customApple\`
-Added new i18n key \`customAppleDescription\`
-Added new i18n key \`customBanana\`
-Added new i18n key \`customBananaDescription\`
-Added new i18n key \`customOrange\`
-Added new i18n key \`customOrangeDescription\`
-Added new i18n key \`newCustomServerVariable\`
-Finished in <timing>"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to change the default fallback values for new keys 1`] = `
-"{
-	"apple": "[Missing translation: apple]",
-	"appleDescription": "[Missing translation: appleDescription]",
-	"banana": "[Missing translation: banana]",
-	"bananaDescription": "[Missing translation: bananaDescription]",
-	"literal": "[Missing translation: literal]",
-	"newClientVariable": "[Missing translation: newClientVariable]",
-	"newServerVariable": "[Missing translation: newServerVariable]",
-	"orange": "[Missing translation: orange]",
-	"orangeDescription": "[Missing translation: orangeDescription]",
-	"richText": "[Missing translation: richText]",
-	"unusedVariable": "No longer referenced in any source file"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to change the default fallback values for new keys 2`] = `
-"Scanning...
-Unused i18n key \`unusedVariable\`
-Added new i18n key \`newClientVariable\`
-Added new i18n key \`apple\`
-Added new i18n key \`appleDescription\`
-Added new i18n key \`banana\`
-Added new i18n key \`bananaDescription\`
-Added new i18n key \`literal\`
-Added new i18n key \`newServerVariable\`
-Added new i18n key \`orange\`
-Added new i18n key \`orangeDescription\`
-Added new i18n key \`richText\`
-Finished in <timing>"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles 1`] = `
+exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 1`] = `
 "{
 	"apple": "[NYT: apple]",
 	"appleDescription": "[NYT: appleDescription]",
@@ -135,62 +218,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 "
 `;
 
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles 2`] = `
-"{
-	"newClientVariable": "[NYT: newClientVariable]"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles 3`] = `
-"{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
-	"literal": "[NYT: literal]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
-	"richText": "[NYT: richText]"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles 4`] = `
-"Scanning...
-Unused i18n key \`unusedVariable\`
-Added new i18n key \`newClientVariable\`
-Added new i18n key \`apple\`
-Added new i18n key \`appleDescription\`
-Added new i18n key \`banana\`
-Added new i18n key \`bananaDescription\`
-Added new i18n key \`literal\`
-Added new i18n key \`newServerVariable\`
-Added new i18n key \`orange\`
-Added new i18n key \`orangeDescription\`
-Added new i18n key \`richText\`
-Finished in <timing>"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 1`] = `
-"{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
-	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
-	"richText": "[NYT: richText]",
-	"unusedVariable": "No longer referenced in any source file"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 2`] = `
+exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 2`] = `
 "{
 	"apple": "[NYT: apple]",
 	"appleDescription": "[NYT: appleDescription]",
@@ -207,14 +235,14 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 "
 `;
 
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 3`] = `
+exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 3`] = `
 "{
 	"newClientVariable": "[NYT: newClientVariable]"
 }
 "
 `;
 
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 4`] = `
+exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 4`] = `
 "{
 	"apple": "[NYT: apple]",
 	"appleDescription": "[NYT: appleDescription]",
@@ -229,14 +257,14 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 "
 `;
 
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 5`] = `
+exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 5`] = `
 "{
 	"newClientVariable": "[NYT: newClientVariable]"
 }
 "
 `;
 
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 6`] = `
+exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 6`] = `
 "{
 	"apple": "[NYT: apple]",
 	"appleDescription": "[NYT: appleDescription]",
@@ -251,7 +279,7 @@ exports[`intl-watcher plugin tests > should be possible to partition dictionarie
 "
 `;
 
-exports[`intl-watcher plugin tests > should be possible to partition dictionaries into server and client bundles for multiple languages 7`] = `
+exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 7`] = `
 "Scanning...
 Unused i18n key \`unusedVariable\`
 Added new i18n key \`newClientVariable\`
@@ -267,7 +295,62 @@ Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
-exports[`intl-watcher plugin tests > should remove unused keys 1`] = `
+exports[`intl-watcher plugin tests > partitions dictionaries 1`] = `
+"{
+	"apple": "[NYT: apple]",
+	"appleDescription": "[NYT: appleDescription]",
+	"banana": "[NYT: banana]",
+	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
+	"newClientVariable": "[NYT: newClientVariable]",
+	"newServerVariable": "[NYT: newServerVariable]",
+	"orange": "[NYT: orange]",
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]",
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > partitions dictionaries 2`] = `
+"{
+	"newClientVariable": "[NYT: newClientVariable]"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > partitions dictionaries 3`] = `
+"{
+	"apple": "[NYT: apple]",
+	"appleDescription": "[NYT: appleDescription]",
+	"banana": "[NYT: banana]",
+	"bananaDescription": "[NYT: bananaDescription]",
+	"literal": "[NYT: literal]",
+	"newServerVariable": "[NYT: newServerVariable]",
+	"orange": "[NYT: orange]",
+	"orangeDescription": "[NYT: orangeDescription]",
+	"richText": "[NYT: richText]"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > partitions dictionaries 4`] = `
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`newClientVariable\`
+Added new i18n key \`apple\`
+Added new i18n key \`appleDescription\`
+Added new i18n key \`banana\`
+Added new i18n key \`bananaDescription\`
+Added new i18n key \`literal\`
+Added new i18n key \`newServerVariable\`
+Added new i18n key \`orange\`
+Added new i18n key \`orangeDescription\`
+Added new i18n key \`richText\`
+Finished in <timing>"
+`;
+
+exports[`intl-watcher plugin tests > removes unused keys 1`] = `
 "{
 	"apple": "[NYT: apple]",
 	"appleDescription": "[NYT: appleDescription]",
@@ -283,92 +366,9 @@ exports[`intl-watcher plugin tests > should remove unused keys 1`] = `
 "
 `;
 
-exports[`intl-watcher plugin tests > should remove unused keys 2`] = `
+exports[`intl-watcher plugin tests > removes unused keys 2`] = `
 "Scanning...
 Removed unused i18n key \`unusedVariable\`
-Added new i18n key \`newClientVariable\`
-Added new i18n key \`apple\`
-Added new i18n key \`appleDescription\`
-Added new i18n key \`banana\`
-Added new i18n key \`bananaDescription\`
-Added new i18n key \`literal\`
-Added new i18n key \`newServerVariable\`
-Added new i18n key \`orange\`
-Added new i18n key \`orangeDescription\`
-Added new i18n key \`richText\`
-Finished in <timing>"
-`;
-
-exports[`intl-watcher plugin tests > should work with the default options 1`] = `
-"{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
-	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
-	"richText": "[NYT: richText]",
-	"unusedVariable": "No longer referenced in any source file"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should work with the default options 2`] = `
-"Scanning...
-Unused i18n key \`unusedVariable\`
-Added new i18n key \`newClientVariable\`
-Added new i18n key \`apple\`
-Added new i18n key \`appleDescription\`
-Added new i18n key \`banana\`
-Added new i18n key \`bananaDescription\`
-Added new i18n key \`literal\`
-Added new i18n key \`newServerVariable\`
-Added new i18n key \`orange\`
-Added new i18n key \`orangeDescription\`
-Added new i18n key \`richText\`
-Finished in <timing>"
-`;
-
-exports[`intl-watcher plugin tests > should work with the default options for multiple languages 1`] = `
-"{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
-	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
-	"richText": "[NYT: richText]",
-	"unusedVariable": "No longer referenced in any source file"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should work with the default options for multiple languages 2`] = `
-"{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
-	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
-	"richText": "[NYT: richText]",
-	"unusedVariable": "In keiner Datei mehr genutzt"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > should work with the default options for multiple languages 3`] = `
-"Scanning...
-Unused i18n key \`unusedVariable\`
 Added new i18n key \`newClientVariable\`
 Added new i18n key \`apple\`
 Added new i18n key \`appleDescription\`

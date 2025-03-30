@@ -2,7 +2,7 @@ import os from 'node:os'
 import path from 'node:path'
 import { setTimeout } from 'node:timers/promises'
 import fs from 'fs-extra'
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { ERROR, SUCCESS, WAITING, WARN } from './logger.js'
 import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
 import type { IntlWatcherOptions } from './types.js'
@@ -57,7 +57,7 @@ describe('intl-watcher plugin tests', () => {
 		logSpy.mockRestore()
 	})
 
-	it('should work with the default options', async () => {
+	test('default options', async () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
@@ -71,7 +71,7 @@ describe('intl-watcher plugin tests', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	})
 
-	it('should work with the default options for multiple languages', async () => {
+	test('default options (multiple languages)', async () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const [mainDe, clientDe, serverDe] = getDictionaryPaths('de')
@@ -89,7 +89,7 @@ describe('intl-watcher plugin tests', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	})
 
-	it('should remove unused keys', async () => {
+	test('removes unused keys', async () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
@@ -104,7 +104,7 @@ describe('intl-watcher plugin tests', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	})
 
-	it('should be possible to partition dictionaries into server and client bundles', async () => {
+	test('partitions dictionaries', async () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
@@ -119,7 +119,7 @@ describe('intl-watcher plugin tests', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	})
 
-	it('should be possible to partition dictionaries into server and client bundles for multiple languages', async () => {
+	test('partitions dictionaries (multiple languages)', async () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const [mainDe, clientDe, serverDe] = getDictionaryPaths('de')
@@ -138,7 +138,7 @@ describe('intl-watcher plugin tests', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	})
 
-	it('should be possible to change the default fallback values for new keys', async () => {
+	test('custom fallback for new keys', async () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
@@ -153,7 +153,7 @@ describe('intl-watcher plugin tests', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	})
 
-	it('should be possible to change names of translation functions for partitioning', async () => {
+	test('custom partitioning function names', async () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
@@ -170,7 +170,7 @@ describe('intl-watcher plugin tests', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	})
 
-	it('should be idempotent', async () => {
+	test('idempotency', async () => {
 		// Given
 		const [main, client, server] = getDictionaryPaths()
 		const watcherOptions = createDefaultWatcherOptions([main])
