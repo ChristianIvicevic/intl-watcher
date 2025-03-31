@@ -53,7 +53,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
-		"@changesets/changelog-git": "0.2.1",
 		"@changesets/cli": "2.28.1",
 		"@changesets/get-github-info": "0.6.0",
 		"@changesets/types": "6.1.0",
