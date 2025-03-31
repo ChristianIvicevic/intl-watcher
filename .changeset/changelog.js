@@ -6,7 +6,7 @@ const REPOSITORY = 'ChristianIvicevic/intl-watcher'
 /**
  * @type {import("@changesets/types").GetDependencyReleaseLine}
  */
-async function getDependencyReleaseLine(changesets, dependenciesUpdated) {
+const getDependencyReleaseLine = async (changesets, dependenciesUpdated) => {
 	if (dependenciesUpdated.length === 0) {
 		return ''
 	}
@@ -35,11 +35,12 @@ async function getDependencyReleaseLine(changesets, dependenciesUpdated) {
 const PR_REGEX = /^\s*(?:pr|pull|pull\s+request):\s*#?(\d+)/im
 const COMMIT_REGEX = /^\s*commit:\s*([^\s]+)/im
 const AUTHOR_REGEX = /^\s*(?:author|user):\s*@?([^\s]+)/gim
+const RENOVATE_REGEX = /fix\(deps\): update dependency ([^\s]+) to ([^\s]+)/im
 
 /**
  * @type {import("@changesets/types").GetReleaseLine}
  */
-async function getReleaseLine(changeset) {
+const getReleaseLine = async (changeset) => {
 	let prFromSummary
 	let commitFromSummary
 	const usersFromSummary = []
@@ -94,7 +95,9 @@ async function getReleaseLine(changeset) {
 		'',
 	)
 
-	return `\n\n- ${firstLine}${prefix ? `${prefix} \n` : ''}\n${futureLines.map((l) => `  ${l}`).join('\n')}`
+	const updatedFirstLine = firstLine.replace(RENOVATE_REGEX, 'Update dependency $1 to $2')
+
+	return `\n\n- ${updatedFirstLine}${prefix ? `${prefix} \n` : ''}\n${futureLines.map((l) => `  ${l}`).join('\n')}`
 }
 
 /**
