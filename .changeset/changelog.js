@@ -1,13 +1,12 @@
 // Copied and adapted from https://github.com/clerk
-
-const { getInfo, getInfoFromPullRequest } = require('@changesets/get-github-info')
+import { getInfo, getInfoFromPullRequest } from '@changesets/get-github-info'
 
 const REPOSITORY = 'ChristianIvicevic/intl-watcher'
 
 /**
- * @type {import('@changesets/types').GetDependencyReleaseLine}
+ * @type {import("@changesets/types").GetDependencyReleaseLine}
  */
-const getDependencyReleaseLine = async (changesets, dependenciesUpdated) => {
+async function getDependencyReleaseLine(changesets, dependenciesUpdated) {
 	if (dependenciesUpdated.length === 0) {
 		return ''
 	}
@@ -38,9 +37,9 @@ const COMMIT_REGEX = /^\s*commit:\s*([^\s]+)/im
 const AUTHOR_REGEX = /^\s*(?:author|user):\s*@?([^\s]+)/gim
 
 /**
- * @type {import('@changesets/types').GetReleaseLine}
+ * @type {import("@changesets/types").GetReleaseLine}
  */
-const getReleaseLine = async (changeset) => {
+async function getReleaseLine(changeset) {
 	let prFromSummary
 	let commitFromSummary
 	const usersFromSummary = []
@@ -101,5 +100,6 @@ const getReleaseLine = async (changeset) => {
 /**
  * @type {import('@changesets/types').ChangelogFunctions}
  */
-const changelogFunctions = { getReleaseLine, getDependencyReleaseLine }
-module.exports = changelogFunctions
+const _ = { getReleaseLine, getDependencyReleaseLine }
+
+export { getReleaseLine, getDependencyReleaseLine }
