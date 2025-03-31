@@ -46,6 +46,7 @@ const getReleaseLine = async (changeset) => {
 	const usersFromSummary = []
 
 	const replacedChangelog = changeset.summary
+		.replace(RENOVATE_REGEX, 'Update dependency $1 to $2')
 		.replace(PR_REGEX, (_, pr) => {
 			const num = Number(pr)
 			if (!Number.isNaN(num)) {
@@ -95,9 +96,7 @@ const getReleaseLine = async (changeset) => {
 		'',
 	)
 
-	const updatedFirstLine = firstLine.replace(RENOVATE_REGEX, 'Update dependency $1 to $2')
-
-	return `\n\n- ${updatedFirstLine}${prefix ? `${prefix} \n` : ''}\n${futureLines.map((l) => `  ${l}`).join('\n')}`
+	return `\n\n- ${firstLine}${prefix ? `${prefix} \n` : ''}\n${futureLines.map((l) => `  ${l}`).join('\n')}`
 }
 
 /**
