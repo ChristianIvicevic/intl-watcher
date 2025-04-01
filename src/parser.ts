@@ -1,116 +1,131 @@
-import { Project, type SourceFile, createWrappedNode, ts } from 'ts-morph'
+import {
+	type CallExpression,
+	type Expression,
+	type Identifier,
+	Node,
+	Project,
+	type SourceFile,
+	SyntaxKind,
+	type TemplateExpression,
+	type VariableDeclaration,
+} from 'ts-morph'
 import type { IntlWatcherOptions } from './types.js'
 
-export function extractTranslationKeysFromProject(options: IntlWatcherOptions) {
+// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: Expected complexity.
+export function extractTranslationKeysFromProject(
+	options: IntlWatcherOptions,
+): readonly [string[], string[]] {
 	const project = new Project({ tsConfigFilePath: options.tsConfigFilePath })
 
 	const sourceFiles = project.getSourceFiles()
-	const typeChecker = project.getTypeChecker().compilerObject
 
 	const clientTranslationKeys = new Set<string>()
 	const serverTranslationKeys = new Set<string>()
 
 	for (const sourceFile of sourceFiles) {
-		// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: It is what it is.
-		sourceFile.forEachDescendant((node) => {
-			if (!ts.isVariableDeclaration(node.compilerNode)) {
-				return
-			}
-			const variableName = node.compilerNode.name.getText()
+		const variableDeclarations = sourceFile.getDescendantsOfKind(SyntaxKind.VariableDeclaration)
+		for (const variableDeclaration of variableDeclarations) {
+			const variableName = variableDeclaration.getName()
 			const identifiers = new Set([variableName])
 
-			if (isTranslationFunctionCandidate(node.compilerNode, options.partitioningOptions.clientFunction)) {
-				for (const key of extractTranslationKeysFromSourceFile(sourceFile, typeChecker, identifiers)) {
+			if (isTranslationFunctionCandidate(variableDeclaration, options.partitioningOptions.clientFunction)) {
+				const keys = extractTranslationKeysFromSourceFile(sourceFile, identifiers)
+				for (const key of keys) {
 					clientTranslationKeys.add(key)
 				}
 			}
-
-			if (isTranslationFunctionCandidate(node.compilerNode, options.partitioningOptions.serverFunction)) {
-				for (const key of extractTranslationKeysFromSourceFile(sourceFile, typeChecker, identifiers)) {
+			if (isTranslationFunctionCandidate(variableDeclaration, options.partitioningOptions.serverFunction)) {
+				const keys = extractTranslationKeysFromSourceFile(sourceFile, identifiers)
+				for (const key of keys) {
 					serverTranslationKeys.add(key)
 				}
 			}
-		})
+		}
 	}
 
 	return [Array.from(clientTranslationKeys).toSorted(), Array.from(serverTranslationKeys).toSorted()] as const
 }
 
-function isTranslationFunctionCandidate(variableDeclaration: ts.VariableDeclaration, functionName: string) {
-	let currentExpression = variableDeclaration.initializer
+function isTranslationFunctionCandidate(
+	variableDeclaration: VariableDeclaration,
+	functionName: string,
+): boolean {
+	let currentExpression = variableDeclaration.getInitializerOrThrow()
 	if (currentExpression === undefined) {
 		return false
 	}
-	while (ts.isAwaitExpression(currentExpression)) {
-		currentExpression = currentExpression.expression
+	while (Node.isAwaitExpression(currentExpression)) {
+		currentExpression = currentExpression.getExpression()
 	}
 	return (
-		ts.isCallExpression(currentExpression) &&
-		ts.isIdentifier(currentExpression.expression) &&
-		currentExpression.expression.getText() === functionName
+		Node.isCallExpression(currentExpression) &&
+		Node.isIdentifier(currentExpression.getExpression()) &&
+		currentExpression.getExpression().getText() === functionName
 	)
 }
 
-function extractTranslationKeysFromSourceFile(
-	sourceFile: SourceFile,
-	typeChecker: ts.TypeChecker,
-	identifiers: Set<string>,
-) {
+function extractTranslationKeysFromSourceFile(sourceFile: SourceFile, identifiers: Set<string>): string[] {
 	const extractedKeys = new Set<string>()
+	const callExpressions = sourceFile
+		.getDescendantsOfKind(SyntaxKind.CallExpression)
+		.filter((it) => isTranslationCall(it, identifiers))
 
-	sourceFile.forEachDescendant((innerNode) => {
-		const compilerNode = innerNode.compilerNode
-		if (!(ts.isCallExpression(compilerNode) && isTranslationCall(compilerNode, identifiers))) {
-			return
+	for (const callExpression of callExpressions) {
+		const callArguments = callExpression.getArguments()
+		if (callArguments.length === 0) {
+			continue
 		}
-		const argument = compilerNode.arguments[0]
-		if (!argument) {
-			return
+
+		const head = callArguments[0]
+		if (!Node.isExpression(head)) {
+			continue
 		}
-		for (const value of extractTranslationKeysFromArgument(argument, typeChecker)) {
+
+		for (const value of extractTranslationKeysFromFunctionArgument(head)) {
 			extractedKeys.add(value)
 		}
-	})
+	}
 
 	return Array.from(extractedKeys)
 }
 
-function isTranslationCall(callExpression: ts.CallExpression, identifiers: Set<string>) {
-	const expressionNode = callExpression.expression
-	if (ts.isIdentifier(expressionNode) && identifiers.has(expressionNode.getText())) {
+function isTranslationCall(callExpression: CallExpression, identifiers: Set<string>): boolean {
+	const expression = callExpression.getExpression()
+
+	if (Node.isIdentifier(expression) && identifiers.has(expression.getText())) {
 		return true
 	}
-	if (ts.isPropertyAccessExpression(expressionNode)) {
-		const objectNode = expressionNode.expression
-		const propertyName = expressionNode.name.text
+
+	if (Node.isPropertyAccessExpression(expression)) {
+		const objectNode = expression.getExpression()
+		const propertyName = expression.getName()
 		if (identifiers.has(objectNode.getText()) && propertyName === 'rich') {
 			return true
 		}
 	}
+
 	return false
 }
 
-function extractTranslationKeysFromArgument(argument: ts.Expression, typeChecker: ts.TypeChecker) {
+function extractTranslationKeysFromFunctionArgument(argument: Expression): Set<string> {
 	const extractedKeys = new Set<string>()
 
-	if (ts.isStringLiteral(argument)) {
-		extractedKeys.add(argument.text)
-	} else if (ts.isIdentifier(argument)) {
-		for (const value of extractLiteralValuesFromIdentifier(argument, typeChecker)) {
+	// TODO: Replace Set.add with return.
+	if (Node.isStringLiteral(argument)) {
+		extractedKeys.add(argument.getLiteralText())
+	} else if (Node.isIdentifier(argument)) {
+		for (const value of extractLiteralValuesFromIdentifier(argument)) {
 			extractedKeys.add(value)
 		}
-	} else if (ts.isTemplateExpression(argument)) {
-		for (const value of extractTemplateLiteralTranslations(argument, typeChecker)) {
+	} else if (Node.isTemplateExpression(argument)) {
+		for (const value of extractTemplateLiteralTranslations(argument)) {
 			extractedKeys.add(value)
 		}
-	} else if (ts.isPropertyAccessExpression(argument)) {
-		let expression = argument
-		while (ts.isPropertyAccessExpression(expression.name)) {
-			expression = expression.name
-		}
-		// TODO: processArgument might be used recursively.
-		if (ts.isIdentifier(expression.name)) {
-			for (const value of extractLiteralValuesFromIdentifier(expression.name, typeChecker)) {
+	} else if (Node.isPropertyAccessExpression(argument)) {
+		const unwrappedExpression = unwrapPropertyAccess(argument)
+		// TODO: Call this recursively?
+		if (Node.isIdentifier(unwrappedExpression)) {
+			for (const value of extractLiteralValuesFromIdentifier(unwrappedExpression)) {
 				extractedKeys.add(value)
 			}
 		}
@@ -119,37 +134,37 @@ function extractTranslationKeysFromArgument(argument: ts.Expression, typeChecker
 	return extractedKeys
 }
 
-function extractLiteralValuesFromIdentifier(identifier: ts.Identifier, typeChecker: ts.TypeChecker) {
-	const identifierType = createWrappedNode(identifier, { typeChecker }).getType()
-	const extractedKeys = new Set<string>()
+function extractLiteralValuesFromIdentifier(identifier: Identifier): Set<string> {
+	const identifierType = identifier.getType()
 
 	if (identifierType.isStringLiteral()) {
-		extractedKeys.add(identifierType.getLiteralValue() as string)
-	} else if (identifierType.isUnion()) {
+		return new Set([String(identifierType.getLiteralValue())])
+	}
+
+	if (identifierType.isUnion()) {
 		const literalValues = identifierType
 			.getUnionTypes()
 			.map((t) => t.getLiteralValue())
 			.filter((value) => typeof value === 'string')
-		for (const value of literalValues) {
-			extractedKeys.add(value)
-		}
+		return new Set(literalValues)
 	}
 
-	return extractedKeys
+	return new Set([])
 }
 
-function extractTemplateLiteralTranslations(argument: ts.TemplateExpression, typeChecker: ts.TypeChecker) {
+function extractTemplateLiteralTranslations(argument: TemplateExpression): Set<string> {
 	const extractedKeys = new Set<string>()
-	const head = createWrappedNode(argument.head).asKindOrThrow(ts.SyntaxKind.TemplateHead).getLiteralText()
+	const head = argument.getHead().getLiteralText()
 
-	for (const span of argument.templateSpans) {
-		const unwrappedExpression = unwrapPropertyAccess(span.expression)
-		if (!ts.isIdentifier(unwrappedExpression)) {
+	for (const span of argument.getTemplateSpans()) {
+		const unwrappedExpression = unwrapPropertyAccess(span.getExpression())
+		if (!Node.isIdentifier(unwrappedExpression)) {
 			continue
 		}
 
-		const identifierValues = extractLiteralValuesFromIdentifier(unwrappedExpression, typeChecker)
-		const suffix = span.literal.text
+		const identifierValues = extractLiteralValuesFromIdentifier(unwrappedExpression)
+
+		const suffix = span.getLiteral().getLiteralText()
 		for (const value of identifierValues) {
 			extractedKeys.add(`${head}${value}${suffix}`)
 		}
@@ -158,10 +173,10 @@ function extractTemplateLiteralTranslations(argument: ts.TemplateExpression, typ
 	return extractedKeys
 }
 
-function unwrapPropertyAccess(expression: ts.Expression): ts.Expression {
+function unwrapPropertyAccess(expression: Expression): Expression {
 	let currentExpression = expression
-	while (ts.isPropertyAccessExpression(currentExpression)) {
-		currentExpression = currentExpression.name
+	while (Node.isPropertyAccessExpression(currentExpression)) {
+		currentExpression = currentExpression.getExpression()
 	}
 	return currentExpression
 }
