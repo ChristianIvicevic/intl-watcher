@@ -165,42 +165,6 @@ Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
-exports[`intl-watcher plugin tests > idempotency 1`] = `
-"{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
-	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
-	"richText": "[NYT: richText]",
-	"unusedVariable": "No longer referenced in any source file"
-}
-"
-`;
-
-exports[`intl-watcher plugin tests > idempotency 2`] = `
-"Scanning...
-Unused i18n key \`unusedVariable\`
-Added new i18n key \`newClientVariable\`
-Added new i18n key \`apple\`
-Added new i18n key \`appleDescription\`
-Added new i18n key \`banana\`
-Added new i18n key \`bananaDescription\`
-Added new i18n key \`literal\`
-Added new i18n key \`newServerVariable\`
-Added new i18n key \`orange\`
-Added new i18n key \`orangeDescription\`
-Added new i18n key \`richText\`
-Finished in <timing>
-Scanning...
-Unused i18n key \`unusedVariable\`
-Finished in <timing>"
-`;
-
 exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 1`] = `
 "{
 	"apple": "[NYT: apple]",

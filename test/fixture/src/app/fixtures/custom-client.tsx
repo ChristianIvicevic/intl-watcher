@@ -2,7 +2,7 @@
 
 import { useTranslations as translate } from 'next-intl'
 
-export function ClientComponent() {
+export function Component() {
 	const tCustom = translate()
 	return (
 		<>

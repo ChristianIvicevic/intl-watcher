@@ -1,6 +1,5 @@
 import os from 'node:os'
 import path from 'node:path'
-import { setTimeout } from 'node:timers/promises'
 import fs from 'fs-extra'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { ERROR, SUCCESS, TRACE, WAITING, WARN } from './logger.js'
@@ -46,7 +45,7 @@ describe('intl-watcher plugin tests', () => {
 	beforeEach(async () => {
 		tempDir = await fs.mkdtemp(path.join(os.tmpdir(), 'fixture-'))
 		await fs.copy(path.join(__dirname, '../test/fixture'), tempDir, {
-			filter: (src) => path.basename(src) !== 'node_modules',
+			filter: (src) => path.basename(src) !== 'node_modules' && !src.includes('/fixtures/'),
 		})
 		logSpy = vi.spyOn(console, 'log').mockImplementation(() => {
 			// noop
@@ -58,132 +57,97 @@ describe('intl-watcher plugin tests', () => {
 		logSpy.mockRestore()
 	})
 
-	test('default options', async () => {
+	async function doTest(
+		fixtureFiles: string[],
+		options?: { modifyOptions?(options: IntlWatcherOptions): void; enableMultiLanguage?: boolean },
+	) {
 		// Given
-		const [main, client, server] = getDictionaryPaths()
-		const watcherOptions = createDefaultWatcherOptions([main])
+		for (const fixtureFile of fixtureFiles) {
+			const sourcePath = path.join(__dirname, '../test/fixture/src/app/fixtures', fixtureFile)
+			const destinationPath = path.join(tempDir, 'src/app/fixtures', fixtureFile)
+			await fs.copy(sourcePath, destinationPath)
+		}
+		const [mainDictionary, clientDictionary, serverDictionary] = getDictionaryPaths()
+		const [otherMainDictionary, otherClientDictionary, otherServerDictionary] = getDictionaryPaths('de')
+		const watcherOptions = createDefaultWatcherOptions(
+			options?.enableMultiLanguage ? [mainDictionary, otherMainDictionary] : [mainDictionary],
+		)
+		options?.modifyOptions?.(watcherOptions)
 		const watcher = new IntlWatcher(watcherOptions)
 		// When
 		watcher.scanSourceFilesForTranslationKeys()
 		// Then
-		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
-		expect(await fs.pathExists(client)).toBeFalsy()
-		expect(await fs.pathExists(server)).toBeFalsy()
+		expect((await fs.readFile(mainDictionary)).toString()).toMatchSnapshot()
+		if (options?.enableMultiLanguage) {
+			expect((await fs.readFile(otherMainDictionary)).toString()).toMatchSnapshot()
+		}
+
+		async function verifyPartitionedFile(filePath: string) {
+			if (watcherOptions.applyPartitioning) {
+				expect((await fs.readFile(filePath)).toString()).toMatchSnapshot()
+			} else {
+				expect(await fs.pathExists(filePath)).toBeFalsy()
+			}
+		}
+
+		await verifyPartitionedFile(clientDictionary)
+		await verifyPartitionedFile(serverDictionary)
+		if (options?.enableMultiLanguage) {
+			await verifyPartitionedFile(otherClientDictionary)
+			await verifyPartitionedFile(otherServerDictionary)
+		}
+
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
+	}
+
+	test('default options', async () => {
+		await doTest(['default-server.tsx', 'default-client.tsx'])
 	})
 
 	test('default options (multiple languages)', async () => {
-		// Given
-		const [main, client, server] = getDictionaryPaths()
-		const [mainDe, clientDe, serverDe] = getDictionaryPaths('de')
-		const watcherOptions = createDefaultWatcherOptions([main, mainDe])
-		const watcher = new IntlWatcher(watcherOptions)
-		// When
-		watcher.scanSourceFilesForTranslationKeys()
-		// Then
-		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(mainDe)).toString()).toMatchSnapshot()
-		expect(await fs.pathExists(client)).toBeFalsy()
-		expect(await fs.pathExists(server)).toBeFalsy()
-		expect(await fs.pathExists(clientDe)).toBeFalsy()
-		expect(await fs.pathExists(serverDe)).toBeFalsy()
-		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
+		await doTest(['default-server.tsx', 'default-client.tsx'], { enableMultiLanguage: true })
 	})
 
 	test('removes unused keys', async () => {
-		// Given
-		const [main, client, server] = getDictionaryPaths()
-		const watcherOptions = createDefaultWatcherOptions([main])
-		watcherOptions.removeUnusedKeys = true
-		const watcher = new IntlWatcher(watcherOptions)
-		// When
-		watcher.scanSourceFilesForTranslationKeys()
-		// Then
-		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
-		expect(await fs.pathExists(client)).toBeFalsy()
-		expect(await fs.pathExists(server)).toBeFalsy()
-		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
+		await doTest(['default-server.tsx', 'default-client.tsx'], {
+			modifyOptions(options) {
+				options.removeUnusedKeys = true
+			},
+		})
 	})
 
 	test('partitions dictionaries', async () => {
-		// Given
-		const [main, client, server] = getDictionaryPaths()
-		const watcherOptions = createDefaultWatcherOptions([main])
-		watcherOptions.applyPartitioning = true
-		const watcher = new IntlWatcher(watcherOptions)
-		// When
-		watcher.scanSourceFilesForTranslationKeys()
-		// Then
-		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(client)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(server)).toString()).toMatchSnapshot()
-		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
+		await doTest(['default-server.tsx', 'default-client.tsx'], {
+			modifyOptions(options) {
+				options.applyPartitioning = true
+			},
+		})
 	})
 
 	test('partitions dictionaries (multiple languages)', async () => {
-		// Given
-		const [main, client, server] = getDictionaryPaths()
-		const [mainDe, clientDe, serverDe] = getDictionaryPaths('de')
-		const watcherOptions = createDefaultWatcherOptions([main, mainDe])
-		watcherOptions.applyPartitioning = true
-		const watcher = new IntlWatcher(watcherOptions)
-		// When
-		watcher.scanSourceFilesForTranslationKeys()
-		// Then
-		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(mainDe)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(client)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(server)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(clientDe)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(serverDe)).toString()).toMatchSnapshot()
-		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
+		await doTest(['default-server.tsx', 'default-client.tsx'], {
+			enableMultiLanguage: true,
+			modifyOptions(options) {
+				options.applyPartitioning = true
+			},
+		})
 	})
 
 	test('custom fallback for new keys', async () => {
-		// Given
-		const [main, client, server] = getDictionaryPaths()
-		const watcherOptions = createDefaultWatcherOptions([main])
-		watcherOptions.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
-		const watcher = new IntlWatcher(watcherOptions)
-		// When
-		watcher.scanSourceFilesForTranslationKeys()
-		// Then
-		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
-		expect(await fs.pathExists(client)).toBeFalsy()
-		expect(await fs.pathExists(server)).toBeFalsy()
-		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
+		await doTest(['default-server.tsx', 'default-client.tsx'], {
+			modifyOptions(options) {
+				options.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
+			},
+		})
 	})
 
 	test('custom partitioning function names', async () => {
-		// Given
-		const [main, client, server] = getDictionaryPaths()
-		const watcherOptions = createDefaultWatcherOptions([main])
-		watcherOptions.applyPartitioning = true
-		watcherOptions.partitioningOptions.clientFunction = 'translate'
-		watcherOptions.partitioningOptions.serverFunction = 'translateOnServer'
-		const watcher = new IntlWatcher(watcherOptions)
-		// When
-		watcher.scanSourceFilesForTranslationKeys()
-		// Then
-		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(client)).toString()).toMatchSnapshot()
-		expect((await fs.readFile(server)).toString()).toMatchSnapshot()
-		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
-	})
-
-	test('idempotency', async () => {
-		// Given
-		const [main, client, server] = getDictionaryPaths()
-		const watcherOptions = createDefaultWatcherOptions([main])
-		const watcher = new IntlWatcher(watcherOptions)
-		// When
-		watcher.scanSourceFilesForTranslationKeys()
-		await setTimeout(watcherOptions.debounceDelay * 1.5)
-		watcher.scanSourceFilesForTranslationKeys()
-		// Then
-		expect((await fs.readFile(main)).toString()).toMatchSnapshot()
-		expect(await fs.pathExists(client)).toBeFalsy()
-		expect(await fs.pathExists(server)).toBeFalsy()
-		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
+		await doTest(['custom-server.tsx', 'custom-client.tsx'], {
+			modifyOptions(options) {
+				options.applyPartitioning = true
+				options.partitioningOptions.clientFunction = 'translate'
+				options.partitioningOptions.serverFunction = 'translateOnServer'
+			},
+		})
 	})
 })

@@ -7,7 +7,7 @@ function getRandomFruit(): CustomFruit {
 	return 'customApple'
 }
 
-export default async function Page() {
+export default async function Component() {
 	const tCustom = await translateOnServer()
 
 	const fruit = getRandomFruit()
