@@ -23,13 +23,13 @@ export function extractTranslationKeysFromProject(
 	for (const sourceFile of sourceFiles) {
 		const variableDeclarations = sourceFile.getDescendantsOfKind(SyntaxKind.VariableDeclaration)
 		for (const variableDeclaration of variableDeclarations) {
-			const translateIdentifier = variableDeclaration.getName()
+			const translationAlias = variableDeclaration.getName()
 
-			if (isTranslationFunctionCandidate(variableDeclaration, options.partitioningOptions.clientFunction)) {
-				clientTranslationKeys.push(...extractTranslationKeysFromSourceFile(sourceFile, translateIdentifier))
+			if (isTranslationAliasDeclaration(variableDeclaration, options.partitioningOptions.clientFunction)) {
+				clientTranslationKeys.push(...extractTranslationKeysFromSourceFile(sourceFile, translationAlias))
 			}
-			if (isTranslationFunctionCandidate(variableDeclaration, options.partitioningOptions.serverFunction)) {
-				serverTranslationKeys.push(...extractTranslationKeysFromSourceFile(sourceFile, translateIdentifier))
+			if (isTranslationAliasDeclaration(variableDeclaration, options.partitioningOptions.serverFunction)) {
+				serverTranslationKeys.push(...extractTranslationKeysFromSourceFile(sourceFile, translationAlias))
 			}
 		}
 	}
@@ -40,11 +40,11 @@ export function extractTranslationKeysFromProject(
 	]
 }
 
-function isTranslationFunctionCandidate(
+function isTranslationAliasDeclaration(
 	variableDeclaration: VariableDeclaration,
-	translateIdentifier: string,
+	translationAlias: string,
 ): boolean {
-	let currentExpression = variableDeclaration.getInitializerOrThrow()
+	let currentExpression = variableDeclaration.getInitializer()
 	if (currentExpression === undefined) {
 		return false
 	}
@@ -54,41 +54,41 @@ function isTranslationFunctionCandidate(
 	return (
 		Node.isCallExpression(currentExpression) &&
 		Node.isIdentifier(currentExpression.getExpression()) &&
-		currentExpression.getExpression().getText() === translateIdentifier
+		currentExpression.getExpression().getText() === translationAlias
 	)
 }
 
 function extractTranslationKeysFromSourceFile(
 	sourceFile: SourceFile,
-	translateIdentifier: string,
+	translationAlias: string,
 ): readonly string[] {
-	const extractedKeys: string[] = []
+	const translationKeys: string[] = []
 	const callExpressions = sourceFile
 		.getDescendantsOfKind(SyntaxKind.CallExpression)
-		.filter((it) => isTranslationCall(it, translateIdentifier))
+		.filter((it) => isTranslationCall(it, translationAlias))
 	for (const callExpression of callExpressions) {
-		const allArguments = callExpression.getArguments()
-		if (allArguments.length === 0) {
+		const args = callExpression.getArguments()
+		if (args.length === 0) {
 			continue
 		}
-		const firstArgument = allArguments[0]
+		const firstArgument = args[0]
 		if (Node.isExpression(firstArgument)) {
-			extractedKeys.push(...extractTranslationKeysFromExpression(firstArgument))
+			translationKeys.push(...extractTranslationKeysFromExpression(firstArgument))
 		}
 	}
-	return extractedKeys
+	return translationKeys
 }
 
-function isTranslationCall(callExpression: CallExpression, translateIdentifier: string): boolean {
+function isTranslationCall(callExpression: CallExpression, translationAlias: string): boolean {
 	const expression = callExpression.getExpression()
-	if (Node.isIdentifier(expression) && translateIdentifier === expression.getText()) {
+	if (Node.isIdentifier(expression) && translationAlias === expression.getText()) {
 		return true
 	}
 	if (Node.isPropertyAccessExpression(expression)) {
 		const objectNode = expression.getExpression()
 		const propertyName = expression.getName()
 		// next-intl specific `t.rich()` syntax
-		if (translateIdentifier === objectNode.getText() && propertyName === 'rich') {
+		if (translationAlias === objectNode.getText() && propertyName === 'rich') {
 			return true
 		}
 	}
@@ -127,7 +127,7 @@ function extractLiteralValuesFromIdentifier(identifier: Identifier): readonly st
 }
 
 function extractTranslationKeysFromTemplateLiteral(argument: TemplateExpression): readonly string[] {
-	const extractedKeys: string[] = []
+	const translationKeys: string[] = []
 	const head = argument.getHead().getLiteralText()
 
 	for (const span of argument.getTemplateSpans()) {
@@ -138,11 +138,11 @@ function extractTranslationKeysFromTemplateLiteral(argument: TemplateExpression)
 		const identifierValues = extractLiteralValuesFromIdentifier(unwrappedExpression)
 		const suffix = span.getLiteral().getLiteralText()
 		for (const value of identifierValues) {
-			extractedKeys.push(`${head}${value}${suffix}`)
+			translationKeys.push(`${head}${value}${suffix}`)
 		}
 	}
 
-	return extractedKeys
+	return translationKeys
 }
 
 function unwrapPropertyAccess(expression: Expression): Expression {

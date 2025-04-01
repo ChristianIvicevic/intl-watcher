@@ -46,7 +46,7 @@ export type CreateIntlWatcherOptions = {
 	 */
 	sourceDirectory?: string
 	/**
-	 * File path to the tsconfig.json used to deduce which files to scan.
+	 * File path to the tsconfig.json used to deduce which files to scan. Defaults to 'tsconfig.json'.
 	 */
 	tsConfigFilePath?: string
 }
