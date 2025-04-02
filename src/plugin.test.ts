@@ -1,12 +1,14 @@
 import os from 'node:os'
 import path from 'node:path'
 import fs from 'fs-extra'
+import lodash from 'lodash'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { ERROR, SUCCESS, TRACE, WAITING, WARN } from './logger.js'
 import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
 import type { IntlWatcherOptions } from './types.js'
 
 const TIMING_REGEX = /Finished in \d+(\.\d+)?(ms|s)/g
+const LOG_REGEX = new RegExp(`(${SUCCESS}|${WARN}|${ERROR}|${WAITING}|${TRACE})`, 'g')
 
 describe('intl-watcher plugin tests', () => {
 	let tempDir: string
@@ -32,11 +34,7 @@ describe('intl-watcher plugin tests', () => {
 		const output = logSpy.mock.calls.join('\n')
 		return output
 			.replaceAll(TIMING_REGEX, 'Finished in <timing>')
-			.replaceAll(SUCCESS, '')
-			.replaceAll(WARN, '')
-			.replaceAll(ERROR, '')
-			.replaceAll(WAITING, '')
-			.replaceAll(TRACE, '')
+			.replaceAll(LOG_REGEX, '')
 			.split('\n')
 			.map((line) => line.trim())
 			.join('\n')
@@ -47,9 +45,7 @@ describe('intl-watcher plugin tests', () => {
 		await fs.copy(path.join(__dirname, '../test/fixture'), tempDir, {
 			filter: (src) => path.basename(src) !== 'node_modules' && !src.includes('/fixtures/'),
 		})
-		logSpy = vi.spyOn(console, 'log').mockImplementation(() => {
-			// noop
-		})
+		logSpy = vi.spyOn(console, 'log').mockImplementation(lodash.noop)
 	})
 
 	afterEach(async () => {
