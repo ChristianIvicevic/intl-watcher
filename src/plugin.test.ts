@@ -149,4 +149,8 @@ describe('intl-watcher plugin tests', () => {
 			},
 		})
 	})
+
+	test('default options with namespaces', async () => {
+		await doTest(['namespaces-client.tsx', 'namespaces-server.tsx'])
+	})
 })

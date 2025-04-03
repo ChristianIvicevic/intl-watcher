@@ -165,6 +165,27 @@ Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
+exports[`intl-watcher plugin tests > default options with namespaces 1`] = `
+"{
+	"rootNamespace": {
+	    "nestedNamespace": {
+	        "newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
+	        "newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+	    }
+	},
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin tests > default options with namespaces 2`] = `
+"Scanning...
+Unused i18n key \`unusedVariable\`
+Added new i18n key \`rootNamespace.nestedNamespace.newClientVariable\`
+Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+Finished in <timing>"
+`;
+
 exports[`intl-watcher plugin tests > partitions dictionaries (multiple languages) 1`] = `
 "{
 	"apple": "[NYT: apple]",
