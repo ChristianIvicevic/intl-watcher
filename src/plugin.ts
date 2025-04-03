@@ -99,7 +99,7 @@ export class IntlWatcher {
 					continue
 				}
 				if (this._options.removeUnusedKeys) {
-					messages[key] = undefined
+					delete messages[key]
 					if (!skipLogging) {
 						log.success(`Removed unused i18n key \`${key}\``)
 					}
