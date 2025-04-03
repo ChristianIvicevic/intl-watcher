@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0
+
+### Minor Changes
+
+- The plugin now supports namespaced dictionary files, moving beyond the previous flat structure. ([#14](https://github.com/ChristianIvicevic/intl-watcher/pull/14)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
+  - Automatically creates new namespaces and nests translation keys within them.
+  - Removes unused nested keys and completely deletes namespaces if they become empty.
+
 ## 0.1.3
 
 ### Patch Changes
