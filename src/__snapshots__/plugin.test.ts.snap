@@ -168,10 +168,10 @@ Finished in <timing>"
 exports[`intl-watcher plugin tests > default options with namespaces 1`] = `
 "{
 	"rootNamespace": {
-	    "nestedNamespace": {
-	        "newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-	        "newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
-	    }
+		"nestedNamespace": {
+			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
+			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+		}
 	},
 	"unusedVariable": "No longer referenced in any source file"
 }
