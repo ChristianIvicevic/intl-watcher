@@ -195,5 +195,9 @@ describe('intl-watcher plugin', () => {
 					},
 				}))
 		})
+
+		describe('error handling', () => {
+			test('dynamic namespace', async () => doTest(['dynamic-namespaces.tsx']))
+		})
 	})
 })

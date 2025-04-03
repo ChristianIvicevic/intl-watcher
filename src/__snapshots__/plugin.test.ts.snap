@@ -408,6 +408,28 @@ Added new i18n key \`richText\`
 Finished in <timing>"
 `;
 
+exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynamic namespace 1`] = `
+"{
+	"unusedRootNamespace": {
+		"unusedNestedNamespace": {
+			"unusedNestedVariable": ""
+		},
+		"unusedRootVariable": ""
+	},
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynamic namespace 2`] = `
+"Scanning...
+A dynamic namespace value was provided instead of a literal string. For reliable extraction of translation keys, please ensure that the namespace is defined as a static string literal (or a variable that unequivocally resolves to one).
+Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
+Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
+Unused i18n key \`unusedVariable\`
+Finished in <timing>"
+`;
+
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > default options 1`] = `
 "{
 	"rootNamespace": {
