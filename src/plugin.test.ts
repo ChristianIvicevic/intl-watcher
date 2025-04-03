@@ -9,7 +9,7 @@ import type { IntlWatcherOptions } from './types.js'
 
 const TIMING_REGEX = /Finished in \d+(\.\d+)?(ms|s)/g
 
-describe('intl-watcher plugin tests', () => {
+describe('intl-watcher plugin', () => {
 	let tempDir: string
 	let logSpy: ReturnType<typeof vi.spyOn>
 
@@ -99,90 +99,101 @@ describe('intl-watcher plugin tests', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	}
 
-	test('default options', async () => doTest(['default-server.tsx', 'default-client.tsx']))
+	describe('flat dictionaries', () => {
+		describe('single language', () => {
+			test('default options', async () => doTest(['default-server.tsx', 'default-client.tsx']))
 
-	test('default options (multiple languages)', async () =>
-		doTest(['default-server.tsx', 'default-client.tsx'], { enableMultiLanguage: true }))
+			test('unused key removal', async () =>
+				doTest(['default-server.tsx', 'default-client.tsx'], {
+					modifyOptions(options) {
+						options.removeUnusedKeys = true
+					},
+				}))
 
-	test('removes unused keys', async () =>
-		doTest(['default-server.tsx', 'default-client.tsx'], {
-			modifyOptions(options) {
-				options.removeUnusedKeys = true
-			},
-		}))
+			test('dictionary partitioning', async () =>
+				doTest(['default-server.tsx', 'default-client.tsx'], {
+					modifyOptions(options) {
+						options.applyPartitioning = true
+					},
+				}))
 
-	test('partitions dictionaries', async () =>
-		doTest(['default-server.tsx', 'default-client.tsx'], {
-			modifyOptions(options) {
-				options.applyPartitioning = true
-			},
-		}))
+			test('custom fallback for new keys', async () =>
+				doTest(['default-server.tsx', 'default-client.tsx'], {
+					modifyOptions(options) {
+						options.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
+					},
+				}))
 
-	test('partitions dictionaries (multiple languages)', async () =>
-		doTest(['default-server.tsx', 'default-client.tsx'], {
-			enableMultiLanguage: true,
-			modifyOptions(options) {
-				options.applyPartitioning = true
-			},
-		}))
+			test('custom partitioning function names', async () =>
+				doTest(['custom-server.tsx', 'custom-client.tsx'], {
+					modifyOptions(options) {
+						options.applyPartitioning = true
+						options.partitioningOptions.clientFunction = 'translate'
+						options.partitioningOptions.serverFunction = 'translateOnServer'
+					},
+				}))
+		})
 
-	test('custom fallback for new keys', async () =>
-		doTest(['default-server.tsx', 'default-client.tsx'], {
-			modifyOptions(options) {
-				options.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
-			},
-		}))
+		describe('multiple languages', () => {
+			test('default options', async () =>
+				doTest(['default-server.tsx', 'default-client.tsx'], { enableMultiLanguage: true }))
 
-	test('custom partitioning function names', async () =>
-		doTest(['custom-server.tsx', 'custom-client.tsx'], {
-			modifyOptions(options) {
-				options.applyPartitioning = true
-				options.partitioningOptions.clientFunction = 'translate'
-				options.partitioningOptions.serverFunction = 'translateOnServer'
-			},
-		}))
+			test('dictionary partitioning', async () =>
+				doTest(['default-server.tsx', 'default-client.tsx'], {
+					enableMultiLanguage: true,
+					modifyOptions(options) {
+						options.applyPartitioning = true
+					},
+				}))
+		})
+	})
 
-	test('default options with namespaces', async () =>
-		doTest(['namespaces-client.tsx', 'namespaces-server.tsx']))
+	describe('namespaced dictionaries', () => {
+		describe('single language', () => {
+			test('default options', async () => doTest(['namespaces-client.tsx', 'namespaces-server.tsx']))
 
-	test('default options with namespaces (multiple languages)', async () =>
-		doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], { enableMultiLanguage: true }))
+			test('unused key removal', async () =>
+				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
+					modifyOptions(options) {
+						options.removeUnusedKeys = true
+					},
+				}))
 
-	test('removes unused keys with namespaces', async () =>
-		doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
-			modifyOptions(options) {
-				options.removeUnusedKeys = true
-			},
-		}))
+			test('dictionary partitioning', async () =>
+				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
+					modifyOptions(options) {
+						options.applyPartitioning = true
+					},
+				}))
 
-	test('partitions dictionaries with namespaces', async () =>
-		doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
-			modifyOptions(options) {
-				options.applyPartitioning = true
-			},
-		}))
+			test('custom fallback for new keys', async () =>
+				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
+					modifyOptions(options) {
+						options.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
+					},
+				}))
 
-	test('partitions dictionaries with namespaces (multiple languages)', async () =>
-		doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
-			enableMultiLanguage: true,
-			modifyOptions(options) {
-				options.applyPartitioning = true
-			},
-		}))
+			test('custom partitioning function names', async () =>
+				doTest(['custom-namespaces-client.tsx', 'custom-namespaces-server.tsx'], {
+					modifyOptions(options) {
+						options.applyPartitioning = true
+						options.partitioningOptions.clientFunction = 'translate'
+						options.partitioningOptions.serverFunction = 'translateOnServer'
+					},
+				}))
+		})
 
-	test('custom fallback for new keys with namespaces', async () =>
-		doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
-			modifyOptions(options) {
-				options.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
-			},
-		}))
+		describe('multiple languages', () => {
+			test('default options', async () =>
+				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], { enableMultiLanguage: true }))
 
-	test('custom partitioning function names with namespaces', async () =>
-		doTest(['custom-namespaces-client.tsx', 'custom-namespaces-server.tsx'], {
-			modifyOptions(options) {
-				options.applyPartitioning = true
-				options.partitioningOptions.clientFunction = 'translate'
-				options.partitioningOptions.serverFunction = 'translateOnServer'
-			},
-		}))
+			test('dictionary partitioning', async () =>
+				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
+					enableMultiLanguage: true,
+					modifyOptions(options) {
+						options.applyPartitioning = true
+					},
+				}))
+		})
+	})
 })
