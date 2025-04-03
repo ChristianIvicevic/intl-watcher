@@ -1,3 +1,9 @@
 {
+	"unusedRootNamespace": {
+		"unusedNestedNamespace": {
+			"unusedNestedVariable": ""
+		},
+		"unusedRootVariable": ""
+	},
 	"unusedVariable": "No longer referenced in any source file"
 }

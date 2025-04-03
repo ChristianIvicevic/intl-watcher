@@ -1,4 +1,5 @@
 import fs from 'node:fs'
+import lodash from 'lodash'
 import { log } from './logger.js'
 
 export function runOnce(fn: () => void): void {
@@ -19,7 +20,7 @@ export function readDictionaryFile(filepath: string): Record<string, string | un
 	}
 }
 
-export function writeDictionaryFile(filepath: string, messages: Record<string, string | undefined>): void {
+export function writeDictionaryFile(filepath: string, messages: Record<string, unknown>): void {
 	const newContent = `${JSON.stringify(messages, undefined, '\t')}\n`
 	let currentContent: string | null = null
 	try {
@@ -37,4 +38,31 @@ export function formatDuration(ms: number): string {
 		return `${ms.toFixed(0).toLocaleString()}ms`
 	}
 	return `${(ms / 1_000).toPrecision(2).toLocaleString()}s`
+}
+
+export function flattenDictionary(dictionary: Record<string, unknown>, prefix = ''): Record<string, unknown> {
+	return lodash.reduce(
+		dictionary,
+		(acc, value, key) => {
+			const prefixedKey = prefix ? `${prefix}.${key}` : key
+			if (lodash.isPlainObject(value)) {
+				lodash.assign(acc, flattenDictionary(value as Record<string, unknown>, prefixedKey))
+			} else {
+				acc[prefixedKey] = value
+			}
+			return acc
+		},
+		{} as Record<string, unknown>,
+	)
+}
+
+export function unflattenDictionary(dictionary: Record<string, unknown>): Record<string, unknown> {
+	return lodash.reduce(
+		dictionary,
+		(acc, value, key) => {
+			lodash.set(acc, key, value)
+			return acc
+		},
+		{} as Record<string, unknown>,
+	)
 }

@@ -9,6 +9,7 @@ import {
 	type TemplateExpression,
 	type VariableDeclaration,
 } from 'ts-morph'
+import { log } from './logger.js'
 import type { IntlWatcherOptions } from './types.js'
 
 export function extractTranslationKeysFromProject(
@@ -25,11 +26,26 @@ export function extractTranslationKeysFromProject(
 		for (const variableDeclaration of variableDeclarations) {
 			const translationAlias = variableDeclaration.getName()
 
-			if (isTranslationAliasDeclaration(variableDeclaration, options.partitioningOptions.clientFunction)) {
-				clientTranslationKeys.push(...extractTranslationKeysFromSourceFile(sourceFile, translationAlias))
+			const clientAlias = isTranslationAliasDeclaration(
+				variableDeclaration,
+				options.partitioningOptions.clientFunction,
+			)
+			if (clientAlias.valid) {
+				const translationKeys = extractTranslationKeysFromSourceFile(sourceFile, translationAlias)
+				clientTranslationKeys.push(
+					...translationKeys.map((key) => (clientAlias.namespace ? `${clientAlias.namespace}.${key}` : key)),
+				)
 			}
-			if (isTranslationAliasDeclaration(variableDeclaration, options.partitioningOptions.serverFunction)) {
-				serverTranslationKeys.push(...extractTranslationKeysFromSourceFile(sourceFile, translationAlias))
+
+			const serverAlias = isTranslationAliasDeclaration(
+				variableDeclaration,
+				options.partitioningOptions.serverFunction,
+			)
+			if (serverAlias.valid) {
+				const translationKeys = extractTranslationKeysFromSourceFile(sourceFile, translationAlias)
+				serverTranslationKeys.push(
+					...translationKeys.map((key) => (serverAlias.namespace ? `${serverAlias.namespace}.${key}` : key)),
+				)
 			}
 		}
 	}
@@ -40,22 +56,51 @@ export function extractTranslationKeysFromProject(
 	]
 }
 
+type TranslationAliasResult = { valid: false } | { valid: true; namespace?: string }
+
 function isTranslationAliasDeclaration(
 	variableDeclaration: VariableDeclaration,
-	translationAlias: string,
-): boolean {
+	expectedTranslationAlias: string,
+): TranslationAliasResult {
 	let currentExpression = variableDeclaration.getInitializer()
 	if (currentExpression === undefined) {
-		return false
+		return { valid: false }
 	}
+
 	while (Node.isAwaitExpression(currentExpression)) {
 		currentExpression = currentExpression.getExpression()
 	}
-	return (
-		Node.isCallExpression(currentExpression) &&
-		Node.isIdentifier(currentExpression.getExpression()) &&
-		currentExpression.getExpression().getText() === translationAlias
+	if (!Node.isCallExpression(currentExpression)) {
+		return { valid: false }
+	}
+
+	const callee = currentExpression.getExpression()
+	if (!Node.isIdentifier(callee) || callee.getText() !== expectedTranslationAlias) {
+		return { valid: false }
+	}
+
+	const args = currentExpression.getArguments()
+	if (args.length === 0) {
+		return { valid: true }
+	}
+
+	const resolvedNamespace = resolveStringLiteral(args[0])
+	if (resolvedNamespace) {
+		return { valid: true, namespace: resolvedNamespace }
+	}
+
+	// TODO: Add diagnostics.
+	log.warn(
+		'A dynamic namespace value was provided instead of a literal string. For reliable extraction of translation keys, please ensure that the namespace is defined as a static string literal (or a variable that unequivocally resolves to one).',
 	)
+	return { valid: false }
+}
+
+function resolveStringLiteral(node: Node): string | undefined {
+	const type = node.getType()
+	if (type.isStringLiteral()) {
+		return String(type.getLiteralValue())
+	}
 }
 
 function extractTranslationKeysFromSourceFile(
@@ -79,16 +124,16 @@ function extractTranslationKeysFromSourceFile(
 	return translationKeys
 }
 
-function isTranslationCall(callExpression: CallExpression, translationAlias: string): boolean {
+function isTranslationCall(callExpression: CallExpression, expectedTranslationAlias: string): boolean {
 	const expression = callExpression.getExpression()
-	if (Node.isIdentifier(expression) && translationAlias === expression.getText()) {
+	if (Node.isIdentifier(expression) && expression.getText() === expectedTranslationAlias) {
 		return true
 	}
 	if (Node.isPropertyAccessExpression(expression)) {
 		const objectNode = expression.getExpression()
 		const propertyName = expression.getName()
 		// next-intl specific `t.rich()` syntax
-		if (translationAlias === objectNode.getText() && propertyName === 'rich') {
+		if (objectNode.getText() === expectedTranslationAlias && propertyName === 'rich') {
 			return true
 		}
 	}

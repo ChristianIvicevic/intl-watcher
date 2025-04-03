@@ -8,7 +8,13 @@ import { objectKeys } from 'ts-extras'
 import { log } from './logger.js'
 import { extractTranslationKeysFromProject } from './parser.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
-import { formatDuration, readDictionaryFile, writeDictionaryFile } from './utils.js'
+import {
+	flattenDictionary,
+	formatDuration,
+	readDictionaryFile,
+	unflattenDictionary,
+	writeDictionaryFile,
+} from './utils.js'
 
 export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): IntlWatcherOptions {
 	return {
@@ -76,6 +82,7 @@ export class IntlWatcher {
 		log.success(`Finished in ${formatDuration(delta)}`)
 	}
 
+	// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: This is fine.
 	private synchronizeDictionaryFile(
 		dictionaryPath: string,
 		clientTranslationKeys: string[],
@@ -84,14 +91,15 @@ export class IntlWatcher {
 	): void {
 		const release = properLockfile.lockSync(dictionaryPath)
 		try {
-			const existingMessages = readDictionaryFile(dictionaryPath)
+			const messages = flattenDictionary(readDictionaryFile(dictionaryPath))
+			const translationKeys = new Set([...clientTranslationKeys, ...serverTranslationKeys])
 
-			const unusedKeys = objectKeys(existingMessages).filter(
-				(key) => !(clientTranslationKeys.includes(key) || serverTranslationKeys.includes(key)),
-			)
-			for (const key of unusedKeys) {
+			for (const key in messages) {
+				if (translationKeys.has(key)) {
+					continue
+				}
 				if (this._options.removeUnusedKeys) {
-					existingMessages[key] = undefined
+					delete messages[key]
 					if (!skipLogging) {
 						log.success(`Removed unused i18n key \`${key}\``)
 					}
@@ -100,20 +108,22 @@ export class IntlWatcher {
 				}
 			}
 
-			for (const key of [...clientTranslationKeys, ...serverTranslationKeys]) {
-				if (existingMessages[key] === undefined && !skipLogging) {
+			for (const key of translationKeys) {
+				if (messages[key] === undefined && !skipLogging) {
 					log.success(`Added new i18n key \`${key}\``)
 				}
-				existingMessages[key] ??= this._options.defaultTranslationGeneratorFn(key)
+				messages[key] ??= this._options.defaultTranslationGeneratorFn(key)
 			}
 
-			const updatedMessages = lodash.pick(existingMessages, objectKeys(existingMessages).toSorted())
+			const flatMessages = lodash.pick(messages, objectKeys(messages).toSorted())
+			const updatedMessages = unflattenDictionary(flatMessages)
+
 			this.enabledSelfTriggerGuard()
 			writeDictionaryFile(dictionaryPath, updatedMessages)
 
 			if (this._options.applyPartitioning) {
 				this.partitionTranslationKeys(
-					updatedMessages,
+					flatMessages,
 					clientTranslationKeys,
 					serverTranslationKeys,
 					dictionaryPath,
@@ -133,16 +143,19 @@ export class IntlWatcher {
 	}
 
 	private partitionTranslationKeys(
-		messages: Record<string, string | undefined>,
-		extractedClientKeys: string[],
-		extractedServerKeys: string[],
+		messages: Record<string, unknown>,
+		clientKeys: string[],
+		serverKeys: string[],
 		dictionaryPath: string,
 	): void {
-		const clientMessages = lodash.pick(messages, extractedClientKeys)
-		const serverMessages = lodash.pick(
+		const clientDictionary = lodash.pick(messages, clientKeys)
+		const serverDictionary = lodash.pick(
 			messages,
-			extractedServerKeys.filter((variable) => !extractedClientKeys.includes(variable)),
+			serverKeys.filter((key) => !clientKeys.includes(key)),
 		)
+
+		const clientMessages = unflattenDictionary(clientDictionary)
+		const serverMessages = unflattenDictionary(serverDictionary)
 
 		const { dir, ext, name } = path.parse(dictionaryPath)
 		writeDictionaryFile(path.join(dir, `${name}.client${ext}`), clientMessages)
