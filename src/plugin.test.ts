@@ -1,7 +1,6 @@
 import os from 'node:os'
 import path from 'node:path'
 import fs from 'fs-extra'
-import lodash from 'lodash'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { ERROR, SUCCESS, TRACE, WAITING, WARN } from './logger.js'
 import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
@@ -48,7 +47,7 @@ describe('intl-watcher plugin', () => {
 		await fs.copy(path.join(__dirname, '../test/fixture'), tempDir, {
 			filter: (src) => path.basename(src) !== 'node_modules' && !src.includes('/fixtures/'),
 		})
-		logSpy = vi.spyOn(console, 'log').mockImplementation(lodash.noop)
+		logSpy = vi.spyOn(console, 'log')
 	})
 
 	afterEach(async () => {

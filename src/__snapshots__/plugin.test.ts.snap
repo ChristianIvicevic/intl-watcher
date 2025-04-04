@@ -423,7 +423,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynami
 
 exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynamic namespace 2`] = `
 "Scanning...
-A dynamic namespace value was provided instead of a literal string. For reliable extraction of translation keys, please ensure that the namespace is defined as a static string literal (or a variable that unequivocally resolves to one).
+src/app/fixtures/dynamic-namespaces.tsx:9:34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[31mA dynamic namespace value was provided instead of a literal string.[39m
+
+[31m[1m>[22m[39m  9 | const t = await getTranslations(getRandomNamespace())
+|                                 [31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m
+10 |
+
+[32m[1mℹ[22m[39m [32mFor reliable extraction of translation keys, please ensure that the namespace is defined[39m
+[32mas a static string literal (or a variable that unequivocally resolves to one).[39m
+
 Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
 Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
 Unused i18n key \`unusedVariable\`

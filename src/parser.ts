@@ -1,3 +1,5 @@
+import dedent from 'dedent'
+import pc from 'picocolors'
 import {
 	type CallExpression,
 	type Expression,
@@ -8,9 +10,11 @@ import {
 	SyntaxKind,
 	type TemplateExpression,
 	type VariableDeclaration,
+	type VariableDeclarationList,
 } from 'ts-morph'
 import { log } from './logger.js'
 import type { IntlWatcherOptions } from './types.js'
+import { getCommonPrefix } from './utils.js'
 
 export function extractTranslationKeysFromProject(
 	options: IntlWatcherOptions,
@@ -84,16 +88,49 @@ function isTranslationAliasDeclaration(
 		return { valid: true }
 	}
 
-	const resolvedNamespace = resolveStringLiteral(args[0])
+	const namespaceArgument = args[0]
+	const resolvedNamespace = resolveStringLiteral(namespaceArgument)
 	if (resolvedNamespace) {
 		return { valid: true, namespace: resolvedNamespace }
 	}
 
-	// TODO: Add diagnostics.
-	log.warn(
-		'A dynamic namespace value was provided instead of a literal string. For reliable extraction of translation keys, please ensure that the namespace is defined as a static string literal (or a variable that unequivocally resolves to one).',
-	)
+	printDynamicNamespaceWarning(variableDeclaration, namespaceArgument)
 	return { valid: false }
+}
+
+function printDynamicNamespaceWarning(
+	variableDeclaration: VariableDeclaration,
+	namespaceArgument: Node,
+): void {
+	const sourceFiles = variableDeclaration.getProject().getSourceFiles()
+	const rootDirectory = getCommonPrefix(sourceFiles.map((file) => file.getFilePath()))
+	const sourceFile = variableDeclaration.getSourceFile()
+	const filePath = sourceFile.getFilePath().substring(rootDirectory.length)
+
+	const variableDeclarationList = variableDeclaration.getParent() as VariableDeclarationList
+
+	const { line: startLine } = sourceFile.getLineAndColumnAtPos(variableDeclarationList.getStart())
+	const { line: endLine } = sourceFile.getLineAndColumnAtPos(variableDeclarationList.getEnd())
+	const linePadding = Math.max(startLine.toString().length, (endLine + 1).toString().length)
+
+	const { column: startColumn } = sourceFile.getLineAndColumnAtPos(namespaceArgument.getStart())
+	const { column: endColumn } = sourceFile.getLineAndColumnAtPos(namespaceArgument.getEnd())
+
+	const diagnosticMessage = dedent`
+	${filePath}:${startLine}:${startColumn} ${Array.from({ length: 100 - filePath.length - startLine.toString().length - startColumn.toString().length - 2 }).join('━')}
+	
+	    ${pc.red(pc.bold('⨯'))} ${pc.red('A dynamic namespace value was provided instead of a literal string.')}
+	
+	    ${pc.red(pc.bold('>'))} ${startLine.toString().padStart(linePadding)} | ${variableDeclarationList.getText()}
+	      ${''.padStart(linePadding)} | ${Array.from({ length: startColumn - 1 }).join(' ')}${Array.from({ length: endColumn - startColumn + 1 }).join(pc.red('^'))}
+	      ${(endLine + 1).toString().padStart(linePadding)} |
+	
+	    ${pc.green(pc.bold('ℹ'))} ${pc.green('For reliable extraction of translation keys, please ensure that the namespace is defined')}
+	      ${pc.green('as a static string literal (or a variable that unequivocally resolves to one).')}
+	`
+
+	log.error(diagnosticMessage)
+	log.info()
 }
 
 function resolveStringLiteral(node: Node): string | undefined {
