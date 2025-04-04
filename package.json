@@ -36,7 +36,7 @@
 		"format": "biome check --write .",
 		"lint": "biome check .",
 		"prepare": "husky",
-		"test": "vitest",
+		"test": "FORCE_COLOR=1 vitest",
 		"tsc": "tsc"
 	},
 	"lint-staged": {

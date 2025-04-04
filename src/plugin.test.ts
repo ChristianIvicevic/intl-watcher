@@ -2,7 +2,6 @@ import os from 'node:os'
 import path from 'node:path'
 import fs from 'fs-extra'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
-import { ERROR, SUCCESS, TRACE, WAITING, WARN } from './logger.js'
 import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
 import type { IntlWatcherOptions } from './types.js'
 
@@ -32,11 +31,6 @@ describe('intl-watcher plugin', () => {
 		const output = logSpy.mock.calls.join('\n')
 		return output
 			.replaceAll(TIMING_REGEX, 'Finished in <timing>')
-			.replaceAll(SUCCESS, '')
-			.replaceAll(WARN, '')
-			.replaceAll(ERROR, '')
-			.replaceAll(WAITING, '')
-			.replaceAll(TRACE, '')
 			.split('\n')
 			.map((line) => line.trim())
 			.join('\n')
