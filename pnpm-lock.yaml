@@ -55,8 +55,8 @@ importers:
         specifier: 4.17.16
         version: 4.17.16
       '@types/node':
-        specifier: 22.13.12
-        version: 22.13.12
+        specifier: 22.13.14
+        version: 22.13.14
       '@types/proper-lockfile':
         specifier: 4.1.4
         version: 4.1.4
@@ -86,7 +86,7 @@ importers:
         version: 5.8.2
       vitest:
         specifier: 3.0.9
-        version: 3.0.9(@types/node@22.13.12)(@vitest/ui@3.1.1)(yaml@2.7.0)
+        version: 3.0.9(@types/node@22.13.14)(@vitest/ui@3.1.1)(yaml@2.7.0)
 
 packages:
 
@@ -717,8 +717,8 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@22.13.12':
-    resolution: {integrity: sha512-ixiWrCSRi33uqBMRuICcKECW7rtgY43TbsHDpM2XK7lXispd48opW+0IXrBVxv9NMhaz/Ue9kyj6r3NTVyXm8A==}
+  '@types/node@22.13.14':
+    resolution: {integrity: sha512-Zs/Ollc1SJ8nKUAgc7ivOEdIBM8JAKgrqqUYi2J997JuKO7/tpQC+WCetQ1sypiKCQWHdvdg9wBNpUPEWZae7w==}
 
   '@types/proper-lockfile@4.1.4':
     resolution: {integrity: sha512-uo2ABllncSqg9F1D4nugVl9v93RmjxF6LJzQLMLDdPaXCUIDPeOJ21Gbqi43xNKzBi/WQ0Q0dICqufzQbMjipQ==}
@@ -2391,17 +2391,17 @@ snapshots:
   '@types/fs-extra@11.0.4':
     dependencies:
       '@types/jsonfile': 6.1.4
-      '@types/node': 22.13.12
+      '@types/node': 22.13.14
 
   '@types/jsonfile@6.1.4':
     dependencies:
-      '@types/node': 22.13.12
+      '@types/node': 22.13.14
 
   '@types/lodash@4.17.16': {}
 
   '@types/node@12.20.55': {}
 
-  '@types/node@22.13.12':
+  '@types/node@22.13.14':
     dependencies:
       undici-types: 6.20.0
 
@@ -2425,7 +2425,7 @@ snapshots:
       std-env: 3.8.1
       test-exclude: 7.0.1
       tinyrainbow: 2.0.0
-      vitest: 3.0.9(@types/node@22.13.12)(@vitest/ui@3.1.1)(yaml@2.7.0)
+      vitest: 3.0.9(@types/node@22.13.14)(@vitest/ui@3.1.1)(yaml@2.7.0)
     transitivePeerDependencies:
       - supports-color
 
@@ -2436,13 +2436,13 @@ snapshots:
       chai: 5.2.0
       tinyrainbow: 2.0.0
 
-  '@vitest/mocker@3.0.9(vite@6.2.3(@types/node@22.13.12)(yaml@2.7.0))':
+  '@vitest/mocker@3.0.9(vite@6.2.3(@types/node@22.13.14)(yaml@2.7.0))':
     dependencies:
       '@vitest/spy': 3.0.9
       estree-walker: 3.0.3
       magic-string: 0.30.17
     optionalDependencies:
-      vite: 6.2.3(@types/node@22.13.12)(yaml@2.7.0)
+      vite: 6.2.3(@types/node@22.13.14)(yaml@2.7.0)
 
   '@vitest/pretty-format@3.0.9':
     dependencies:
@@ -2476,7 +2476,7 @@ snapshots:
       sirv: 3.0.1
       tinyglobby: 0.2.12
       tinyrainbow: 2.0.0
-      vitest: 3.0.9(@types/node@22.13.12)(@vitest/ui@3.1.1)(yaml@2.7.0)
+      vitest: 3.0.9(@types/node@22.13.14)(@vitest/ui@3.1.1)(yaml@2.7.0)
 
   '@vitest/utils@3.0.9':
     dependencies:
@@ -3406,13 +3406,13 @@ snapshots:
 
   universalify@2.0.1: {}
 
-  vite-node@3.0.9(@types/node@22.13.12)(yaml@2.7.0):
+  vite-node@3.0.9(@types/node@22.13.14)(yaml@2.7.0):
     dependencies:
       cac: 6.7.14
       debug: 4.4.0
       es-module-lexer: 1.6.0
       pathe: 2.0.3
-      vite: 6.2.3(@types/node@22.13.12)(yaml@2.7.0)
+      vite: 6.2.3(@types/node@22.13.14)(yaml@2.7.0)
     transitivePeerDependencies:
       - '@types/node'
       - jiti
@@ -3427,20 +3427,20 @@ snapshots:
       - tsx
       - yaml
 
-  vite@6.2.3(@types/node@22.13.12)(yaml@2.7.0):
+  vite@6.2.3(@types/node@22.13.14)(yaml@2.7.0):
     dependencies:
       esbuild: 0.25.1
       postcss: 8.5.3
       rollup: 4.37.0
     optionalDependencies:
-      '@types/node': 22.13.12
+      '@types/node': 22.13.14
       fsevents: 2.3.3
       yaml: 2.7.0
 
-  vitest@3.0.9(@types/node@22.13.12)(@vitest/ui@3.1.1)(yaml@2.7.0):
+  vitest@3.0.9(@types/node@22.13.14)(@vitest/ui@3.1.1)(yaml@2.7.0):
     dependencies:
       '@vitest/expect': 3.0.9
-      '@vitest/mocker': 3.0.9(vite@6.2.3(@types/node@22.13.12)(yaml@2.7.0))
+      '@vitest/mocker': 3.0.9(vite@6.2.3(@types/node@22.13.14)(yaml@2.7.0))
       '@vitest/pretty-format': 3.0.9
       '@vitest/runner': 3.0.9
       '@vitest/snapshot': 3.0.9
@@ -3456,11 +3456,11 @@ snapshots:
       tinyexec: 0.3.2
       tinypool: 1.0.2
       tinyrainbow: 2.0.0
-      vite: 6.2.3(@types/node@22.13.12)(yaml@2.7.0)
-      vite-node: 3.0.9(@types/node@22.13.12)(yaml@2.7.0)
+      vite: 6.2.3(@types/node@22.13.14)(yaml@2.7.0)
+      vite-node: 3.0.9(@types/node@22.13.14)(yaml@2.7.0)
       why-is-node-running: 2.3.0
     optionalDependencies:
-      '@types/node': 22.13.12
+      '@types/node': 22.13.14
       '@vitest/ui': 3.1.1(vitest@3.0.9)
     transitivePeerDependencies:
       - jiti
