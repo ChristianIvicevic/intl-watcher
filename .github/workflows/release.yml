@@ -16,7 +16,7 @@ jobs:
       - id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm changeset version
+          version: pnpm version-package
           publish: pnpm changeset publish
           title: "ci(repo): version package"
           commit: "ci(repo): version package"
