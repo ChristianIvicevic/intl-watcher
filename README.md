@@ -18,7 +18,8 @@
 Automatically scans your Next.js project's source files to manage internationalization (i18n) translation keys.
 It keeps your translation dictionaries up-to-date by extracting new keys, removing unused ones, and optionally partitioning keys into separate client and server dictionaries.
 
-**Compatibility Note**: Primarily designed for use with `next-intl`, this plugin can technically be adapted for other i18n libraries or frameworks that share a similar dictionary structure and access pattern in code.
+> [!NOTE]
+> Primarily designed for use with `next-intl`, this plugin can technically be adapted for other i18n libraries or frameworks that share a similar dictionary structure and access pattern in code.
 
 ## Features
 
