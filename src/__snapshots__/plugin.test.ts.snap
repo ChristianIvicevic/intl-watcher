@@ -1,5 +1,28 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`intl-watcher plugin > flat dictionaries > edge cases > server-side options 1`] = `
+"{
+	"newServerVariable": "[NYT: newServerVariable]",
+	"unusedRootNamespace": {
+		"unusedNestedNamespace": {
+			"unusedNestedVariable": ""
+		},
+		"unusedRootVariable": ""
+	},
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin > flat dictionaries > edge cases > server-side options 2`] = `
+"[37m[1m○[22m[39m Scanning...
+[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
+[34m[1m✓[22m[39m Added new i18n key \`newServerVariable\`
+[34m[1m✓[22m[39m Finished in <timing>"
+`;
+
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > default options 1`] = `
 "{
 	"apple": "[NYT: apple]",
@@ -405,6 +428,33 @@ exports[`intl-watcher plugin > flat dictionaries > single language > unused key 
 [34m[1m✓[22m[39m Added new i18n key \`orange\`
 [34m[1m✓[22m[39m Added new i18n key \`orangeDescription\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
+[34m[1m✓[22m[39m Finished in <timing>"
+`;
+
+exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-side options 1`] = `
+"{
+	"rootNamespace": {
+		"nestedNamespace": {
+			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+		}
+	},
+	"unusedRootNamespace": {
+		"unusedNestedNamespace": {
+			"unusedNestedVariable": ""
+		},
+		"unusedRootVariable": ""
+	},
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-side options 2`] = `
+"[37m[1m○[22m[39m Scanning...
+[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 

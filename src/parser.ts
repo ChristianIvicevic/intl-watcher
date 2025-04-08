@@ -12,6 +12,7 @@ import {
 	type VariableDeclaration,
 	type VariableDeclarationList,
 } from 'ts-morph'
+import { NEXT_INTL_GET_TRANSLATIONS_LOCALE, NEXT_INTL_GET_TRANSLATIONS_NAMESPACE } from './constants.js'
 import { log } from './logger.js'
 import type { IntlWatcherOptions } from './types.js'
 import { getCommonPrefix } from './utils.js'
@@ -44,6 +45,7 @@ export function extractTranslationKeysFromProject(
 			const serverAlias = isTranslationAliasDeclaration(
 				variableDeclaration,
 				options.partitioningOptions.serverFunction,
+				TranslationCallMode.Server,
 			)
 			if (serverAlias.valid) {
 				const translationKeys = extractTranslationKeysFromSourceFile(sourceFile, translationAlias)
@@ -60,11 +62,15 @@ export function extractTranslationKeysFromProject(
 	]
 }
 
+// biome-ignore lint/style/useNamingConvention: Pseudo enum.
+const TranslationCallMode = { Client: 'Client', Server: 'Server' } as const
+type TranslationCallMode = (typeof TranslationCallMode)[keyof typeof TranslationCallMode]
 type TranslationAliasResult = { valid: false } | { valid: true; namespace?: string }
 
 function isTranslationAliasDeclaration(
 	variableDeclaration: VariableDeclaration,
 	expectedTranslationAlias: string,
+	mode: TranslationCallMode = TranslationCallMode.Client,
 ): TranslationAliasResult {
 	let currentExpression = variableDeclaration.getInitializer()
 	if (currentExpression === undefined) {
@@ -88,14 +94,34 @@ function isTranslationAliasDeclaration(
 		return { valid: true }
 	}
 
-	const namespaceArgument = args[0]
-	const resolvedNamespace = resolveStringLiteral(namespaceArgument)
+	const argument = args[0]
+	let resolvedNamespace = resolveStringLiteral(argument)
 	if (resolvedNamespace) {
 		return { valid: true, namespace: resolvedNamespace }
 	}
 
-	printDynamicNamespaceWarning(variableDeclaration, namespaceArgument)
-	return { valid: false }
+	if (
+		!(
+			mode === TranslationCallMode.Server &&
+			Node.isObjectLiteralExpression(argument) &&
+			Node.isPropertyAssignment(argument.getProperty(NEXT_INTL_GET_TRANSLATIONS_LOCALE))
+		)
+	) {
+		printDynamicNamespaceWarning(variableDeclaration, argument)
+		return { valid: false }
+	}
+
+	const namespaceProperty = argument.getProperty(NEXT_INTL_GET_TRANSLATIONS_NAMESPACE)
+	if (!(namespaceProperty && Node.isPropertyAssignment(namespaceProperty))) {
+		return { valid: true }
+	}
+
+	const initializer = namespaceProperty.getInitializer()
+	if (initializer) {
+		resolvedNamespace = resolveStringLiteral(initializer)
+	}
+
+	return resolvedNamespace ? { valid: true, namespace: resolvedNamespace } : { valid: true }
 }
 
 function printDynamicNamespaceWarning(

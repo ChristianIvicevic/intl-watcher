@@ -139,6 +139,10 @@ describe('intl-watcher plugin', () => {
 					},
 				}))
 		})
+
+		describe('edge cases', () => {
+			test('server-side options', async () => doTest(['server-options.tsx']))
+		})
 	})
 
 	describe('namespaced dictionaries', () => {
@@ -187,6 +191,10 @@ describe('intl-watcher plugin', () => {
 						options.applyPartitioning = true
 					},
 				}))
+		})
+
+		describe('edge cases', () => {
+			test('server-side options', async () => doTest(['namespaces-locale.tsx']))
 		})
 
 		describe('error handling', () => {
