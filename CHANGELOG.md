@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+### Patch Changes
+
+- Remove ts-extras dependency to reduce package size. by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
 ## 0.3.0
 
 ### Minor Changes
