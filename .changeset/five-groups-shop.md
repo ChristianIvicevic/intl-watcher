@@ -10,6 +10,6 @@ Support options passed to `next-intl`'s `getTranslation` function.
   ```
   signature of `getTranslations`. This update now fully supports the
   ```
-  getTranslations(opts?: { locale: Locale, namespace: NestedKey })
+  getTranslations(opts?: { locale: Locale, namespace?: NestedKey })
   ```
   signature as well.
