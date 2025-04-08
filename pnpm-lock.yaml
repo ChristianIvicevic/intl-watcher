@@ -29,9 +29,6 @@ importers:
       proper-lockfile:
         specifier: 4.1.2
         version: 4.1.2
-      ts-extras:
-        specifier: 0.13.0
-        version: 0.13.0
       ts-morph:
         specifier: 25.0.1
         version: 25.0.1
@@ -1696,10 +1693,6 @@ packages:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
     hasBin: true
 
-  ts-extras@0.13.0:
-    resolution: {integrity: sha512-/hRadEKsjJhW4/LXxiLWG1KYEDcF4SXB7+646Btq8ySwC2DMShHApFVYld5rbuQlA+lLSGD/L67keSC/Kdczjw==}
-    engines: {node: '>=18'}
-
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
@@ -3355,10 +3348,6 @@ snapshots:
       punycode: 2.3.1
 
   tree-kill@1.2.2: {}
-
-  ts-extras@0.13.0:
-    dependencies:
-      type-fest: 4.38.0
 
   ts-interface-checker@0.1.13: {}
 

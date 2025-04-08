@@ -4,7 +4,6 @@ import chokidar from 'chokidar'
 import debounce from 'debounce'
 import lodash from 'lodash'
 import properLockfile from 'proper-lockfile'
-import { objectKeys } from 'ts-extras'
 import { log } from './logger.js'
 import { extractTranslationKeysFromProject } from './parser.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
@@ -115,7 +114,7 @@ export class IntlWatcher {
 				messages[key] ??= this._options.defaultTranslationGeneratorFn(key)
 			}
 
-			const flatMessages = lodash.pick(messages, objectKeys(messages).toSorted())
+			const flatMessages = lodash.pick(messages, Object.keys(messages).toSorted())
 			const updatedMessages = unflattenDictionary(flatMessages)
 
 			this.enabledSelfTriggerGuard()
