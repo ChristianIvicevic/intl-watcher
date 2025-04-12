@@ -811,3 +811,36 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > unuse
 [34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
+
+exports[`intl-watcher plugin > regressions > property access expression in template literal 1`] = `
+"{
+	"applePropertyAccessExpressionInTemplateLiteral": "[NYT: applePropertyAccessExpressionInTemplateLiteral]",
+	"applePropertyAccessExpressionInTemplateLiteral2": "[NYT: applePropertyAccessExpressionInTemplateLiteral2]",
+	"bananaPropertyAccessExpressionInTemplateLiteral": "[NYT: bananaPropertyAccessExpressionInTemplateLiteral]",
+	"bananaPropertyAccessExpressionInTemplateLiteral2": "[NYT: bananaPropertyAccessExpressionInTemplateLiteral2]",
+	"orangePropertyAccessExpressionInTemplateLiteral": "[NYT: orangePropertyAccessExpressionInTemplateLiteral]",
+	"orangePropertyAccessExpressionInTemplateLiteral2": "[NYT: orangePropertyAccessExpressionInTemplateLiteral2]",
+	"unusedRootNamespace": {
+		"unusedNestedNamespace": {
+			"unusedNestedVariable": ""
+		},
+		"unusedRootVariable": ""
+	},
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin > regressions > property access expression in template literal 2`] = `
+"[37m[1m○[22m[39m Scanning...
+[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
+[34m[1m✓[22m[39m Added new i18n key \`applePropertyAccessExpressionInTemplateLiteral\`
+[34m[1m✓[22m[39m Added new i18n key \`applePropertyAccessExpressionInTemplateLiteral2\`
+[34m[1m✓[22m[39m Added new i18n key \`bananaPropertyAccessExpressionInTemplateLiteral\`
+[34m[1m✓[22m[39m Added new i18n key \`bananaPropertyAccessExpressionInTemplateLiteral2\`
+[34m[1m✓[22m[39m Added new i18n key \`orangePropertyAccessExpressionInTemplateLiteral\`
+[34m[1m✓[22m[39m Added new i18n key \`orangePropertyAccessExpressionInTemplateLiteral2\`
+[34m[1m✓[22m[39m Finished in <timing>"
+`;

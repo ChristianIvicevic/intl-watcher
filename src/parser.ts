@@ -3,7 +3,6 @@ import pc from 'picocolors'
 import {
 	type CallExpression,
 	type Expression,
-	type Identifier,
 	Node,
 	Project,
 	type SourceFile,
@@ -208,25 +207,24 @@ function extractTranslationKeysFromExpression(argument: Expression): readonly st
 		return [argument.getLiteralText()]
 	}
 	if (Node.isIdentifier(argument)) {
-		return extractLiteralValuesFromIdentifier(argument)
+		return extractLiteralValuesFromExpression(argument)
 	}
 	if (Node.isTemplateExpression(argument)) {
 		return extractTranslationKeysFromTemplateLiteral(argument)
 	}
 	if (Node.isPropertyAccessExpression(argument)) {
-		const unwrappedExpression = unwrapPropertyAccess(argument)
-		return extractTranslationKeysFromExpression(unwrappedExpression)
+		return extractLiteralValuesFromExpression(argument)
 	}
 	return []
 }
 
-function extractLiteralValuesFromIdentifier(identifier: Identifier): readonly string[] {
-	const identifierType = identifier.getType()
-	if (identifierType.isStringLiteral()) {
-		return [String(identifierType.getLiteralValue())]
+function extractLiteralValuesFromExpression(expression: Expression): readonly string[] {
+	const type = expression.getType()
+	if (type.isStringLiteral()) {
+		return [String(type.getLiteralValue())]
 	}
-	if (identifierType.isUnion()) {
-		return identifierType
+	if (type.isUnion()) {
+		return type
 			.getUnionTypes()
 			.map((t) => t.getLiteralValue())
 			.filter((value) => typeof value === 'string')
@@ -239,11 +237,7 @@ function extractTranslationKeysFromTemplateLiteral(argument: TemplateExpression)
 	const head = argument.getHead().getLiteralText()
 
 	for (const span of argument.getTemplateSpans()) {
-		const unwrappedExpression = unwrapPropertyAccess(span.getExpression())
-		if (!Node.isIdentifier(unwrappedExpression)) {
-			continue
-		}
-		const identifierValues = extractLiteralValuesFromIdentifier(unwrappedExpression)
+		const identifierValues = extractTranslationKeysFromExpression(span.getExpression())
 		const suffix = span.getLiteral().getLiteralText()
 		for (const value of identifierValues) {
 			translationKeys.push(`${head}${value}${suffix}`)
@@ -251,12 +245,4 @@ function extractTranslationKeysFromTemplateLiteral(argument: TemplateExpression)
 	}
 
 	return translationKeys
-}
-
-function unwrapPropertyAccess(expression: Expression): Expression {
-	let currentExpression = expression
-	while (Node.isPropertyAccessExpression(currentExpression)) {
-		currentExpression = currentExpression.getExpression()
-	}
-	return currentExpression
 }

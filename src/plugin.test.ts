@@ -201,4 +201,10 @@ describe('intl-watcher plugin', () => {
 			test('dynamic namespace', async () => doTest(['dynamic-namespaces.tsx']))
 		})
 	})
+
+	describe('regressions', () => {
+		// https://github.com/ChristianIvicevic/intl-watcher/issues/21
+		test('property access expression in template literal', async () =>
+			doTest(['issues/21-property-access-in-template-literal.tsx']))
+	})
 })
