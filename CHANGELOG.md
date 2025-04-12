@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1
+
+### Patch Changes
+
+- Remove ts-extras dependency to reduce package size. by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
+- Fixed an issue where combined template literal expressions containing property access (e.g. `` t(`${apiResponse.data}PropertyDescription`) ``) were not correctly resolved. The parser now properly handles property accesses in template literals so that dynamic parts retain their expected literal values. ([#22](https://github.com/ChristianIvicevic/intl-watcher/pull/22)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
 ## 0.3.0
 
 ### Minor Changes
