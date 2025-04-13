@@ -5,13 +5,9 @@ function getRandomNamespace(): string {
 }
 
 export async function Component() {
-	// @ts-expect-error: This won't compile until the plugin picks it up for the first time.
+	// @ts-expect-error
 	const t = await getTranslations(getRandomNamespace())
-
-	return (
-		<>
-			{/* @ts-expect-error: This won't compile until the plugin picks it up for the first time. */}
-			<p>{t('newServerVariable')}</p>
-		</>
-	)
+	// @ts-expect-error
+	t('newServerVariable')
+	return null
 }

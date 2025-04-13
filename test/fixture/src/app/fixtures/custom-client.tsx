@@ -4,10 +4,7 @@ import { useTranslations as translate } from 'next-intl'
 
 export function Component() {
 	const tCustom = translate()
-	return (
-		<>
-			{/* @ts-expect-error: This won't compile until the plugin picks it up for the first time. */}
-			<p>{tCustom('newCustomClientVariable')}</p>
-		</>
-	)
+	// @ts-expect-error
+	tCustom('newCustomClientVariable')
+	return null
 }

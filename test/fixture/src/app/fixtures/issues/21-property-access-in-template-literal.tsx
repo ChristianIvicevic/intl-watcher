@@ -1,15 +1,8 @@
-import type { Fruit } from '@/types'
+import { getRandomFruit } from '@/utils'
 import { getTranslations } from 'next-intl/server'
-
-function getRandomFruit(): Fruit {
-	// chosen by fair dice roll.
-	// guaranteed to be random.
-	return 'apple'
-}
 
 export async function Component() {
 	const t = await getTranslations()
-
 	const fruit = getRandomFruit()
 	const apiResponse = { status: 200, data: fruit }
 	const deeplyNested = { data: { fruit } }
