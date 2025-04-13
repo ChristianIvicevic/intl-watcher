@@ -237,9 +237,9 @@ function extractTranslationKeysFromTemplateLiteral(argument: TemplateExpression)
 	const head = argument.getHead().getLiteralText()
 
 	for (const span of argument.getTemplateSpans()) {
-		const identifierValues = extractTranslationKeysFromExpression(span.getExpression())
+		const expressionKeys = extractTranslationKeysFromExpression(span.getExpression())
 		const suffix = span.getLiteral().getLiteralText()
-		for (const value of identifierValues) {
+		for (const value of expressionKeys) {
 			translationKeys.push(`${head}${value}${suffix}`)
 		}
 	}
