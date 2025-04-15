@@ -476,9 +476,9 @@ exports[`intl-watcher plugin > flat dictionaries > single language > unused key 
 
 exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-side options 1`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "No longer referenced in any source file",
@@ -497,7 +497,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-sid
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
@@ -534,10 +534,10 @@ as a static string literal (or a variable that unequivocally resolves to one).[
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > default options 1`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "No longer referenced in any source file",
@@ -553,10 +553,10 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > de
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > default options 2`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "In keiner Datei mehr genutzt",
@@ -575,17 +575,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > de
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 1`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "No longer referenced in any source file",
@@ -601,10 +601,10 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 2`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "In keiner Datei mehr genutzt",
@@ -620,9 +620,9 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 3`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]"
 		}
 	}
 }
@@ -631,9 +631,9 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 4`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -642,9 +642,9 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 5`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]"
 		}
 	}
 }
@@ -653,9 +653,9 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 6`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -667,17 +667,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom fallback for new keys 1`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[Missing translation: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[Missing translation: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[Missing translation: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[Missing translation: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "No longer referenced in any source file",
@@ -696,17 +696,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom partitioning function names 1`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "No longer referenced in any source file",
@@ -722,9 +722,9 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom partitioning function names 2`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]"
 		}
 	}
 }
@@ -733,9 +733,9 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom partitioning function names 3`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -747,17 +747,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > default options 1`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "No longer referenced in any source file",
@@ -776,17 +776,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > defau
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > dictionary partitioning 1`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	},
 	"unusedKey": "No longer referenced in any source file",
@@ -802,9 +802,9 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > dicti
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > dictionary partitioning 2`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]"
 		}
 	}
 }
@@ -813,9 +813,9 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > dicti
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > dictionary partitioning 3`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -827,17 +827,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > dicti
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > unused key removal 1`] = `
 "{
-	"rootNamespace": {
-		"nestedNamespace": {
-			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
-			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
+	"nestedNamespace": {
+		"deeplyNestedNamespace": {
+			"newClientKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: nestedNamespace.deeplyNestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -849,8 +849,8 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > unuse
 [34m[1m✓[22m[39m Removed unused i18n key \`unusedKey\`
 [34m[1m✓[22m[39m Removed unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [34m[1m✓[22m[39m Removed unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
