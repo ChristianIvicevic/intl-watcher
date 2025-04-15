@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+### Patch Changes
+
+- Introduce diagnostic warning for unsupported expressions. ([#28](https://github.com/ChristianIvicevic/intl-watcher/pull/28)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
 ## 0.3.1
 
 ### Patch Changes
