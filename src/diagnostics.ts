@@ -1,3 +1,4 @@
+import dedent from 'dedent'
 import pc from 'picocolors'
 import type { Node } from 'ts-morph'
 import { log } from './logger.js'
@@ -22,26 +23,57 @@ export function printDiagnostic(
 	const { line: childLine, column: childColumn } = sourceFile.getLineAndColumnAtPos(child.getStart())
 
 	const parentTextLines = parent.getText().split('\n')
-	const relativeLineIndex = childLine - parentStartLine
-	const snippetLine = parentTextLines[relativeLineIndex] || parentTextLines[0]
+	const childRelativeLineIndex = childLine - parentStartLine
+	const maxLineNumber = parentStartLine + parentTextLines.length - 1
+	const lineNumberPadding = maxLineNumber.toString().length
 
-	const relativeColumn = childLine === parentStartLine ? childColumn - parentStartColumn : childColumn - 1
-	const childText = child.getText()
-	const underline = ' '.repeat(relativeColumn) + pc.red('^'.repeat(childText.length))
+	const snippetWithUnderline = parentTextLines
+		.map((line, index) => {
+			const expandedLine = expandTabs(line)
+			const currentLineNumber = (parentStartLine + index).toString().padStart(lineNumberPadding)
+			if (index === childRelativeLineIndex) {
+				const leadingText =
+					childLine === parentStartLine
+						? line.substring(parentStartColumn - 1, childColumn - 1)
+						: line.substring(0, childColumn - 1)
+				const expandedLeadingText = expandTabs(leadingText)
+				const effectiveOffset = expandedLeadingText.length
+				const childText = child.getText()
+				const firstLineOfChild = childText.split('\n')[0]
+				const expandedChildFirstLine = expandTabs(firstLineOfChild)
+				const underline = ' '.repeat(effectiveOffset) + pc.red('^'.repeat(expandedChildFirstLine.length))
+				return `${currentLineNumber} | ${expandedLine}\n${' '.repeat(lineNumberPadding)} | ${underline}`
+			}
+			return `${currentLineNumber} | ${expandedLine}`
+		})
+		.join('\n')
 
 	const headerLine = childLine
 	const headerColumn = childColumn
-	const linePadding = headerLine.toString().length
-	const header = `${filePath}:${headerLine}:${headerColumn} ${'━'.repeat(Math.max(0, 100 - filePath.length - headerLine.toString().length - headerColumn.toString().length - 2))}`
+	const header = `${filePath}:${headerLine}:${headerColumn} ${'━'.repeat(
+		Math.max(0, 100 - filePath.length - headerLine.toString().length - headerColumn.toString().length - 2),
+	)}`
 
-	const diagnosticMessage = `${header}
+	const snippet = snippetWithUnderline
+		.split('\n')
+		.map((line) => `${' '.repeat(8)}${line}`)
+		.join('\n')
+	const formattedSuggestion = suggestion.join('\n').replace(/\n/g, `\n${' '.repeat(10)}`)
 
-  ${errorLabel} ${detailedMessage}
+	const diagnosticMessage = dedent`
+    ${header}
 
-  ${pc.red(pc.bold('>'))} ${headerLine.toString().padStart(linePadding)} | ${snippetLine}
-    ${' '.repeat(linePadding)} | ${underline}
+        ${pc.red(pc.bold(errorLabel))} ${pc.red(detailedMessage)}
 
-  ${pc.green(pc.bold('ℹ'))} ${suggestion.map((line) => pc.green(line)).join('\n    ')}`
+${snippet}
+
+        ${pc.green(pc.bold('ℹ'))} ${pc.green(formattedSuggestion)}
+  `
+
 	logFn(diagnosticMessage)
 	log.info()
+}
+
+function expandTabs(line: string, tabSize = 2): string {
+	return line.replace(/\t/g, ' '.repeat(tabSize))
 }
