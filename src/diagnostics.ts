@@ -1,6 +1,6 @@
 import dedent from 'dedent'
 import pc from 'picocolors'
-import type { Node } from 'ts-morph'
+import type { Node, SourceFile } from 'ts-morph'
 import { ERROR, WARN, log } from './logger.js'
 import { getCommonPrefix } from './utils.js'
 
@@ -8,23 +8,33 @@ import { getCommonPrefix } from './utils.js'
 export const Severity = { Error: 'Error', Warn: 'Warn' } as const
 export type Severity = (typeof Severity)[keyof typeof Severity]
 
-export function printDiagnostic(
-	targetNode: Node,
-	contextNode: Node,
-	severity: Severity,
-	detailedMessage: string,
-	...suggestions: string[]
-): void {
-	const sourceFile = contextNode.getSourceFile()
+type DiagnosticConfig = {
+	label: string
+	logger: (message: string) => void
+	formatter: (message: string) => string
+}
+
+function getDiagnosticConfig(severity: Severity): DiagnosticConfig {
+	return severity === Severity.Error
+		? { label: ERROR, logger: log.error, formatter: pc.red }
+		: { label: WARN, logger: log.warn, formatter: pc.yellow }
+}
+
+function generateHeader(sourceFile: SourceFile, targetLine: number, targetColumn: number): string {
 	const projectFiles = sourceFile.getProject().getSourceFiles()
 	const rootDirectory = getCommonPrefix(projectFiles.map((file) => file.getFilePath()))
 	const filePath = sourceFile.getFilePath().substring(rootDirectory.length)
+	return `${filePath}:${targetLine}:${targetColumn} ${'━'.repeat(
+		Math.max(0, 100 - filePath.length - targetLine.toString().length - targetColumn.toString().length - 2),
+	)}`
+}
 
+function buildSnippet(contextNode: Node, targetNode: Node): string {
+	const sourceFile = contextNode.getSourceFile()
 	const { line: contextStartLine, column: contextStartColumn } = sourceFile.getLineAndColumnAtPos(
 		contextNode.getStart(),
 	)
 	const { line: targetLine, column: targetColumn } = sourceFile.getLineAndColumnAtPos(targetNode.getStart())
-
 	const contextTextLines = contextNode.getText().split('\n')
 	const targetRelativeLineIndex = targetLine - contextStartLine
 	const maxLineNumber = contextStartLine + contextTextLines.length - 1
@@ -51,28 +61,37 @@ export function printDiagnostic(
 		})
 		.join('\n')
 
-	const headerLine = targetLine
-	const headerColumn = targetColumn
-	const header = `${filePath}:${headerLine}:${headerColumn} ${'━'.repeat(
-		Math.max(0, 100 - filePath.length - headerLine.toString().length - headerColumn.toString().length - 2),
-	)}`
-
-	const { label, logger, formatter } =
-		severity === Severity.Error
-			? { label: ERROR, logger: log.error, formatter: pc.red }
-			: { label: WARN, logger: log.warn, formatter: pc.yellow }
-	const snippet = snippetWithUnderline
+	return snippetWithUnderline
 		.split('\n')
 		.map((line) => `${' '.repeat(8)}${line}`)
 		.join('\n')
-	const formattedSuggestions = suggestions.join('\n').replace(/\n/g, `\n${' '.repeat(10)}`)
+}
+
+function formatSuggestions(suggestions: string[]): string {
+	return suggestions.join('\n').replace(/\n/g, `\n${' '.repeat(10)}`)
+}
+
+export function printDiagnostic(
+	targetNode: Node,
+	contextNode: Node,
+	severity: Severity,
+	detailedMessage: string,
+	...suggestions: string[]
+): void {
+	const sourceFile = contextNode.getSourceFile()
+	const { line: targetLine, column: targetColumn } = sourceFile.getLineAndColumnAtPos(targetNode.getStart())
+
+	const header = generateHeader(sourceFile, targetLine, targetColumn)
+	const snippet = buildSnippet(contextNode, targetNode)
+	const formattedSuggestions = formatSuggestions(suggestions)
+	const { label, logger, formatter } = getDiagnosticConfig(severity)
 
 	const diagnosticMessage = dedent`
     ${header}
 
         ${label} ${formatter(detailedMessage)}
 
-        ${snippet}
+${snippet}
 
         ${pc.green(pc.bold('ℹ'))} ${pc.green(formattedSuggestions)}
   `

@@ -22,9 +22,9 @@ exports[`intl-watcher plugin > error handling > unsupported expression 2`] = `
 10 | t(randomBoolean() ? 'one' : 'two')
 |   [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[39m
 
-[32m[1mℹ[22m[39m [32mIf you'd like to request support for this expression syntax, please open a feature request at:
-https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml
-and include the syntax kind and the full text of the expression in your request.[39m
+[32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
+detailing the syntax kind and the entire expression. Submit your request here:
+https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
 
 [33m[1m⚠[22m[39m src/app/fixtures/unsupported-expression.tsx:12:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -33,9 +33,9 @@ and include the syntax kind and the full text of the expression in your request.
 12 | t(randomFruit())
 |   [31m^^^^^^^^^^^^^[39m
 
-[32m[1mℹ[22m[39m [32mIf you'd like to request support for this expression syntax, please open a feature request at:
-https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml
-and include the syntax kind and the full text of the expression in your request.[39m
+[32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
+detailing the syntax kind and the entire expression. Submit your request here:
+https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
 
 [33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`

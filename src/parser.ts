@@ -188,9 +188,9 @@ function extractTranslationKeysFromExpression(expression: Expression): readonly 
 		expression.getParentOrThrow(),
 		Severity.Warn,
 		`Unsupported expression of kind ${expression.getKindName()} detected.`,
-		"If you'd like to request support for this expression syntax, please open a feature request at:",
+		'This syntax is not currently supported. If you need support for it, please open a feature request',
+		'detailing the syntax kind and the entire expression. Submit your request here:',
 		'https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml',
-		'and include the syntax kind and the full text of the expression in your request.',
 	)
 	return []
 }
