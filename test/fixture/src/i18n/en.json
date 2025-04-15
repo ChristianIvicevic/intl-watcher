@@ -1,9 +1,9 @@
 {
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }

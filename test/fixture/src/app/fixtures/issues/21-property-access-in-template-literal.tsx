@@ -1,16 +1,16 @@
-import { getRandomFruit } from '@/utils'
+import type { Key } from '@/types'
 import { getTranslations } from 'next-intl/server'
 
-export async function Component() {
+declare function randomKey(): Key
+
+export default async function Component() {
 	const t = await getTranslations()
-	const fruit = getRandomFruit()
-	const apiResponse = { status: 200, data: fruit }
-	const deeplyNested = { data: { fruit } }
+	const key = randomKey()
+	const nested = { data: key }
+	const deeplyNested = { data: { key } }
 
 	// @ts-expect-error
-	t(`${apiResponse.data}PropertyAccessExpressionInTemplateLiteral`)
+	t(`${nested.data}PropertyAccessExpressionInTemplateLiteral`)
 	// @ts-expect-error
-	t(`${deeplyNested.data.fruit}PropertyAccessExpressionInTemplateLiteral2`)
-
-	return null
+	t(`${deeplyNested.data.key}PropertyAccessExpressionInTemplateLiteralDeep`)
 }

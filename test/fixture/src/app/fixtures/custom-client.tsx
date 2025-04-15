@@ -2,9 +2,8 @@
 
 import { useTranslations as translate } from 'next-intl'
 
-export function Component() {
+export default function Component() {
 	const tCustom = translate()
 	// @ts-expect-error
-	tCustom('newCustomClientVariable')
-	return null
+	tCustom('newCustomClientKey')
 }

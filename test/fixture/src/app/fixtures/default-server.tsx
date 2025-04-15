@@ -1,27 +1,27 @@
-import { getRandomFruit } from '@/utils'
+import type { Key } from '@/types'
 import { getTranslations } from 'next-intl/server'
+
+declare function randomKey(): Key
 
 export default async function Component() {
 	const t = await getTranslations()
 	const literalValue = 'literal' as const
-	const fruit = getRandomFruit()
-	const apiResponse = { status: 200, data: fruit }
-	const deeplyNested = { data: { fruit } }
+	const key = randomKey()
+	const nested = { data: key }
+	const deeplyNested = { data: { key } }
 
 	// @ts-expect-error
 	t(literalValue)
 	// @ts-expect-error
-	t('newServerVariable')
+	t('newServerKey')
 	// @ts-expect-error
-	t(fruit)
+	t(key)
 	// @ts-expect-error
-	t(`${fruit}Description`)
+	t(`${key}Suffix`)
 	// @ts-expect-error
-	t(apiResponse.data)
+	t(nested.data)
 	// @ts-expect-error
-	t(deeplyNested.data.fruit)
+	t(deeplyNested.data.key)
 	// @ts-expect-error
-	t.rich('richText', { strong: (chunk) => <strong>{chunk}</strong> })
-
-	return null
+	t.rich('richText', { em: (chunk) => <em>{chunk}</em> })
 }

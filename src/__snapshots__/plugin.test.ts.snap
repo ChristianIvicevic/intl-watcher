@@ -2,13 +2,13 @@
 
 exports[`intl-watcher plugin > error handling > unsupported expression 1`] = `
 "{
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
@@ -30,169 +30,169 @@ https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature
 
 [33m[1m⚠[22m[39m [33mUnsupported expression of kind CallExpression detected.[39m
 
-12 | t(randomFruit())
-|   [31m^^^^^^^^^^^^^[39m
+12 | t(randomKey())
+|   [31m^^^^^^^^^^^[39m
 
 [32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
 detailing the syntax kind and the entire expression. Submit your request here:
 https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
 
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > edge cases > server-side options 1`] = `
 "{
-	"newServerVariable": "[NYT: newServerVariable]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"newServerKey": "[NYT: newServerKey]",
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > edge cases > server-side options 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > default options 1`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newClientKey": "[NYT: newClientKey]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > default options 2`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newClientKey": "[NYT: newClientKey]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "In keiner Datei mehr genutzt",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "In keiner Datei mehr genutzt"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > default options 3`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`apple\`
-[34m[1m✓[22m[39m Added new i18n key \`appleDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`banana\`
-[34m[1m✓[22m[39m Added new i18n key \`bananaDescription\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`key1\`
+[34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key2\`
+[34m[1m✓[22m[39m Added new i18n key \`key2Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key3\`
+[34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`orange\`
-[34m[1m✓[22m[39m Added new i18n key \`orangeDescription\`
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 1`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newClientKey": "[NYT: newClientKey]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 2`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newClientKey": "[NYT: newClientKey]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "In keiner Datei mehr genutzt",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "In keiner Datei mehr genutzt"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 3`] = `
 "{
-	"newClientVariable": "[NYT: newClientVariable]"
+	"newClientKey": "[NYT: newClientKey]"
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 4`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]"
 }
 "
@@ -200,21 +200,21 @@ exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictiona
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 5`] = `
 "{
-	"newClientVariable": "[NYT: newClientVariable]"
+	"newClientKey": "[NYT: newClientKey]"
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 6`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]"
 }
 "
@@ -222,201 +222,201 @@ exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictiona
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 7`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`apple\`
-[34m[1m✓[22m[39m Added new i18n key \`appleDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`banana\`
-[34m[1m✓[22m[39m Added new i18n key \`bananaDescription\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`key1\`
+[34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key2\`
+[34m[1m✓[22m[39m Added new i18n key \`key2Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key3\`
+[34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`orange\`
-[34m[1m✓[22m[39m Added new i18n key \`orangeDescription\`
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom fallback for new keys 1`] = `
 "{
-	"apple": "[Missing translation: apple]",
-	"appleDescription": "[Missing translation: appleDescription]",
-	"banana": "[Missing translation: banana]",
-	"bananaDescription": "[Missing translation: bananaDescription]",
+	"key1": "[Missing translation: key1]",
+	"key1Suffix": "[Missing translation: key1Suffix]",
+	"key2": "[Missing translation: key2]",
+	"key2Suffix": "[Missing translation: key2Suffix]",
+	"key3": "[Missing translation: key3]",
+	"key3Suffix": "[Missing translation: key3Suffix]",
 	"literal": "[Missing translation: literal]",
-	"newClientVariable": "[Missing translation: newClientVariable]",
-	"newServerVariable": "[Missing translation: newServerVariable]",
-	"orange": "[Missing translation: orange]",
-	"orangeDescription": "[Missing translation: orangeDescription]",
+	"newClientKey": "[Missing translation: newClientKey]",
+	"newServerKey": "[Missing translation: newServerKey]",
 	"richText": "[Missing translation: richText]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom fallback for new keys 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`apple\`
-[34m[1m✓[22m[39m Added new i18n key \`appleDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`banana\`
-[34m[1m✓[22m[39m Added new i18n key \`bananaDescription\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`key1\`
+[34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key2\`
+[34m[1m✓[22m[39m Added new i18n key \`key2Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key3\`
+[34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`orange\`
-[34m[1m✓[22m[39m Added new i18n key \`orangeDescription\`
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom partitioning function names 1`] = `
 "{
-	"customApple": "[NYT: customApple]",
-	"customAppleDescription": "[NYT: customAppleDescription]",
-	"customBanana": "[NYT: customBanana]",
-	"customBananaDescription": "[NYT: customBananaDescription]",
-	"customOrange": "[NYT: customOrange]",
-	"customOrangeDescription": "[NYT: customOrangeDescription]",
-	"newCustomClientVariable": "[NYT: newCustomClientVariable]",
-	"newCustomServerVariable": "[NYT: newCustomServerVariable]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"customKey1": "[NYT: customKey1]",
+	"customKey1Suffix": "[NYT: customKey1Suffix]",
+	"customKey2": "[NYT: customKey2]",
+	"customKey2Suffix": "[NYT: customKey2Suffix]",
+	"customKey3": "[NYT: customKey3]",
+	"customKey3Suffix": "[NYT: customKey3Suffix]",
+	"newCustomClientKey": "[NYT: newCustomClientKey]",
+	"newCustomServerKey": "[NYT: newCustomServerKey]",
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom partitioning function names 2`] = `
 "{
-	"newCustomClientVariable": "[NYT: newCustomClientVariable]"
+	"newCustomClientKey": "[NYT: newCustomClientKey]"
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom partitioning function names 3`] = `
 "{
-	"customApple": "[NYT: customApple]",
-	"customAppleDescription": "[NYT: customAppleDescription]",
-	"customBanana": "[NYT: customBanana]",
-	"customBananaDescription": "[NYT: customBananaDescription]",
-	"customOrange": "[NYT: customOrange]",
-	"customOrangeDescription": "[NYT: customOrangeDescription]",
-	"newCustomServerVariable": "[NYT: newCustomServerVariable]"
+	"customKey1": "[NYT: customKey1]",
+	"customKey1Suffix": "[NYT: customKey1Suffix]",
+	"customKey2": "[NYT: customKey2]",
+	"customKey2Suffix": "[NYT: customKey2Suffix]",
+	"customKey3": "[NYT: customKey3]",
+	"customKey3Suffix": "[NYT: customKey3Suffix]",
+	"newCustomServerKey": "[NYT: newCustomServerKey]"
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom partitioning function names 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`newCustomClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`customApple\`
-[34m[1m✓[22m[39m Added new i18n key \`customAppleDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`customBanana\`
-[34m[1m✓[22m[39m Added new i18n key \`customBananaDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`customOrange\`
-[34m[1m✓[22m[39m Added new i18n key \`customOrangeDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`newCustomServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`newCustomClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`customKey1\`
+[34m[1m✓[22m[39m Added new i18n key \`customKey1Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`customKey2\`
+[34m[1m✓[22m[39m Added new i18n key \`customKey2Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`customKey3\`
+[34m[1m✓[22m[39m Added new i18n key \`customKey3Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`newCustomServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > default options 1`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newClientKey": "[NYT: newClientKey]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > default options 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`apple\`
-[34m[1m✓[22m[39m Added new i18n key \`appleDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`banana\`
-[34m[1m✓[22m[39m Added new i18n key \`bananaDescription\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`key1\`
+[34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key2\`
+[34m[1m✓[22m[39m Added new i18n key \`key2Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key3\`
+[34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`orange\`
-[34m[1m✓[22m[39m Added new i18n key \`orangeDescription\`
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > dictionary partitioning 1`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newClientKey": "[NYT: newClientKey]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > dictionary partitioning 2`] = `
 "{
-	"newClientVariable": "[NYT: newClientVariable]"
+	"newClientKey": "[NYT: newClientKey]"
 }
 "
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > dictionary partitioning 3`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]"
 }
 "
@@ -424,33 +424,33 @@ exports[`intl-watcher plugin > flat dictionaries > single language > dictionary 
 
 exports[`intl-watcher plugin > flat dictionaries > single language > dictionary partitioning 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`apple\`
-[34m[1m✓[22m[39m Added new i18n key \`appleDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`banana\`
-[34m[1m✓[22m[39m Added new i18n key \`bananaDescription\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`key1\`
+[34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key2\`
+[34m[1m✓[22m[39m Added new i18n key \`key2Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key3\`
+[34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`orange\`
-[34m[1m✓[22m[39m Added new i18n key \`orangeDescription\`
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > unused key removal 1`] = `
 "{
-	"apple": "[NYT: apple]",
-	"appleDescription": "[NYT: appleDescription]",
-	"banana": "[NYT: banana]",
-	"bananaDescription": "[NYT: bananaDescription]",
+	"key1": "[NYT: key1]",
+	"key1Suffix": "[NYT: key1Suffix]",
+	"key2": "[NYT: key2]",
+	"key2Suffix": "[NYT: key2Suffix]",
+	"key3": "[NYT: key3]",
+	"key3Suffix": "[NYT: key3Suffix]",
 	"literal": "[NYT: literal]",
-	"newClientVariable": "[NYT: newClientVariable]",
-	"newServerVariable": "[NYT: newServerVariable]",
-	"orange": "[NYT: orange]",
-	"orangeDescription": "[NYT: orangeDescription]",
+	"newClientKey": "[NYT: newClientKey]",
+	"newServerKey": "[NYT: newServerKey]",
 	"richText": "[NYT: richText]"
 }
 "
@@ -458,18 +458,18 @@ exports[`intl-watcher plugin > flat dictionaries > single language > unused key 
 
 exports[`intl-watcher plugin > flat dictionaries > single language > unused key removal 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[34m[1m✓[22m[39m Removed unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[34m[1m✓[22m[39m Removed unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[34m[1m✓[22m[39m Removed unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`apple\`
-[34m[1m✓[22m[39m Added new i18n key \`appleDescription\`
-[34m[1m✓[22m[39m Added new i18n key \`banana\`
-[34m[1m✓[22m[39m Added new i18n key \`bananaDescription\`
+[34m[1m✓[22m[39m Removed unused i18n key \`unusedKey\`
+[34m[1m✓[22m[39m Removed unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[34m[1m✓[22m[39m Removed unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`key1\`
+[34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key2\`
+[34m[1m✓[22m[39m Added new i18n key \`key2Suffix\`
+[34m[1m✓[22m[39m Added new i18n key \`key3\`
+[34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`orange\`
-[34m[1m✓[22m[39m Added new i18n key \`orangeDescription\`
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
@@ -478,57 +478,57 @@ exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-sid
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-side options 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynamic namespace 1`] = `
 "{
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynamic namespace 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[31m[1m⨯[22m[39m src/app/fixtures/dynamic-namespaces.tsx:9:34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[31m[1m⨯[22m[39m src/app/fixtures/dynamic-namespaces.tsx:7:34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [31m[1m⨯[22m[39m [31mA dynamic namespace value was provided instead of a literal string.[39m
 
-9 | const t = await getTranslations(getRandomNamespace())
-|                                 [31m^^^^^^^^^^^^^^^^^^^^[39m
+7 | const t = await getTranslations(randomNamespace())
+|                                 [31m^^^^^^^^^^^^^^^^^[39m
 
 [32m[1mℹ[22m[39m [32mFor reliable extraction of translation keys, please ensure that the namespace is defined
 as a static string literal (or a variable that unequivocally resolves to one).[39m
 
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
@@ -536,17 +536,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > de
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
@@ -555,28 +555,28 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > de
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "In keiner Datei mehr genutzt",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "In keiner Datei mehr genutzt"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > default options 3`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
@@ -584,17 +584,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
@@ -603,17 +603,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "In keiner Datei mehr genutzt",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "In keiner Datei mehr genutzt"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
@@ -622,7 +622,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]"
 		}
 	}
 }
@@ -633,7 +633,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -644,7 +644,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]"
 		}
 	}
 }
@@ -655,7 +655,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -664,11 +664,11 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 7`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
@@ -676,28 +676,28 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[Missing translation: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[Missing translation: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[Missing translation: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[Missing translation: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom fallback for new keys 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
@@ -705,17 +705,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
@@ -724,7 +724,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]"
 		}
 	}
 }
@@ -735,7 +735,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -744,11 +744,11 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom partitioning function names 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
@@ -756,28 +756,28 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > defau
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > default options 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
@@ -785,17 +785,17 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > dicti
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	},
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
@@ -804,7 +804,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > dicti
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]"
 		}
 	}
 }
@@ -815,7 +815,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > dicti
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -824,11 +824,11 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > dicti
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > dictionary partitioning 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
@@ -836,8 +836,8 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > unuse
 "{
 	"rootNamespace": {
 		"nestedNamespace": {
-			"newClientVariable": "[NYT: rootNamespace.nestedNamespace.newClientVariable]",
-			"newServerVariable": "[NYT: rootNamespace.nestedNamespace.newServerVariable]"
+			"newClientKey": "[NYT: rootNamespace.nestedNamespace.newClientKey]",
+			"newServerKey": "[NYT: rootNamespace.nestedNamespace.newServerKey]"
 		}
 	}
 }
@@ -846,43 +846,43 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > unuse
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > unused key removal 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[34m[1m✓[22m[39m Removed unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[34m[1m✓[22m[39m Removed unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[34m[1m✓[22m[39m Removed unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerVariable\`
+[34m[1m✓[22m[39m Removed unused i18n key \`unusedKey\`
+[34m[1m✓[22m[39m Removed unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[34m[1m✓[22m[39m Removed unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newClientKey\`
+[34m[1m✓[22m[39m Added new i18n key \`rootNamespace.nestedNamespace.newServerKey\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;
 
 exports[`intl-watcher plugin > regressions > property access expression in template literal 1`] = `
 "{
-	"applePropertyAccessExpressionInTemplateLiteral": "[NYT: applePropertyAccessExpressionInTemplateLiteral]",
-	"applePropertyAccessExpressionInTemplateLiteral2": "[NYT: applePropertyAccessExpressionInTemplateLiteral2]",
-	"bananaPropertyAccessExpressionInTemplateLiteral": "[NYT: bananaPropertyAccessExpressionInTemplateLiteral]",
-	"bananaPropertyAccessExpressionInTemplateLiteral2": "[NYT: bananaPropertyAccessExpressionInTemplateLiteral2]",
-	"orangePropertyAccessExpressionInTemplateLiteral": "[NYT: orangePropertyAccessExpressionInTemplateLiteral]",
-	"orangePropertyAccessExpressionInTemplateLiteral2": "[NYT: orangePropertyAccessExpressionInTemplateLiteral2]",
-	"unusedRootNamespace": {
-		"unusedNestedNamespace": {
-			"unusedNestedVariable": ""
+	"key1PropertyAccessExpressionInTemplateLiteral": "[NYT: key1PropertyAccessExpressionInTemplateLiteral]",
+	"key1PropertyAccessExpressionInTemplateLiteralDeep": "[NYT: key1PropertyAccessExpressionInTemplateLiteralDeep]",
+	"key2PropertyAccessExpressionInTemplateLiteral": "[NYT: key2PropertyAccessExpressionInTemplateLiteral]",
+	"key2PropertyAccessExpressionInTemplateLiteralDeep": "[NYT: key2PropertyAccessExpressionInTemplateLiteralDeep]",
+	"key3PropertyAccessExpressionInTemplateLiteral": "[NYT: key3PropertyAccessExpressionInTemplateLiteral]",
+	"key3PropertyAccessExpressionInTemplateLiteralDeep": "[NYT: key3PropertyAccessExpressionInTemplateLiteralDeep]",
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
 		},
-		"unusedRootVariable": ""
-	},
-	"unusedVariable": "No longer referenced in any source file"
+		"unusedNestedKey": ""
+	}
 }
 "
 `;
 
 exports[`intl-watcher plugin > regressions > property access expression in template literal 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
-[34m[1m✓[22m[39m Added new i18n key \`applePropertyAccessExpressionInTemplateLiteral\`
-[34m[1m✓[22m[39m Added new i18n key \`applePropertyAccessExpressionInTemplateLiteral2\`
-[34m[1m✓[22m[39m Added new i18n key \`bananaPropertyAccessExpressionInTemplateLiteral\`
-[34m[1m✓[22m[39m Added new i18n key \`bananaPropertyAccessExpressionInTemplateLiteral2\`
-[34m[1m✓[22m[39m Added new i18n key \`orangePropertyAccessExpressionInTemplateLiteral\`
-[34m[1m✓[22m[39m Added new i18n key \`orangePropertyAccessExpressionInTemplateLiteral2\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
+[34m[1m✓[22m[39m Added new i18n key \`key1PropertyAccessExpressionInTemplateLiteral\`
+[34m[1m✓[22m[39m Added new i18n key \`key1PropertyAccessExpressionInTemplateLiteralDeep\`
+[34m[1m✓[22m[39m Added new i18n key \`key2PropertyAccessExpressionInTemplateLiteral\`
+[34m[1m✓[22m[39m Added new i18n key \`key2PropertyAccessExpressionInTemplateLiteralDeep\`
+[34m[1m✓[22m[39m Added new i18n key \`key3PropertyAccessExpressionInTemplateLiteral\`
+[34m[1m✓[22m[39m Added new i18n key \`key3PropertyAccessExpressionInTemplateLiteralDeep\`
 [34m[1m✓[22m[39m Finished in <timing>"
 `;

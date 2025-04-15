@@ -1,13 +1,10 @@
 import { getTranslations } from 'next-intl/server'
 
-function getRandomNamespace(): string {
-	return 'random.fail'
-}
+declare function randomNamespace(): string
 
-export async function Component() {
+export default async function Component() {
 	// @ts-expect-error
-	const t = await getTranslations(getRandomNamespace())
+	const t = await getTranslations(randomNamespace())
 	// @ts-expect-error
-	t('newServerVariable')
-	return null
+	t('newServerKey')
 }
