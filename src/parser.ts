@@ -209,11 +209,13 @@ function extractLiteralValuesFromExpression(expression: Expression): readonly st
 	return []
 }
 
-function extractTranslationKeysFromTemplateLiteral(argument: TemplateExpression): readonly string[] {
+function extractTranslationKeysFromTemplateLiteral(
+	templateExpression: TemplateExpression,
+): readonly string[] {
 	const translationKeys: string[] = []
-	const head = argument.getHead().getLiteralText()
+	const head = templateExpression.getHead().getLiteralText()
 
-	for (const span of argument.getTemplateSpans()) {
+	for (const span of templateExpression.getTemplateSpans()) {
 		const expressionKeys = extractTranslationKeysFromExpression(span.getExpression())
 		const suffix = span.getLiteral().getLiteralText()
 		for (const value of expressionKeys) {
