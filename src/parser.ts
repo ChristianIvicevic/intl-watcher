@@ -1,4 +1,3 @@
-import pc from 'picocolors'
 import {
 	type CallExpression,
 	type Expression,
@@ -10,8 +9,7 @@ import {
 	type VariableDeclaration,
 } from 'ts-morph'
 import { NEXT_INTL_GET_TRANSLATIONS_LOCALE, NEXT_INTL_GET_TRANSLATIONS_NAMESPACE } from './constants.js'
-import { printDiagnostic } from './diagnostics.js'
-import { ERROR, WARN, log } from './logger.js'
+import { Severity, printDiagnostic } from './diagnostics.js'
 import type { IntlWatcherOptions } from './types.js'
 
 export function extractTranslationKeysFromProject(
@@ -107,12 +105,10 @@ function isTranslationAliasDeclaration(
 		printDiagnostic(
 			argument,
 			variableDeclaration.getParentOrThrow(),
-			ERROR,
-			pc.red('A dynamic namespace value was provided instead of a literal string.'),
-			[
-				'For reliable extraction of translation keys, please ensure that the namespace is defined',
-				'as a static string literal (or a variable that unequivocally resolves to one).',
-			],
+			Severity.Error,
+			'A dynamic namespace value was provided instead of a literal string.',
+			'For reliable extraction of translation keys, please ensure that the namespace is defined',
+			'as a static string literal (or a variable that unequivocally resolves to one).',
 		)
 		return { valid: false }
 	}
@@ -190,14 +186,11 @@ function extractTranslationKeysFromExpression(expression: Expression): readonly 
 	printDiagnostic(
 		expression,
 		expression.getParentOrThrow(),
-		WARN,
-		pc.yellow(`Unsupported expression of kind ${expression.getKindName()} detected.`),
-		[
-			"If you'd like to request support for this expression syntax, please open a feature request at:",
-			'https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml',
-			'and include the syntax kind and the full text of the expression in your request.',
-		],
-		log.warn,
+		Severity.Warn,
+		`Unsupported expression of kind ${expression.getKindName()} detected.`,
+		"If you'd like to request support for this expression syntax, please open a feature request at:",
+		'https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml',
+		'and include the syntax kind and the full text of the expression in your request.',
 	)
 	return []
 }

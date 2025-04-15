@@ -1,76 +1,82 @@
 import dedent from 'dedent'
 import pc from 'picocolors'
 import type { Node } from 'ts-morph'
-import { log } from './logger.js'
+import { ERROR, WARN, log } from './logger.js'
 import { getCommonPrefix } from './utils.js'
 
+// biome-ignore lint/style/useNamingConvention: Pseudo enum.
+export const Severity = { Error: 'Error', Warn: 'Warn' } as const
+export type Severity = (typeof Severity)[keyof typeof Severity]
+
 export function printDiagnostic(
-	child: Node,
-	parent: Node,
-	errorLabel: string,
+	targetNode: Node,
+	contextNode: Node,
+	severity: Severity,
 	detailedMessage: string,
-	suggestion: string[],
-	logFn: (msg: string) => void = log.error,
+	...suggestions: string[]
 ): void {
-	const sourceFile = parent.getSourceFile()
+	const sourceFile = contextNode.getSourceFile()
 	const projectFiles = sourceFile.getProject().getSourceFiles()
 	const rootDirectory = getCommonPrefix(projectFiles.map((file) => file.getFilePath()))
 	const filePath = sourceFile.getFilePath().substring(rootDirectory.length)
 
-	const { line: parentStartLine, column: parentStartColumn } = sourceFile.getLineAndColumnAtPos(
-		parent.getStart(),
+	const { line: contextStartLine, column: contextStartColumn } = sourceFile.getLineAndColumnAtPos(
+		contextNode.getStart(),
 	)
-	const { line: childLine, column: childColumn } = sourceFile.getLineAndColumnAtPos(child.getStart())
+	const { line: targetLine, column: targetColumn } = sourceFile.getLineAndColumnAtPos(targetNode.getStart())
 
-	const parentTextLines = parent.getText().split('\n')
-	const childRelativeLineIndex = childLine - parentStartLine
-	const maxLineNumber = parentStartLine + parentTextLines.length - 1
+	const contextTextLines = contextNode.getText().split('\n')
+	const targetRelativeLineIndex = targetLine - contextStartLine
+	const maxLineNumber = contextStartLine + contextTextLines.length - 1
 	const lineNumberPadding = maxLineNumber.toString().length
 
-	const snippetWithUnderline = parentTextLines
+	const snippetWithUnderline = contextTextLines
 		.map((line, index) => {
 			const expandedLine = expandTabs(line)
-			const currentLineNumber = (parentStartLine + index).toString().padStart(lineNumberPadding)
-			if (index === childRelativeLineIndex) {
+			const currentLineNumber = (contextStartLine + index).toString().padStart(lineNumberPadding)
+			if (index === targetRelativeLineIndex) {
 				const leadingText =
-					childLine === parentStartLine
-						? line.substring(parentStartColumn - 1, childColumn - 1)
-						: line.substring(0, childColumn - 1)
+					targetLine === contextStartLine
+						? line.substring(contextStartColumn - 1, targetColumn - 1)
+						: line.substring(0, targetColumn - 1)
 				const expandedLeadingText = expandTabs(leadingText)
 				const effectiveOffset = expandedLeadingText.length
-				const childText = child.getText()
-				const firstLineOfChild = childText.split('\n')[0]
-				const expandedChildFirstLine = expandTabs(firstLineOfChild)
-				const underline = ' '.repeat(effectiveOffset) + pc.red('^'.repeat(expandedChildFirstLine.length))
+				const targetText = targetNode.getText()
+				const firstLineOfTarget = targetText.split('\n')[0]
+				const expandedTargetFirstLine = expandTabs(firstLineOfTarget)
+				const underline = ' '.repeat(effectiveOffset) + pc.red('^'.repeat(expandedTargetFirstLine.length))
 				return `${currentLineNumber} | ${expandedLine}\n${' '.repeat(lineNumberPadding)} | ${underline}`
 			}
 			return `${currentLineNumber} | ${expandedLine}`
 		})
 		.join('\n')
 
-	const headerLine = childLine
-	const headerColumn = childColumn
+	const headerLine = targetLine
+	const headerColumn = targetColumn
 	const header = `${filePath}:${headerLine}:${headerColumn} ${'━'.repeat(
 		Math.max(0, 100 - filePath.length - headerLine.toString().length - headerColumn.toString().length - 2),
 	)}`
 
+	const { label, logger, formatter } =
+		severity === Severity.Error
+			? { label: ERROR, logger: log.error, formatter: pc.red }
+			: { label: WARN, logger: log.warn, formatter: pc.yellow }
 	const snippet = snippetWithUnderline
 		.split('\n')
 		.map((line) => `${' '.repeat(8)}${line}`)
 		.join('\n')
-	const formattedSuggestion = suggestion.join('\n').replace(/\n/g, `\n${' '.repeat(10)}`)
+	const formattedSuggestions = suggestions.join('\n').replace(/\n/g, `\n${' '.repeat(10)}`)
 
 	const diagnosticMessage = dedent`
     ${header}
 
-        ${pc.red(pc.bold(errorLabel))} ${pc.red(detailedMessage)}
+        ${label} ${formatter(detailedMessage)}
 
-${snippet}
+        ${snippet}
 
-        ${pc.green(pc.bold('ℹ'))} ${pc.green(formattedSuggestion)}
+        ${pc.green(pc.bold('ℹ'))} ${pc.green(formattedSuggestions)}
   `
-
-	logFn(diagnosticMessage)
+	logger(diagnosticMessage)
 	log.info()
 }
 

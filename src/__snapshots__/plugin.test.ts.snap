@@ -17,7 +17,7 @@ exports[`intl-watcher plugin > error handling > unsupported expression 2`] = `
 "[37m[1m○[22m[39m Scanning...
 [33m[1m⚠[22m[39m src/app/fixtures/unsupported-expression.tsx:10:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[31m[1m[33m[1m⚠[22m[1m[31m[22m[39m [31m[33mUnsupported expression of kind ConditionalExpression detected.[31m[39m
+[33m[1m⚠[22m[39m [33mUnsupported expression of kind ConditionalExpression detected.[39m
 
 10 | t(randomBoolean() ? 'one' : 'two')
 |   [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[39m
@@ -28,7 +28,7 @@ and include the syntax kind and the full text of the expression in your request.
 
 [33m[1m⚠[22m[39m src/app/fixtures/unsupported-expression.tsx:12:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[31m[1m[33m[1m⚠[22m[1m[31m[22m[39m [31m[33mUnsupported expression of kind CallExpression detected.[31m[39m
+[33m[1m⚠[22m[39m [33mUnsupported expression of kind CallExpression detected.[39m
 
 12 | t(randomFruit())
 |   [31m^^^^^^^^^^^^^[39m
@@ -518,7 +518,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynami
 "[37m[1m○[22m[39m Scanning...
 [31m[1m⨯[22m[39m src/app/fixtures/dynamic-namespaces.tsx:9:34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[31m[1m[31m[1m⨯[22m[1m[31m[22m[39m [31m[31mA dynamic namespace value was provided instead of a literal string.[31m[39m
+[31m[1m⨯[22m[39m [31mA dynamic namespace value was provided instead of a literal string.[39m
 
 9 | const t = await getTranslations(getRandomNamespace())
 |                                 [31m^^^^^^^^^^^^^^^^^^^^[39m
