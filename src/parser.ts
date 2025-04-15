@@ -1,5 +1,3 @@
-import dedent from 'dedent'
-import pc from 'picocolors'
 import {
 	type CallExpression,
 	type Expression,
@@ -9,12 +7,10 @@ import {
 	SyntaxKind,
 	type TemplateExpression,
 	type VariableDeclaration,
-	type VariableDeclarationList,
 } from 'ts-morph'
 import { NEXT_INTL_GET_TRANSLATIONS_LOCALE, NEXT_INTL_GET_TRANSLATIONS_NAMESPACE } from './constants.js'
-import { log } from './logger.js'
+import { Severity, printDiagnostic } from './diagnostics.js'
 import type { IntlWatcherOptions } from './types.js'
-import { getCommonPrefix } from './utils.js'
 
 export function extractTranslationKeysFromProject(
 	options: IntlWatcherOptions,
@@ -106,7 +102,14 @@ function isTranslationAliasDeclaration(
 			Node.isPropertyAssignment(argument.getProperty(NEXT_INTL_GET_TRANSLATIONS_LOCALE))
 		)
 	) {
-		printDynamicNamespaceWarning(variableDeclaration, argument)
+		printDiagnostic(
+			argument,
+			variableDeclaration.getParentOrThrow(),
+			Severity.Error,
+			'A dynamic namespace value was provided instead of a literal string.',
+			'For reliable extraction of translation keys, please ensure that the namespace is defined',
+			'as a static string literal (or a variable that unequivocally resolves to one).',
+		)
 		return { valid: false }
 	}
 
@@ -121,41 +124,6 @@ function isTranslationAliasDeclaration(
 	}
 
 	return resolvedNamespace ? { valid: true, namespace: resolvedNamespace } : { valid: true }
-}
-
-function printDynamicNamespaceWarning(
-	variableDeclaration: VariableDeclaration,
-	namespaceArgument: Node,
-): void {
-	const sourceFiles = variableDeclaration.getProject().getSourceFiles()
-	const rootDirectory = getCommonPrefix(sourceFiles.map((file) => file.getFilePath()))
-	const sourceFile = variableDeclaration.getSourceFile()
-	const filePath = sourceFile.getFilePath().substring(rootDirectory.length)
-
-	const variableDeclarationList = variableDeclaration.getParent() as VariableDeclarationList
-
-	const { line: startLine } = sourceFile.getLineAndColumnAtPos(variableDeclarationList.getStart())
-	const { line: endLine } = sourceFile.getLineAndColumnAtPos(variableDeclarationList.getEnd())
-	const linePadding = Math.max(startLine.toString().length, (endLine + 1).toString().length)
-
-	const { column: startColumn } = sourceFile.getLineAndColumnAtPos(namespaceArgument.getStart())
-	const { column: endColumn } = sourceFile.getLineAndColumnAtPos(namespaceArgument.getEnd())
-
-	const diagnosticMessage = dedent`
-	${filePath}:${startLine}:${startColumn} ${Array.from({ length: 100 - filePath.length - startLine.toString().length - startColumn.toString().length - 2 }).join('━')}
-	
-	    ${pc.red(pc.bold('⨯'))} ${pc.red('A dynamic namespace value was provided instead of a literal string.')}
-	
-	    ${pc.red(pc.bold('>'))} ${startLine.toString().padStart(linePadding)} | ${variableDeclarationList.getText()}
-	      ${''.padStart(linePadding)} | ${Array.from({ length: startColumn - 1 }).join(' ')}${Array.from({ length: endColumn - startColumn + 1 }).join(pc.red('^'))}
-	      ${(endLine + 1).toString().padStart(linePadding)} |
-	
-	    ${pc.green(pc.bold('ℹ'))} ${pc.green('For reliable extraction of translation keys, please ensure that the namespace is defined')}
-	      ${pc.green('as a static string literal (or a variable that unequivocally resolves to one).')}
-	`
-
-	log.error(diagnosticMessage)
-	log.info()
 }
 
 function resolveStringLiteral(node: Node): string | undefined {
@@ -202,19 +170,28 @@ function isTranslationCall(callExpression: CallExpression, expectedTranslationAl
 	return false
 }
 
-function extractTranslationKeysFromExpression(argument: Expression): readonly string[] {
-	if (Node.isStringLiteral(argument)) {
-		return [argument.getLiteralText()]
+function extractTranslationKeysFromExpression(expression: Expression): readonly string[] {
+	if (Node.isStringLiteral(expression)) {
+		return [expression.getLiteralText()]
 	}
-	if (Node.isIdentifier(argument)) {
-		return extractLiteralValuesFromExpression(argument)
+	if (Node.isIdentifier(expression)) {
+		return extractLiteralValuesFromExpression(expression)
 	}
-	if (Node.isTemplateExpression(argument)) {
-		return extractTranslationKeysFromTemplateLiteral(argument)
+	if (Node.isTemplateExpression(expression)) {
+		return extractTranslationKeysFromTemplateLiteral(expression)
 	}
-	if (Node.isPropertyAccessExpression(argument)) {
-		return extractLiteralValuesFromExpression(argument)
+	if (Node.isPropertyAccessExpression(expression)) {
+		return extractLiteralValuesFromExpression(expression)
 	}
+	printDiagnostic(
+		expression,
+		expression.getParentOrThrow(),
+		Severity.Warn,
+		`Unsupported expression of kind ${expression.getKindName()} detected.`,
+		'This syntax is not currently supported. If you need support for it, please open a feature request',
+		'detailing the syntax kind and the entire expression. Submit your request here:',
+		'https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml',
+	)
 	return []
 }
 

@@ -1,5 +1,48 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`intl-watcher plugin > error handling > unsupported expression 1`] = `
+"{
+	"unusedRootNamespace": {
+		"unusedNestedNamespace": {
+			"unusedNestedVariable": ""
+		},
+		"unusedRootVariable": ""
+	},
+	"unusedVariable": "No longer referenced in any source file"
+}
+"
+`;
+
+exports[`intl-watcher plugin > error handling > unsupported expression 2`] = `
+"[37m[1m○[22m[39m Scanning...
+[33m[1m⚠[22m[39m src/app/fixtures/unsupported-expression.tsx:10:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[33m[1m⚠[22m[39m [33mUnsupported expression of kind ConditionalExpression detected.[39m
+
+10 | t(randomBoolean() ? 'one' : 'two')
+|   [31m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[39m
+
+[32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
+detailing the syntax kind and the entire expression. Submit your request here:
+https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
+
+[33m[1m⚠[22m[39m src/app/fixtures/unsupported-expression.tsx:12:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[33m[1m⚠[22m[39m [33mUnsupported expression of kind CallExpression detected.[39m
+
+12 | t(randomFruit())
+|   [31m^^^^^^^^^^^^^[39m
+
+[32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
+detailing the syntax kind and the entire expression. Submit your request here:
+https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
+
+[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedVariable\`
+[34m[1m✓[22m[39m Finished in <timing>"
+`;
+
 exports[`intl-watcher plugin > flat dictionaries > edge cases > server-side options 1`] = `
 "{
 	"newServerVariable": "[NYT: newServerVariable]",
@@ -473,16 +516,15 @@ exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynami
 
 exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynamic namespace 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[31m[1m⨯[22m[39m src/app/fixtures/dynamic-namespaces.tsx:9:34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+[31m[1m⨯[22m[39m src/app/fixtures/dynamic-namespaces.tsx:9:34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [31m[1m⨯[22m[39m [31mA dynamic namespace value was provided instead of a literal string.[39m
 
-[31m[1m>[22m[39m  9 | const t = await getTranslations(getRandomNamespace())
-|                                 [31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m[31m^[39m
-10 |
+9 | const t = await getTranslations(getRandomNamespace())
+|                                 [31m^^^^^^^^^^^^^^^^^^^^[39m
 
-[32m[1mℹ[22m[39m [32mFor reliable extraction of translation keys, please ensure that the namespace is defined[39m
-[32mas a static string literal (or a variable that unequivocally resolves to one).[39m
+[32m[1mℹ[22m[39m [32mFor reliable extraction of translation keys, please ensure that the namespace is defined
+as a static string literal (or a variable that unequivocally resolves to one).[39m
 
 [33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedNestedNamespace.unusedNestedVariable\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedRootNamespace.unusedRootVariable\`

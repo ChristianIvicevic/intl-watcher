@@ -202,6 +202,10 @@ describe('intl-watcher plugin', () => {
 		})
 	})
 
+	describe('error handling', () => {
+		test('unsupported expression', async () => doTest(['unsupported-expression.tsx']))
+	})
+
 	describe('regressions', () => {
 		// https://github.com/ChristianIvicevic/intl-watcher/issues/21
 		test('property access expression in template literal', async () =>
