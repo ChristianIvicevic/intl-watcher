@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0
+
+### Minor Changes
+
+- Overhaul of configuration API by refactoring it into a discriminated union with clearer, more ergonomic names. by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
+  ⚠️ **BREAKING CHANGE**
+  Even though this is a minor bump (v0.x), these changes are not backward‑compatible.
+
 ## 0.3.3
 
 ### Patch Changes
