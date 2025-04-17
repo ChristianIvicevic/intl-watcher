@@ -4,6 +4,7 @@ import chokidar from 'chokidar'
 import debounce from 'debounce'
 import lodash from 'lodash'
 import properLockfile from 'proper-lockfile'
+import { Project } from 'ts-morph'
 import { log } from './logger.js'
 import { extractTranslationKeysFromProject } from './parser.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
@@ -33,8 +34,12 @@ export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): Intl
 
 export class IntlWatcher {
 	private _isSelfTriggerGuardActive = false
+	private readonly _changedFiles = new Set<string>()
 
-	public constructor(private readonly _options: IntlWatcherOptions) {}
+	public constructor(
+		private readonly _options: IntlWatcherOptions,
+		private readonly _project = new Project({ tsConfigFilePath: _options.tsConfigFilePath }),
+	) {}
 
 	public startWatching(): void {
 		const debouncedScan = debounce(
@@ -52,6 +57,7 @@ export class IntlWatcher {
 					return
 				}
 
+				this._changedFiles.add(absoluteFilename)
 				debouncedScan()
 			})
 		process.on('exit', async () => {
@@ -63,8 +69,18 @@ export class IntlWatcher {
 		log.waiting('Scanning...')
 		const startTime = process.hrtime.bigint()
 
+		for (const filePath of this._changedFiles) {
+			const sourceFile =
+				this._project.getSourceFile(filePath) ?? this._project.addSourceFileAtPathIfExists(filePath)
+			sourceFile?.refreshFromFileSystemSync()
+		}
+		this._changedFiles.clear()
+
 		let skipLogging = false
-		const [clientTranslationKeys, serverTranslationKeys] = extractTranslationKeysFromProject(this._options)
+		const [clientTranslationKeys, serverTranslationKeys] = extractTranslationKeysFromProject(
+			this._project,
+			this._options,
+		)
 
 		for (const dictionaryPath of this._options.i18nDictionaryPaths) {
 			this.synchronizeDictionaryFile(

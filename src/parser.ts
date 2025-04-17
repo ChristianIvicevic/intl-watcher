@@ -2,7 +2,7 @@ import {
 	type CallExpression,
 	type Expression,
 	Node,
-	Project,
+	type Project,
 	type SourceFile,
 	SyntaxKind,
 	type TemplateExpression,
@@ -13,9 +13,9 @@ import { Severity, printDiagnostic } from './diagnostics.js'
 import type { IntlWatcherOptions } from './types.js'
 
 export function extractTranslationKeysFromProject(
+	project: Project,
 	options: IntlWatcherOptions,
 ): readonly [string[], string[]] {
-	const project = new Project({ tsConfigFilePath: options.tsConfigFilePath })
 	const sourceFiles = project.getSourceFiles()
 
 	const clientTranslationKeys: string[] = []
