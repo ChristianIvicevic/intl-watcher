@@ -15,12 +15,12 @@ export type { CreateIntlWatcherOptions }
  *
  * @example
  * const withIntlWatcher = createIntlWatcher({
- * 	i18nDictionaryPaths: ['./i18n/en.json', './i18n/de.json'],
+ * 	dictionaryPaths: ['./i18n/en.json', './i18n/de.json'],
  * })
  *
  * export default withIntlWatcher({
- *   reactStrictMode: true,
- *   // other Next.js config options
+ * 	reactStrictMode: true,
+ * 	// other Next.js config options
  * })
  */
 export function createIntlWatcher(options: CreateIntlWatcherOptions): (config: NextConfig) => NextConfig {

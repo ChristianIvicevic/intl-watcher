@@ -50,7 +50,7 @@ Wrap your Next.js configuration with the provided `createIntlWatcher` function:
 import { createIntlWatcher } from 'intl-watcher'
 
 const withIntlWatcher = createIntlWatcher({
-	i18nDictionaryPaths: ['./i18n/en.json', './i18n/de.json'],
+	dictionaryPaths: ['./i18n/en.json', './i18n/de.json'],
 })
 
 export default withIntlWatcher({
