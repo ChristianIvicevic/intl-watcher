@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3
+
+### Patch Changes
+
+- Significantly improve incremental scan performance on large projects, making subsequent runs much faster. by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
 ## 0.3.2
 
 ### Patch Changes
