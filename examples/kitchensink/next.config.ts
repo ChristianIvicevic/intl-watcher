@@ -5,9 +5,8 @@ import createNextIntlPlugin from 'next-intl/plugin'
 const nextConfig: NextConfig = { eslint: { ignoreDuringBuilds: true } }
 
 const withIntlWatcher = createIntlWatcher({
+	dictionaryPaths: ['./src/i18n/en.json', './src/i18n/de.json'],
 	applyPartitioning: true,
-	i18nDictionaryPaths: ['./src/i18n/en.json', './src/i18n/de.json'],
-	removeUnusedKeys: true,
 })
 const withNextIntl = createNextIntlPlugin({
 	experimental: {

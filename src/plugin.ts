@@ -5,6 +5,7 @@ import debounce from 'debounce'
 import lodash from 'lodash'
 import properLockfile from 'proper-lockfile'
 import { Project } from 'ts-morph'
+import { NEXT_INTL_GET_TRANSLATIONS_FUNCTION, NEXT_INTL_USE_TRANSLATIONS_FUNCTION } from './constants.js'
 import { log } from './logger.js'
 import { extractTranslationKeysFromProject } from './parser.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
@@ -17,18 +18,27 @@ import {
 } from './utils.js'
 
 export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): IntlWatcherOptions {
+	const partitioningOptions = options.applyPartitioning
+		? {
+				applyPartitioning: true as const,
+				partitioningOptions: {
+					clientFunction: options.partitioningOptions?.clientFunction ?? NEXT_INTL_USE_TRANSLATIONS_FUNCTION,
+					serverFunction: options.partitioningOptions?.serverFunction ?? NEXT_INTL_GET_TRANSLATIONS_FUNCTION,
+				},
+			}
+		: {
+				applyPartitioning: false as const,
+				translationFunctions: [NEXT_INTL_USE_TRANSLATIONS_FUNCTION, NEXT_INTL_GET_TRANSLATIONS_FUNCTION],
+			}
+
 	return {
-		debounceDelay: options.debounceDelay ?? 500,
-		i18nDictionaryPaths: options.i18nDictionaryPaths.map((dictionaryPath) => path.resolve(dictionaryPath)),
-		sourceDirectory: options.sourceDirectory ?? './src',
-		partitioningOptions: {
-			clientFunction: options.partitioningOptions?.clientFunction ?? 'useTranslations',
-			serverFunction: options.partitioningOptions?.serverFunction ?? 'getTranslations',
-		},
+		dictionaryPaths: options.dictionaryPaths.map((dictionaryPath) => path.resolve(dictionaryPath)),
+		scanDelay: options.scanDelay ?? 500,
+		defaultValue: options.defaultValue ?? ((key) => `[NYT: ${key}]`),
 		removeUnusedKeys: options.removeUnusedKeys ?? false,
-		applyPartitioning: options.applyPartitioning ?? false,
-		defaultTranslationGeneratorFn: options.defaultTranslationGeneratorFn ?? ((key) => `[NYT: ${key}]`),
+		sourceDirectory: options.sourceDirectory ?? './src',
 		tsConfigFilePath: options.tsConfigFilePath ?? 'tsconfig.json',
+		...partitioningOptions,
 	}
 }
 
@@ -42,17 +52,14 @@ export class IntlWatcher {
 	) {}
 
 	public startWatching(): void {
-		const debouncedScan = debounce(
-			() => this.scanSourceFilesForTranslationKeys(),
-			this._options.debounceDelay,
-		)
+		const debouncedScan = debounce(() => this.scanSourceFilesForTranslationKeys(), this._options.scanDelay)
 		const watcher = chokidar
 			.watch(this._options.sourceDirectory, { ignoreInitial: true })
 			.on('all', (_event, filename) => {
 				const absoluteFilename = path.resolve(filename)
 				if (
 					!this.shouldProcessFile(absoluteFilename) ||
-					(this._options.i18nDictionaryPaths.includes(absoluteFilename) && this._isSelfTriggerGuardActive)
+					(this._options.dictionaryPaths.includes(absoluteFilename) && this._isSelfTriggerGuardActive)
 				) {
 					return
 				}
@@ -82,7 +89,7 @@ export class IntlWatcher {
 			this._options,
 		)
 
-		for (const dictionaryPath of this._options.i18nDictionaryPaths) {
+		for (const dictionaryPath of this._options.dictionaryPaths) {
 			this.synchronizeDictionaryFile(
 				dictionaryPath,
 				clientTranslationKeys,
@@ -127,7 +134,7 @@ export class IntlWatcher {
 				if (messages[key] === undefined && !skipLogging) {
 					log.success(`Added new i18n key \`${key}\``)
 				}
-				messages[key] ??= this._options.defaultTranslationGeneratorFn(key)
+				messages[key] ??= this._options.defaultValue(key)
 			}
 
 			const flatMessages = lodash.pick(messages, Object.keys(messages).toSorted())
@@ -151,7 +158,7 @@ export class IntlWatcher {
 
 	private shouldProcessFile(filename: string): boolean {
 		const isTsFile = filename.endsWith('.ts') || filename.endsWith('.tsx')
-		const isDictionary = this._options.i18nDictionaryPaths.includes(filename)
+		const isDictionary = this._options.dictionaryPaths.includes(filename)
 		const isDeclarationFile = filename.endsWith('.d.ts') || filename.endsWith('.d.json.ts')
 
 		return (isTsFile || isDictionary) && !isDeclarationFile
@@ -181,6 +188,6 @@ export class IntlWatcher {
 		this._isSelfTriggerGuardActive = true
 		setTimeout(() => {
 			this._isSelfTriggerGuardActive = false
-		}, this._options.debounceDelay)
+		}, this._options.scanDelay)
 	}
 }

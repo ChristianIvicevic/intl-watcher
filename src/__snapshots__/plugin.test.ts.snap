@@ -117,7 +117,6 @@ exports[`intl-watcher plugin > flat dictionaries > multiple languages > default 
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -125,6 +124,7 @@ exports[`intl-watcher plugin > flat dictionaries > multiple languages > default 
 [34m[1m✓[22m[39m Added new i18n key \`key3\`
 [34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
@@ -266,7 +266,6 @@ exports[`intl-watcher plugin > flat dictionaries > single language > custom fall
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -274,6 +273,7 @@ exports[`intl-watcher plugin > flat dictionaries > single language > custom fall
 [34m[1m✓[22m[39m Added new i18n key \`key3\`
 [34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
@@ -364,7 +364,6 @@ exports[`intl-watcher plugin > flat dictionaries > single language > default opt
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -372,6 +371,7 @@ exports[`intl-watcher plugin > flat dictionaries > single language > default opt
 [34m[1m✓[22m[39m Added new i18n key \`key3\`
 [34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"
@@ -461,7 +461,6 @@ exports[`intl-watcher plugin > flat dictionaries > single language > unused key 
 [34m[1m✓[22m[39m Removed unused i18n key \`unusedKey\`
 [34m[1m✓[22m[39m Removed unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [34m[1m✓[22m[39m Removed unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -469,6 +468,7 @@ exports[`intl-watcher plugin > flat dictionaries > single language > unused key 
 [34m[1m✓[22m[39m Added new i18n key \`key3\`
 [34m[1m✓[22m[39m Added new i18n key \`key3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
+[34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
 [34m[1m✓[22m[39m Finished in <timing>"

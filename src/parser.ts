@@ -21,31 +21,35 @@ export function extractTranslationKeysFromProject(
 	const clientTranslationKeys: string[] = []
 	const serverTranslationKeys: string[] = []
 
+	const clientFunctions = options.applyPartitioning ? [options.partitioningOptions.clientFunction] : []
+	const serverFunctions = options.applyPartitioning
+		? [options.partitioningOptions.serverFunction]
+		: options.translationFunctions
+
 	for (const sourceFile of sourceFiles) {
 		const variableDeclarations = sourceFile.getDescendantsOfKind(SyntaxKind.VariableDeclaration)
 		for (const variableDeclaration of variableDeclarations) {
 			const translationAlias = variableDeclaration.getName()
 
-			const clientAlias = isTranslationAliasDeclaration(
-				variableDeclaration,
-				options.partitioningOptions.clientFunction,
-			)
-			if (clientAlias.valid) {
-				const translationKeys = extractTranslationKeysFromSourceFile(sourceFile, translationAlias)
+			for (const fnName of clientFunctions) {
 				clientTranslationKeys.push(
-					...translationKeys.map((key) => (clientAlias.namespace ? `${clientAlias.namespace}.${key}` : key)),
+					...extractTranslationKeysForAlias(
+						variableDeclaration,
+						translationAlias,
+						fnName,
+						TranslationCallMode.Client,
+					),
 				)
 			}
 
-			const serverAlias = isTranslationAliasDeclaration(
-				variableDeclaration,
-				options.partitioningOptions.serverFunction,
-				TranslationCallMode.Server,
-			)
-			if (serverAlias.valid) {
-				const translationKeys = extractTranslationKeysFromSourceFile(sourceFile, translationAlias)
+			for (const fnName of serverFunctions) {
 				serverTranslationKeys.push(
-					...translationKeys.map((key) => (serverAlias.namespace ? `${serverAlias.namespace}.${key}` : key)),
+					...extractTranslationKeysForAlias(
+						variableDeclaration,
+						translationAlias,
+						fnName,
+						TranslationCallMode.Server,
+					),
 				)
 			}
 		}
@@ -57,6 +61,23 @@ export function extractTranslationKeysFromProject(
 	]
 }
 
+function extractTranslationKeysForAlias(
+	variableDeclaration: VariableDeclaration,
+	translationAlias: string,
+	translationFunction: string,
+	mode: TranslationCallMode,
+): readonly string[] {
+	const result = isTranslationAliasDeclaration(variableDeclaration, translationFunction, mode)
+	if (result.valid) {
+		const translationKeys = extractTranslationKeysFromSourceFile(
+			variableDeclaration.getSourceFile(),
+			translationAlias,
+		)
+		return translationKeys.map((key) => (result.namespace ? `${result.namespace}.${key}` : key))
+	}
+	return []
+}
+
 // biome-ignore lint/style/useNamingConvention: Pseudo enum.
 const TranslationCallMode = { Client: 'Client', Server: 'Server' } as const
 type TranslationCallMode = (typeof TranslationCallMode)[keyof typeof TranslationCallMode]
@@ -65,7 +86,7 @@ type TranslationAliasResult = { valid: false } | { valid: true; namespace?: stri
 function isTranslationAliasDeclaration(
 	variableDeclaration: VariableDeclaration,
 	expectedTranslationAlias: string,
-	mode: TranslationCallMode = TranslationCallMode.Client,
+	mode: TranslationCallMode,
 ): TranslationAliasResult {
 	let currentExpression = variableDeclaration.getInitializer()
 	if (currentExpression === undefined) {

@@ -1,9 +1,11 @@
 import os from 'node:os'
 import path from 'node:path'
 import fs from 'fs-extra'
+import type { PartialDeep } from 'type-fest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
+import { NEXT_INTL_GET_TRANSLATIONS_FUNCTION, NEXT_INTL_USE_TRANSLATIONS_FUNCTION } from './constants.js'
 import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
-import type { IntlWatcherOptions } from './types.js'
+import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
 
 const TIMING_REGEX = /Finished in \d+(\.\d+)?(ms|s)/g
 
@@ -11,11 +13,15 @@ describe('intl-watcher plugin', () => {
 	let tempDir: string
 	let logSpy: ReturnType<typeof vi.spyOn>
 
-	function createDefaultWatcherOptions(i18nDictionaryPaths: string[]): IntlWatcherOptions {
+	function createDefaultWatcherOptions(
+		dictionaryPaths: string[],
+		pluginOptions?: PartialDeep<CreateIntlWatcherOptions>,
+	): IntlWatcherOptions {
 		return buildIntlWatcherOptions({
-			i18nDictionaryPaths,
+			dictionaryPaths,
 			sourceDirectory: path.join(tempDir, 'src'),
 			tsConfigFilePath: path.join(tempDir, 'tsconfig.json'),
+			...pluginOptions,
 		})
 	}
 
@@ -51,7 +57,7 @@ describe('intl-watcher plugin', () => {
 
 	async function doTest(
 		fixtureFiles: string[],
-		options?: { modifyOptions?(options: IntlWatcherOptions): void; enableMultiLanguage?: boolean },
+		options?: { pluginOptions?: PartialDeep<CreateIntlWatcherOptions>; enableMultiLanguage?: boolean },
 	) {
 		// Given
 		for (const fixtureFile of fixtureFiles) {
@@ -63,8 +69,8 @@ describe('intl-watcher plugin', () => {
 		const [otherMainDictionary, otherClientDictionary, otherServerDictionary] = getDictionaryPaths('de')
 		const watcherOptions = createDefaultWatcherOptions(
 			options?.enableMultiLanguage ? [mainDictionary, otherMainDictionary] : [mainDictionary],
+			options?.pluginOptions ?? {},
 		)
-		options?.modifyOptions?.(watcherOptions)
 		const watcher = new IntlWatcher(watcherOptions)
 		// When
 		watcher.scanSourceFilesForTranslationKeys()
@@ -97,32 +103,34 @@ describe('intl-watcher plugin', () => {
 			test('default options', async () => doTest(['default-server.tsx', 'default-client.tsx']))
 
 			test('unused key removal', async () =>
-				doTest(['default-server.tsx', 'default-client.tsx'], {
-					modifyOptions(options) {
-						options.removeUnusedKeys = true
-					},
-				}))
+				doTest(['default-server.tsx', 'default-client.tsx'], { pluginOptions: { removeUnusedKeys: true } }))
 
 			test('dictionary partitioning', async () =>
 				doTest(['default-server.tsx', 'default-client.tsx'], {
-					modifyOptions(options) {
-						options.applyPartitioning = true
+					pluginOptions: {
+						applyPartitioning: true,
+						partitioningOptions: {
+							clientFunction: NEXT_INTL_USE_TRANSLATIONS_FUNCTION,
+							serverFunction: NEXT_INTL_GET_TRANSLATIONS_FUNCTION,
+						},
 					},
 				}))
 
 			test('custom fallback for new keys', async () =>
 				doTest(['default-server.tsx', 'default-client.tsx'], {
-					modifyOptions(options) {
-						options.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
+					pluginOptions: {
+						defaultValue: (key) => `[Missing translation: ${key}]`,
 					},
 				}))
 
 			test('custom partitioning function names', async () =>
 				doTest(['custom-server.tsx', 'custom-client.tsx'], {
-					modifyOptions(options) {
-						options.applyPartitioning = true
-						options.partitioningOptions.clientFunction = 'translate'
-						options.partitioningOptions.serverFunction = 'translateOnServer'
+					pluginOptions: {
+						applyPartitioning: true,
+						partitioningOptions: {
+							clientFunction: 'translate',
+							serverFunction: 'translateOnServer',
+						},
 					},
 				}))
 		})
@@ -134,8 +142,12 @@ describe('intl-watcher plugin', () => {
 			test('dictionary partitioning', async () =>
 				doTest(['default-server.tsx', 'default-client.tsx'], {
 					enableMultiLanguage: true,
-					modifyOptions(options) {
-						options.applyPartitioning = true
+					pluginOptions: {
+						applyPartitioning: true,
+						partitioningOptions: {
+							clientFunction: NEXT_INTL_USE_TRANSLATIONS_FUNCTION,
+							serverFunction: NEXT_INTL_GET_TRANSLATIONS_FUNCTION,
+						},
 					},
 				}))
 		})
@@ -151,31 +163,35 @@ describe('intl-watcher plugin', () => {
 
 			test('unused key removal', async () =>
 				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
-					modifyOptions(options) {
-						options.removeUnusedKeys = true
-					},
+					pluginOptions: { removeUnusedKeys: true },
 				}))
 
 			test('dictionary partitioning', async () =>
 				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
-					modifyOptions(options) {
-						options.applyPartitioning = true
+					pluginOptions: {
+						applyPartitioning: true,
+						partitioningOptions: {
+							clientFunction: NEXT_INTL_USE_TRANSLATIONS_FUNCTION,
+							serverFunction: NEXT_INTL_GET_TRANSLATIONS_FUNCTION,
+						},
 					},
 				}))
 
 			test('custom fallback for new keys', async () =>
 				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
-					modifyOptions(options) {
-						options.defaultTranslationGeneratorFn = (key) => `[Missing translation: ${key}]`
+					pluginOptions: {
+						defaultValue: (key) => `[Missing translation: ${key}]`,
 					},
 				}))
 
 			test('custom partitioning function names', async () =>
 				doTest(['custom-namespaces-client.tsx', 'custom-namespaces-server.tsx'], {
-					modifyOptions(options) {
-						options.applyPartitioning = true
-						options.partitioningOptions.clientFunction = 'translate'
-						options.partitioningOptions.serverFunction = 'translateOnServer'
+					pluginOptions: {
+						applyPartitioning: true,
+						partitioningOptions: {
+							clientFunction: 'translate',
+							serverFunction: 'translateOnServer',
+						},
 					},
 				}))
 		})
@@ -187,8 +203,12 @@ describe('intl-watcher plugin', () => {
 			test('dictionary partitioning', async () =>
 				doTest(['namespaces-client.tsx', 'namespaces-server.tsx'], {
 					enableMultiLanguage: true,
-					modifyOptions(options) {
-						options.applyPartitioning = true
+					pluginOptions: {
+						applyPartitioning: true,
+						partitioningOptions: {
+							clientFunction: NEXT_INTL_USE_TRANSLATIONS_FUNCTION,
+							serverFunction: NEXT_INTL_GET_TRANSLATIONS_FUNCTION,
+						},
 					},
 				}))
 		})

@@ -1,54 +1,45 @@
-import type { RequiredDeep } from 'type-fest'
+import type { RequiredDeep, SimplifyDeep } from 'type-fest'
 
-export type CreateIntlWatcherOptions = {
-	/**
-	 * The file paths to the JSON dictionaries (one per language) that hold i18n keys and their default translation
-	 * values. These files will be updated automatically with new keys and cleaned up of unused keys if enabled.
-	 */
-	i18nDictionaryPaths: string[]
-	/**
-	 * Flag to enable translation key partitioning between client and server. When enabled, keys are divided based on the
-	 * defined translation function identifiers. Defaults to false.
-	 */
-	applyPartitioning?: boolean
-	/**
-	 * The debounce delay in milliseconds for scanning source files. This delay prevents redundant scans during rapid file
-	 * changes. Defaults to 500 ms.
-	 */
-	debounceDelay?: number
-	/**
-	 * A function that generates a default translation value for a new key. It receives the key as an argument and returns
-	 * a string. The default implementation returns a value formatted as `[NYT: <key>]`.
-	 */
-	defaultTranslationGeneratorFn?(key: string): string
-	/**
-	 * Configuration options for partitioning translation keys between client and server.
-	 */
-	partitioningOptions?: {
-		/**
-		 * The identifier for the client-side translation function. Used to determine which keys belong to the client.
-		 * Defaults to 'useTranslations'.
-		 */
-		clientFunction?: string
-		/**
-		 * The identifier for the server-side translation function. Used to separate server-specific keys. Defaults to
-		 * 'getTranslations'.
-		 */
-		serverFunction?: string
-	}
-	/**
-	 * When set to true, the watcher will remove keys from the dictionary that are no longer used in the source files. If
-	 * false, unused keys will trigger a warning. Defaults to false.
-	 */
+/**
+ * Configuration options for creating the intl watcher, with or without partitioning.
+ */
+export type CreateIntlWatcherOptions = SimplifyDeep<WithPartitioning | WithoutPartitioning>
+
+/**
+ * Configuration options for creating the intl watcher, with or without partitioning.
+ */
+type BaseOptions = {
+	/** Function to generate a default translation for new keys. */
+	defaultValue?(key: string): string
+	/** Paths to JSON dictionary files for each language. */
+	dictionaryPaths: string[]
+	/** Remove keys not found in source files when true; otherwise warn on unused keys. */
 	removeUnusedKeys?: boolean
-	/**
-	 * The relative path to the directory containing source files to be scanned for translation keys. Defaults to ‘./src’.
-	 */
+	/** Delay in milliseconds before scanning after file changes. */
+	scanDelay?: number
+	/** Directory path to scan for source files. */
 	sourceDirectory?: string
-	/**
-	 * File path to the tsconfig.json used to deduce which files to scan. Defaults to 'tsconfig.json'.
-	 */
+	/** Path to tsconfig.json for project resolution. */
 	tsConfigFilePath?: string
 }
 
-export type IntlWatcherOptions = RequiredDeep<CreateIntlWatcherOptions>
+export type WithPartitioning = BaseOptions & {
+	/** Enable splitting translation keys into separate client and server bundles. */
+	applyPartitioning: true
+	/** Identifiers for client- and server-side translation functions. */
+	partitioningOptions?: {
+		/** Name of the client-side translation function. */
+		clientFunction?: string
+		/** Name of the server-side translation function. */
+		serverFunction?: string
+	}
+}
+
+export type WithoutPartitioning = BaseOptions & {
+	/** Disable partitioning; scan all translation functions together. */
+	applyPartitioning?: false
+	/** Function name or names to scan for translation keys. */
+	translationFunctions?: string[]
+}
+
+export type IntlWatcherOptions = SimplifyDeep<RequiredDeep<CreateIntlWatcherOptions>>

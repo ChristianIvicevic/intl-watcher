@@ -50,16 +50,7 @@ Wrap your Next.js configuration with the provided `createIntlWatcher` function:
 import { createIntlWatcher } from 'intl-watcher'
 
 const withIntlWatcher = createIntlWatcher({
-	i18nDictionaryPaths: ['./locales/en.json'],
-	applyPartitioning: true,
-	debounceDelay: 500,
-	defaultTranslationGeneratorFn: (key) => `[NYT: ${key}]`,
-	partitioningOptions: {
-		clientFunction: 'useTranslations',
-		serverFunction: 'getTranslations',
-	},
-	removeUnusedKeys: true,
-	sourceDirectory: './src'
+	i18nDictionaryPaths: ['./i18n/en.json', './i18n/de.json'],
 })
 
 export default withIntlWatcher({
@@ -72,33 +63,66 @@ export default withIntlWatcher({
 
 ### Required Options
 
-#### `i18nDictionaryPaths`
+#### `dictionaryPaths`
 
 - **Type:** `string[]`
-- **Description:** Paths to JSON dictionary files to manage.
+- **Description:** Paths to JSON dictionary files for each language. These files will be managed and kept in sync with your source.
 
-### Optional Options
+### Shared Optional Options
 
-#### `applyPartitioning`
+#### `defaultValue`
 
-- **Type**: `boolean`
-- **Default**: `false`
-- **Description**: Enables splitting of translation keys into separate client/server dictionaries.
-
-#### `debounceDelay`
-
-- **Type:** `number`
-- **Default:** `500`
-- **Description:** Delay (ms) for debouncing scans after file changes.
-
-#### `defaultTranslationGeneratorFn`
-
-- **Type**: `(key: string) => string`
-- **Default**:
+- **Type:** `(key: string) => string`
+- **Default:**
   ```js
   (key) => `[NYT: ${key}]`
   ```
-- **Description**: Function to generate default values for new translation keys.
+- **Description:** Function that generates a default translation for new keys.
+
+#### `removeUnusedKeys`
+
+- **Type:** `boolean`
+- **Default:** `false`
+- **Description:** When true, removes keys no longer found in source files; otherwise emits warnings.
+
+#### `scanDelay`
+
+- **Type:** `number`
+- **Default:** `500`
+- **Description:** Delay in milliseconds before re‑scanning after file changes.
+
+#### `sourceDirectory`
+
+- **Type:** `string`
+- **Default:** `'./src'`
+- **Description:** Directory path to scan for translation key extraction.
+
+#### `tsConfigFilePath`
+
+- **Type:** `string`
+- **Default:** `tsconfig.json`
+- **Description:** Path to `tsconfig.json` for project file resolution.
+
+### Non-Partitioning Mode (default)
+
+#### `applyPartitioning`
+
+- **Type:** `false`
+- **Default:** `false`
+- **Description:** Default mode where keys are not split.
+
+#### `translationFunctions`
+
+- **Type:** `string[]`
+- **Default:** `['useTranslations', 'getTranslations']`
+- **Description:** Translation function name(s) to scan for keys.
+
+### Partitioning Mode
+
+#### `applyPartitioning`
+
+- **Type**: `true`
+- **Description**: Enables splitting translation keys into separate client and server bundles.
 
 #### `partitioningOptions`
 
@@ -110,25 +134,7 @@ export default withIntlWatcher({
     serverFunction: 'getTranslations'
   }
   ```
-- **Description**: Identifiers to distinguish client/server translation functions.
-
-#### `removeUnusedKeys`
-
-- **Type**: `boolean`
-- **Default**: `false`
-- **Description**: Removes unused translation keys if true; otherwise, logs a warning.
-
-#### `sourceDirectory`
-
-- **Type:** `string`
-- **Default:** `'./src'`
-- **Description:** Directory to scan for translation keys.
-
-#### `tsConfigFilePath`
-
-- **Type**: `string`
-- **Default**: `tsconfig.json`
-- **Description**: Path to the tsconfig file to resolve file scanning criteria.
+- **Description**: Function names to use for extracting client vs server translation keys.
 
 ## Dictionary Partitioning
 

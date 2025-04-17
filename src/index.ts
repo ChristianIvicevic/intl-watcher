@@ -8,31 +8,14 @@ import { runOnce } from './utils.js'
 export type { CreateIntlWatcherOptions }
 
 /**
- * Initializes and configures the intl-watcher plugin for Next.js.
+ * Wraps your Next.js configuration to enable automatic scanning and syncing of i18n keys.
  *
- * This function creates a higher-order function that wraps your Next.js configuration. It sets up a file watcher to
- * scan your source files for i18n translation keys and synchronizes these keys with JSON dictionary files. The options
- * allow you to adjust debouncing, specify the source directory, define the dictionary file paths, partition keys for
- * client and server translation functions, decide whether to remove unused keys, and customize the default value
- * generation for new keys.
- *
- * @param options - Configuration options for the i18n watcher.
- *
- * @returns A function that takes a Next.js configuration, initializes the watcher, and returns the modified
- * configuration.
+ * @param options Configuration for file watching and dictionary synchronization.
+ * @returns A Next.js config enhancer that starts the watcher in development mode.
  *
  * @example
  * const withIntlWatcher = createIntlWatcher({
- * 	i18nDictionaryPaths: ['./locales/en.json'],
- * 	applyPartitioning: true,
- * 	debounceDelay: 500,
- * 	defaultTranslationGeneratorFn: (key) => `[NYT: ${key}]`,
- * 	partitioningOptions: {
- * 		clientFunction: 'useTranslations',
- * 		serverFunction: 'getTranslations',
- * 	},
- * 	removeUnusedKeys: true,
- * 	sourceDirectory: './src'
+ * 	i18nDictionaryPaths: ['./i18n/en.json', './i18n/de.json'],
  * })
  *
  * export default withIntlWatcher({
