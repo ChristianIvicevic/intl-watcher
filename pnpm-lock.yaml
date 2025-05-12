@@ -15,8 +15,8 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       dedent:
-        specifier: 1.5.3
-        version: 1.5.3
+        specifier: 1.6.0
+        version: 1.6.0
       lodash:
         specifier: 4.17.21
         version: 4.17.21
@@ -924,8 +924,8 @@ packages:
       supports-color:
         optional: true
 
-  dedent@1.5.3:
-    resolution: {integrity: sha512-NHQtfOOW68WD8lgypbLA5oT+Bt0xXJhiYvoR6SmmNXZfpzOGXwdKWmcwG8N7PwVVWV3eF/68nmD9BaJSsTBhyQ==}
+  dedent@1.6.0:
+    resolution: {integrity: sha512-F1Z+5UCFpmQUzJa11agbyPVMbpgT/qA3/SKyJ1jyBgm7dUcUEa8v9JwDkerSQXfakBwFljIxhOJqGkjUwZ9FSA==}
     peerDependencies:
       babel-plugin-macros: ^3.1.0
     peerDependenciesMeta:
@@ -2612,7 +2612,7 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  dedent@1.5.3: {}
+  dedent@1.6.0: {}
 
   deep-eql@5.0.2: {}
 
