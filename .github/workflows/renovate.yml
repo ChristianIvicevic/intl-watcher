@@ -11,7 +11,7 @@ jobs:
     if: contains(github.event.pull_request.labels.*.name, 'dependencies')
     steps:
       - name: Update PR
-        uses: mscharley/dependency-changesets-action@b6ed60b41ebae79840ddc628f5238f626a95bf51 # v1.1.4
+        uses: mscharley/dependency-changesets-action@0635490410faca754395674e47f4425d7a2c5131 # v1.1.5
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           use-conventional-commits: true
