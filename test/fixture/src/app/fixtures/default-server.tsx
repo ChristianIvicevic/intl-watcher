@@ -1,5 +1,5 @@
-import type { Key } from '@/types'
 import { getTranslations } from 'next-intl/server'
+import type { Key } from '@/types'
 
 declare function randomKey(): Key
 

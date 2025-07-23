@@ -104,7 +104,6 @@ export class IntlWatcher {
 		log.success(`Finished in ${formatDuration(delta)}`)
 	}
 
-	// biome-ignore lint/complexity/noExcessiveCognitiveComplexity: This is fine.
 	private synchronizeDictionaryFile(
 		dictionaryPath: string,
 		clientTranslationKeys: string[],

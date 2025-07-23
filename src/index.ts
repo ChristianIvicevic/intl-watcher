@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next'
 import pc from 'picocolors'
 import { log } from './logger.js'
-import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
+import { buildIntlWatcherOptions, IntlWatcher } from './plugin.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
 import { runOnce } from './utils.js'
 

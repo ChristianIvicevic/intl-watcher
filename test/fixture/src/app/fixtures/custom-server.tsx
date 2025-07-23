@@ -1,5 +1,5 @@
-import type { CustomKey } from '@/types'
 import { getTranslations as translateOnServer } from 'next-intl/server'
+import type { CustomKey } from '@/types'
 
 declare function randomKey(): CustomKey
 

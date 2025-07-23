@@ -1,10 +1,9 @@
 import dedent from 'dedent'
 import pc from 'picocolors'
 import type { Node, SourceFile } from 'ts-morph'
-import { ERROR, WARN, log } from './logger.js'
+import { ERROR, log, WARN } from './logger.js'
 import { getCommonPrefix } from './utils.js'
 
-// biome-ignore lint/style/useNamingConvention: Pseudo enum.
 export const Severity = { Error: 'Error', Warn: 'Warn' } as const
 export type Severity = (typeof Severity)[keyof typeof Severity]
 
