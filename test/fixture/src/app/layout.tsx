@@ -1,6 +1,6 @@
-import { Providers } from '@/app/components.client'
 import { getLocale } from 'next-intl/server'
 import type { ReactNode } from 'react'
+import { Providers } from '@/app/components.client'
 
 export const dynamic = 'force-dynamic'
 

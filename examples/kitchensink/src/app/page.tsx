@@ -1,5 +1,5 @@
-import { getRandomCapitalCity } from '@/queries'
 import { getTranslations } from 'next-intl/server'
+import { getRandomCapitalCity } from '@/queries'
 
 export default async function Page() {
 	const t = await getTranslations()

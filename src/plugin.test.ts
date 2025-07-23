@@ -4,7 +4,7 @@ import fs from 'fs-extra'
 import type { PartialDeep } from 'type-fest'
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { NEXT_INTL_GET_TRANSLATIONS_FUNCTION, NEXT_INTL_USE_TRANSLATIONS_FUNCTION } from './constants.js'
-import { IntlWatcher, buildIntlWatcherOptions } from './plugin.js'
+import { buildIntlWatcherOptions, IntlWatcher } from './plugin.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
 
 const TIMING_REGEX = /Finished in \d+(\.\d+)?(ms|s)/g

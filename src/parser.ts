@@ -9,7 +9,7 @@ import {
 	type VariableDeclaration,
 } from 'ts-morph'
 import { NEXT_INTL_GET_TRANSLATIONS_LOCALE, NEXT_INTL_GET_TRANSLATIONS_NAMESPACE } from './constants.js'
-import { Severity, printDiagnostic } from './diagnostics.js'
+import { printDiagnostic, Severity } from './diagnostics.js'
 import type { IntlWatcherOptions } from './types.js'
 
 export function extractTranslationKeysFromProject(
@@ -78,7 +78,6 @@ function extractTranslationKeysForAlias(
 	return []
 }
 
-// biome-ignore lint/style/useNamingConvention: Pseudo enum.
 const TranslationCallMode = { Client: 'Client', Server: 'Server' } as const
 type TranslationCallMode = (typeof TranslationCallMode)[keyof typeof TranslationCallMode]
 type TranslationAliasResult = { valid: false } | { valid: true; namespace?: string }

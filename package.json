@@ -19,7 +19,12 @@
 	],
 	"type": "module",
 	"main": "lib/index.js",
-	"files": ["LICENSE.md", "README.md", "lib/", "package.json"],
+	"files": [
+		"LICENSE.md",
+		"README.md",
+		"lib/",
+		"package.json"
+	],
 	"keywords": [
 		"react",
 		"intl",
@@ -53,7 +58,7 @@
 		"ts-morph": "26.0.0"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
+		"@biomejs/biome": "2.1.2",
 		"@changesets/cli": "2.29.5",
 		"@changesets/get-github-info": "0.6.0",
 		"@changesets/types": "6.1.0",
@@ -82,6 +87,8 @@
 		"provenance": true
 	},
 	"pnpm": {
-		"onlyBuiltDependencies": ["@biomejs/biome"]
+		"onlyBuiltDependencies": [
+			"@biomejs/biome"
+		]
 	}
 }
