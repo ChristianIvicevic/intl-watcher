@@ -31,12 +31,15 @@ export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): Intl
 				translationFunctions: [NEXT_INTL_USE_TRANSLATIONS_FUNCTION, NEXT_INTL_GET_TRANSLATIONS_FUNCTION],
 			}
 
+	const sourceDirectories = options.sourceDirectories ?? [options.sourceDirectory ?? './src']
+
 	return {
 		dictionaryPaths: options.dictionaryPaths.map((dictionaryPath) => path.resolve(dictionaryPath)),
 		scanDelay: options.scanDelay ?? 500,
 		defaultValue: options.defaultValue ?? ((key) => `[NYT: ${key}]`),
 		removeUnusedKeys: options.removeUnusedKeys ?? false,
-		sourceDirectory: options.sourceDirectory ?? './src',
+		sourceDirectories,
+		sourceDirectory: sourceDirectories?.[0] ?? options.sourceDirectory ?? './src',
 		tsConfigFilePath: options.tsConfigFilePath ?? 'tsconfig.json',
 		...partitioningOptions,
 	}
@@ -54,7 +57,7 @@ export class IntlWatcher {
 	public startWatching(): void {
 		const debouncedScan = debounce(() => this.scanSourceFilesForTranslationKeys(), this._options.scanDelay)
 		const watcher = chokidar
-			.watch(this._options.sourceDirectory, { ignoreInitial: true })
+			.watch(this._options.sourceDirectories, { ignoreInitial: true })
 			.on('all', (_event, filename) => {
 				const absoluteFilename = path.resolve(filename)
 				if (

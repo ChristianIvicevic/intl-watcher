@@ -17,7 +17,12 @@ type BaseOptions = {
 	removeUnusedKeys?: boolean
 	/** Delay in milliseconds before scanning after file changes. */
 	scanDelay?: number
-	/** Directory path to scan for source files. */
+	/** Directory paths to scan for source files. */
+	sourceDirectories?: string[]
+	/**
+	 * Directory path to scan for source files.
+	 * @deprecated Use `sourceDirectories` instead
+	 */
 	sourceDirectory?: string
 	/** Path to tsconfig.json for project resolution. */
 	tsConfigFilePath?: string

@@ -91,11 +91,18 @@ export default withIntlWatcher({
 - **Default:** `500`
 - **Description:** Delay in milliseconds before re‑scanning after file changes.
 
+#### `sourceDirectories`
+
+- **Type:** `string[]`
+- **Default:** `['./src']`
+- **Description:** Directory paths to scan for translation key extraction.
+
 #### `sourceDirectory`
 
 - **Type:** `string`
 - **Default:** `'./src'`
 - **Description:** Directory path to scan for translation key extraction.
+- **Deprecated:** Use `sourceDirectories` instead.
 
 #### `tsConfigFilePath`
 
