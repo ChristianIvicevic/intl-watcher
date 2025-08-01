@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0
+
+### Minor Changes
+
+- Add new `sourceDirectories` option that allows users to list multiple directories to track, and deprecate the old `sourceDirectory` option. ([#83](https://github.com/ChristianIvicevic/intl-watcher/pull/83)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
 ## 0.4.1
 
 ### Patch Changes
