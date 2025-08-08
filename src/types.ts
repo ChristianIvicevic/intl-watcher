@@ -17,11 +17,16 @@ type BaseOptions = {
 	removeUnusedKeys?: boolean
 	/** Delay in milliseconds before scanning after file changes. */
 	scanDelay?: number
-	/** Directory paths to scan for source files. */
+	/** Paths that the plugin watches for changes to trigger a rescan. */
+	watchPaths?: string[]
+	/**
+	 * Directory paths to scan for source files.
+	 * @deprecated Use `watchPaths` instead. This option will be removed in the next major version.
+	 */
 	sourceDirectories?: string[]
 	/**
 	 * Directory path to scan for source files.
-	 * @deprecated Use `sourceDirectories` instead
+	 * @deprecated Use `watchPaths` instead. This option will be removed in the next major version.
 	 */
 	sourceDirectory?: string
 	/** Path to tsconfig.json for project resolution. */

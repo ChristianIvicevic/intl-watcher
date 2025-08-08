@@ -19,7 +19,7 @@ describe('intl-watcher plugin', () => {
 	): IntlWatcherOptions {
 		return buildIntlWatcherOptions({
 			dictionaryPaths,
-			sourceDirectories: [path.join(tempDir, 'src')],
+			watchPaths: [path.join(tempDir, 'src')],
 			tsConfigFilePath: path.join(tempDir, 'tsconfig.json'),
 			...pluginOptions,
 		})
