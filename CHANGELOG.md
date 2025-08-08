@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0
+
+### Minor Changes
+
+- Introduce `watchPaths`, a clearer rename of `sourceDirectories` with identical behavior. ([#85](https://github.com/ChristianIvicevic/intl-watcher/pull/85)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
+  `sourceDirectories` is now deprecated and will be removed in the next major release.
+
 ## 0.5.0
 
 ### Minor Changes
