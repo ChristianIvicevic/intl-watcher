@@ -91,24 +91,24 @@ export default withIntlWatcher({
 - **Default:** `500`
 - **Description:** Delay in milliseconds before re‑scanning after file changes.
 
-#### `sourceDirectories`
-
-- **Type:** `string[]`
-- **Default:** `['./src']`
-- **Description:** Directory paths to scan for translation key extraction.
-
-#### `sourceDirectory`
-
-- **Type:** `string`
-- **Default:** `'./src'`
-- **Description:** Directory path to scan for translation key extraction.
-- **Deprecated:** Use `sourceDirectories` instead.
-
 #### `tsConfigFilePath`
 
 - **Type:** `string`
 - **Default:** `tsconfig.json`
 - **Description:** Path to `tsconfig.json` for project file resolution.
+
+#### `watchPaths`
+
+- **Type:** `string[]`
+- **Default:** `['./src']`
+- **Description:** Paths that the plugin watches to trigger rescans.
+This does not change which files belong to your TypeScript project; that is controlled by `tsconfig.json` via `tsConfigFilePath`.
+
+> [!IMPORTANT]
+> Deprecations (will be removed in the next major version):
+>
+> - `sourceDirectories` (previous name for an array of directories). Use `watchPaths` instead.
+> - `sourceDirectory` (single directory). Use `watchPaths` instead.
 
 ### Non-Partitioning Mode (default)
 
