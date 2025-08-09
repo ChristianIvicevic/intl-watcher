@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.6.1
+
+### Patch Changes
+
+- Fixes the detection of shorthand property assignments in server options. ([#88](https://github.com/ChristianIvicevic/intl-watcher/pull/88)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
 ## 0.6.0
 
 ### Minor Changes
