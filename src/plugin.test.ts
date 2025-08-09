@@ -230,5 +230,9 @@ describe('intl-watcher plugin', () => {
 		// https://github.com/ChristianIvicevic/intl-watcher/issues/21
 		test('property access expression in template literal', async () =>
 			doTest(['issues/21-property-access-in-template-literal.tsx']))
+
+		// https://github.com/ChristianIvicevic/intl-watcher/issues/87
+		test('shorthand property assignment in server options', async () =>
+			doTest(['issues/87-shorthand-property-assignment-in-server-options.tsx']))
 	})
 })

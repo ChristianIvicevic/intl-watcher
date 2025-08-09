@@ -2,6 +2,7 @@ import {
 	type CallExpression,
 	type Expression,
 	Node,
+	type ObjectLiteralExpression,
 	type Project,
 	type SourceFile,
 	SyntaxKind,
@@ -115,13 +116,7 @@ function isTranslationAliasDeclaration(
 		return { valid: true, namespace: resolvedNamespace }
 	}
 
-	if (
-		!(
-			mode === TranslationCallMode.Server &&
-			Node.isObjectLiteralExpression(argument) &&
-			Node.isPropertyAssignment(argument.getProperty(NEXT_INTL_GET_TRANSLATIONS_LOCALE))
-		)
-	) {
+	if (!(mode === TranslationCallMode.Server && isServerOptions(argument))) {
 		printDiagnostic(
 			argument,
 			variableDeclaration.getParentOrThrow(),
@@ -144,6 +139,14 @@ function isTranslationAliasDeclaration(
 	}
 
 	return resolvedNamespace ? { valid: true, namespace: resolvedNamespace } : { valid: true }
+}
+
+function isServerOptions(node: Node): node is ObjectLiteralExpression {
+	return (
+		Node.isObjectLiteralExpression(node) &&
+		(Node.isPropertyAssignment(node.getProperty(NEXT_INTL_GET_TRANSLATIONS_LOCALE)) ||
+			Node.isShorthandPropertyAssignment(node.getProperty(NEXT_INTL_GET_TRANSLATIONS_LOCALE)))
+	)
 }
 
 function resolveStringLiteral(node: Node): string | undefined {
