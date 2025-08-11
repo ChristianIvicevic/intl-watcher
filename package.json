@@ -70,7 +70,7 @@
 		"@vitest/ui": "3.2.4",
 		"fs-extra": "11.3.0",
 		"husky": "9.1.7",
-		"lint-staged": "16.1.2",
+		"lint-staged": "16.1.4",
 		"tsup": "8.5.0",
 		"type-fest": "4.41.0",
 		"typescript": "5.8.3",
