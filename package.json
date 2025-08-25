@@ -59,7 +59,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "2.1.4",
-		"@changesets/cli": "2.29.5",
+		"@changesets/cli": "2.29.6",
 		"@changesets/get-github-info": "0.6.0",
 		"@changesets/types": "6.1.0",
 		"@types/fs-extra": "11.0.4",
