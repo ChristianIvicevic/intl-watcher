@@ -10,12 +10,12 @@
 		"ignoreUnknown": false,
 		"includes": [
 			"**",
-			"!**/.idea/**",
-			"!**/.next/**",
-			"!**/dist/**",
-			"!**/lib/**",
-			"!**/node_modules/**",
-			"!**/coverage/**",
+			"!**/.idea",
+			"!**/.next",
+			"!**/dist",
+			"!**/lib",
+			"!**/node_modules",
+			"!**/coverage",
 			"!**/.all-contributorsrc"
 		]
 	},
