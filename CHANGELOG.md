@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.2
+
+### Patch Changes
+
+- Update dependency dedent to v1.7.0 ([#113](https://github.com/ChristianIvicevic/intl-watcher/pull/113)) by [@renovate](https://github.com/apps/renovate)
+
+- Update dependency ts-morph to v27 ([#121](https://github.com/ChristianIvicevic/intl-watcher/pull/121)) by [@renovate](https://github.com/apps/renovate)
+
 ## 0.6.1
 
 ### Patch Changes
