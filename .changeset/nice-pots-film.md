@@ -2,7 +2,7 @@
 "intl-watcher": major
 ---
 
-## 🎉 Version 1.0.0 Release
+🎉 Version 1.0.0 Release
 
 This release marks the first stable version of intl-watcher, establishing the public API that will be maintained with semantic versioning going forward.
 
