@@ -31,23 +31,12 @@ export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): Intl
 				translationFunctions: [NEXT_INTL_USE_TRANSLATIONS_FUNCTION, NEXT_INTL_GET_TRANSLATIONS_FUNCTION],
 			}
 
-	// Resolve effective directories with fallback precedence:
-	// watchPaths > sourceDirectories > sourceDirectory > ['./src']
-	const resolvedWatchPaths =
-		options.watchPaths && options.watchPaths.length > 0
-			? options.watchPaths
-			: options.sourceDirectories && options.sourceDirectories.length > 0
-				? options.sourceDirectories
-				: [options.sourceDirectory ?? './src']
-
 	return {
 		dictionaryPaths: options.dictionaryPaths.map((dictionaryPath) => path.resolve(dictionaryPath)),
 		scanDelay: options.scanDelay ?? 500,
 		defaultValue: options.defaultValue ?? ((key) => `[NYT: ${key}]`),
 		removeUnusedKeys: options.removeUnusedKeys ?? false,
-		watchPaths: resolvedWatchPaths,
-		sourceDirectories: resolvedWatchPaths,
-		sourceDirectory: resolvedWatchPaths[0] ?? './src',
+		watchPaths: options.watchPaths ?? ['./src'],
 		tsConfigFilePath: options.tsConfigFilePath ?? 'tsconfig.json',
 		...partitioningOptions,
 	}
