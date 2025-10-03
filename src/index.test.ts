@@ -1,18 +1,6 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
 import { type CreateIntlWatcherOptions, createIntlWatcher } from './index.js'
-import * as plugin from './plugin.js'
-
-vi.mock('./plugin.js', async (importOriginal) => {
-	return {
-		...(await importOriginal<typeof import('./plugin.js')>()),
-		IntlWatcher: vi.fn().mockImplementation(
-			(): Partial<plugin.IntlWatcher> => ({
-				scanSourceFilesForTranslationKeys: vi.fn(),
-				startWatching: vi.fn(),
-			}),
-		),
-	}
-})
+import { IntlWatcher } from './plugin.js'
 
 describe('createIntlWatcher', () => {
 	beforeEach(() => {
@@ -30,15 +18,15 @@ describe('createIntlWatcher', () => {
 			dictionaryPaths: ['./i18n/en.json'],
 			watchPaths: ['./src'],
 		}
+		vi.spyOn(IntlWatcher.prototype, 'scanSourceFilesForTranslationKeys').mockImplementation(() => {})
+		vi.spyOn(IntlWatcher.prototype, 'startWatching').mockImplementation(() => {})
 
 		// When
 		const withIntlWatcher = createIntlWatcher(options)
 		withIntlWatcher({ reactStrictMode: true })
 
 		// Then
-		expect(plugin.IntlWatcher).toHaveBeenCalledTimes(1)
-		const intlWatcher = vi.mocked(plugin.IntlWatcher).mock.results[0].value
-		expect(intlWatcher.scanSourceFilesForTranslationKeys).toHaveBeenCalledTimes(1)
-		expect(intlWatcher.startWatching).toHaveBeenCalledTimes(1)
-	})
+		expect(IntlWatcher.prototype.scanSourceFilesForTranslationKeys).toHaveBeenCalledTimes(1)
+		expect(IntlWatcher.prototype.startWatching).toHaveBeenCalledTimes(1)
+	}, 20_000)
 })

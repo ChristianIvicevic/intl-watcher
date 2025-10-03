@@ -104,12 +104,6 @@ export default withIntlWatcher({
 - **Description:** Paths that the plugin watches to trigger rescans.
 This does not change which files belong to your TypeScript project; that is controlled by `tsconfig.json` via `tsConfigFilePath`.
 
-> [!IMPORTANT]
-> Deprecations (will be removed in the next major version):
->
-> - `sourceDirectories` (previous name for an array of directories). Use `watchPaths` instead.
-> - `sourceDirectory` (single directory). Use `watchPaths` instead.
-
 ### Non-Partitioning Mode (default)
 
 #### `applyPartitioning`
