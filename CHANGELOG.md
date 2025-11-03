@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1
+
+### Patch Changes
+
+- Update dependency ts-morph to v27.0.2 ([#141](https://github.com/ChristianIvicevic/intl-watcher/pull/141)) by [@renovate](https://github.com/apps/renovate)
+
 ## 1.0.0
 
 ### Major Changes
