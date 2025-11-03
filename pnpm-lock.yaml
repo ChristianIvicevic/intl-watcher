@@ -21,7 +21,7 @@ importers:
         specifier: 4.17.21
         version: 4.17.21
       next:
-        specifier: ^14.0.0 || ^15.0.0
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
         version: 15.2.4(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       picocolors:
         specifier: 1.1.1
