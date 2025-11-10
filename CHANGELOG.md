@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.2
+
+### Patch Changes
+
+- Update dependency debounce to v3 ([#158](https://github.com/ChristianIvicevic/intl-watcher/pull/158)) by [@renovate](https://github.com/apps/renovate)
+
 ## 1.0.1
 
 ### Patch Changes
