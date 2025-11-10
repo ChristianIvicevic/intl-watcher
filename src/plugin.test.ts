@@ -11,7 +11,6 @@ const TIMING_REGEX = /Finished in \d+(\.\d+)?(ms|s)/g
 
 describe('intl-watcher plugin', () => {
 	let tempDir: string
-	let logSpy: ReturnType<typeof vi.spyOn>
 
 	function createDefaultWatcherOptions(
 		dictionaryPaths: string[],
@@ -34,7 +33,7 @@ describe('intl-watcher plugin', () => {
 	}
 
 	function getNormalizedConsoleOutput(): string {
-		const output = logSpy.mock.calls.join('\n')
+		const output = vi.mocked(console.log).mock.calls.join('\n')
 		return output
 			.replaceAll(TIMING_REGEX, 'Finished in <timing>')
 			.split('\n')
@@ -47,12 +46,12 @@ describe('intl-watcher plugin', () => {
 		await fs.copy(path.join(__dirname, '../test/fixture'), tempDir, {
 			filter: (src) => path.basename(src) !== 'node_modules' && !src.includes('/fixtures/'),
 		})
-		logSpy = vi.spyOn(console, 'log')
+		vi.spyOn(console, 'log')
 	})
 
 	afterEach(async () => {
 		await fs.remove(tempDir)
-		logSpy.mockRestore()
+		vi.restoreAllMocks()
 	})
 
 	async function doTest(

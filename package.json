@@ -66,15 +66,15 @@
 		"@types/lodash": "4.17.20",
 		"@types/node": "22.19.0",
 		"@types/proper-lockfile": "4.1.4",
-		"@vitest/coverage-v8": "3.2.4",
-		"@vitest/ui": "3.2.4",
+		"@vitest/coverage-v8": "4.0.6",
+		"@vitest/ui": "4.0.6",
 		"fs-extra": "11.3.2",
 		"husky": "9.1.7",
 		"lint-staged": "16.2.6",
 		"tsup": "8.5.0",
 		"type-fest": "5.1.0",
 		"typescript": "5.9.3",
-		"vitest": "3.2.4"
+		"vitest": "4.0.6"
 	},
 	"peerDependencies": {
 		"next": "^14.0.0 || ^15.0.0 || ^16.0.0"
