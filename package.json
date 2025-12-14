@@ -49,7 +49,7 @@
 		"*": "biome check --write ."
 	},
 	"dependencies": {
-		"chokidar": "4.0.3",
+		"chokidar": "5.0.0",
 		"debounce": "3.0.0",
 		"dedent": "1.7.0",
 		"lodash": "4.17.21",
