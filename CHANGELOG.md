@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.3
+
+### Patch Changes
+
+- Update dependency chokidar to v5 ([#176](https://github.com/ChristianIvicevic/intl-watcher/pull/176)) by [@renovate](https://github.com/apps/renovate)
+
 ## 1.0.2
 
 ### Patch Changes
