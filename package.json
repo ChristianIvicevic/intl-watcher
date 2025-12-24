@@ -1,6 +1,6 @@
 {
 	"name": "intl-watcher",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Automated translation key extraction and dictionary management plugin for Next.js",
 	"repository": {
 		"type": "git",
