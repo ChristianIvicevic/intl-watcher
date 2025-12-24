@@ -64,7 +64,7 @@
 		"@changesets/types": "6.1.0",
 		"@types/fs-extra": "11.0.4",
 		"@types/lodash": "4.17.21",
-		"@types/node": "24.10.3",
+		"@types/node": "24.10.4",
 		"@types/proper-lockfile": "4.1.4",
 		"@vitest/coverage-v8": "4.0.15",
 		"@vitest/ui": "4.0.15",
