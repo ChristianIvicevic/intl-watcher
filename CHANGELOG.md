@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.4
+
+### Patch Changes
+
+- Update dependency dedent to v1.7.1 ([#185](https://github.com/ChristianIvicevic/intl-watcher/pull/185)) by [@renovate](https://github.com/apps/renovate)
+
 ## 1.0.3
 
 ### Patch Changes
