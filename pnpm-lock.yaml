@@ -76,8 +76,8 @@ importers:
         specifier: 8.5.1
         version: 8.5.1(postcss@8.5.3)(typescript@5.9.3)(yaml@2.8.1)
       type-fest:
-        specifier: 5.3.1
-        version: 5.3.1
+        specifier: 5.4.1
+        version: 5.4.1
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -1841,8 +1841,8 @@ packages:
       typescript:
         optional: true
 
-  type-fest@5.3.1:
-    resolution: {integrity: sha512-VCn+LMHbd4t6sF3wfU/+HKT63C9OoyrSIf4b+vtWHpt2U7/4InZG467YDNMFMR70DdHjAdpPWmw2lzRdg0Xqqg==}
+  type-fest@5.4.1:
+    resolution: {integrity: sha512-xygQcmneDyzsEuKZrFbRMne5HDqMs++aFzefrJTgEIKjQ3rekM+RPfFCVq2Gp1VIDqddoYeppCj4Pcb+RZW0GQ==}
     engines: {node: '>=20'}
 
   typescript@5.9.3:
@@ -3562,7 +3562,7 @@ snapshots:
       - tsx
       - yaml
 
-  type-fest@5.3.1:
+  type-fest@5.4.1:
     dependencies:
       tagged-tag: 1.0.0
 
