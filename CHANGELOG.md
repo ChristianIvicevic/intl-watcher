@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.5
+
+### Patch Changes
+
+- Update dependency lodash to v4.17.23 ([#202](https://github.com/ChristianIvicevic/intl-watcher/pull/202)) by [@renovate](https://github.com/apps/renovate)
+
 ## 1.0.4
 
 ### Patch Changes
