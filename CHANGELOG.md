@@ -1,5 +1,39 @@
 # Changelog
 
+## 1.1.0
+
+### Minor Changes
+
+- Add configurable JSON indentation options. ([#205](https://github.com/ChristianIvicevic/intl-watcher/pull/205)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
+  Added two new configuration options to customize the indentation of generated JSON dictionary files:
+
+  - **`useTabs`** (boolean, default: `true`) - Use tab characters for indentation
+  - **`tabWidth`** (number, default: `4`) - Number of spaces per indentation level when `useTabs` is `false`
+
+  **Example usage:**
+
+  ```typescript
+  // Use 2 spaces for indentation
+  intlWatcher({
+    useTabs: false,
+    tabWidth: 2,
+  });
+
+  // Use 4 spaces for indentation
+  intlWatcher({
+    useTabs: false,
+    tabWidth: 4,
+  });
+
+  // Use tabs (default behavior)
+  intlWatcher({
+    useTabs: true,
+  });
+  ```
+
+  This change is fully backward compatible - existing configurations will continue to use tab indentation by default.
+
 ## 1.0.5
 
 ### Patch Changes
