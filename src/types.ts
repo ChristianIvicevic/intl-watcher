@@ -21,6 +21,10 @@ type BaseOptions = {
 	watchPaths?: string[]
 	/** Path to tsconfig.json for project resolution. */
 	tsConfigFilePath?: string
+	/** Use tab characters for indentation instead of spaces. */
+	useTabs?: boolean
+	/** Number of spaces per indentation level (only used when useTabs is false). */
+	tabWidth?: number
 }
 
 export type WithPartitioning = BaseOptions & {

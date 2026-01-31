@@ -1,5 +1,6 @@
 import fs from 'node:fs'
 import lodash from 'lodash'
+import { DEFAULT_TAB_WIDTH } from './constants.js'
 import { log } from './logger.js'
 
 export function runOnce(fn: () => void): void {
@@ -20,8 +21,14 @@ export function readDictionaryFile(filepath: string): Record<string, string | un
 	}
 }
 
-export function writeDictionaryFile(filepath: string, messages: Record<string, unknown>): void {
-	const newContent = `${JSON.stringify(messages, undefined, '\t')}\n`
+export function writeDictionaryFile(
+	filepath: string,
+	messages: Record<string, unknown>,
+	useTabs = true,
+	tabWidth = DEFAULT_TAB_WIDTH,
+): void {
+	const indentString = useTabs ? '\t' : ' '.repeat(tabWidth)
+	const newContent = `${JSON.stringify(messages, undefined, indentString)}\n`
 	let currentContent: string | null = null
 	try {
 		currentContent = fs.readFileSync(filepath, 'utf8')
