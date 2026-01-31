@@ -4,7 +4,6 @@ import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
-	eslint: { ignoreDuringBuilds: true },
 	output: 'standalone',
 	outputFileTracingRoot: path.join(path.dirname(fileURLToPath(import.meta.url)), '../../'),
 }

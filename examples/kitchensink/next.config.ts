@@ -2,7 +2,7 @@ import { createIntlWatcher } from 'intl-watcher'
 import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
-const nextConfig: NextConfig = { eslint: { ignoreDuringBuilds: true } }
+const nextConfig: NextConfig = {}
 
 const withIntlWatcher = createIntlWatcher({
 	dictionaryPaths: ['./src/i18n/en.json', './src/i18n/de.json'],
