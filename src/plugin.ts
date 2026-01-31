@@ -5,7 +5,11 @@ import debounce from 'debounce'
 import lodash from 'lodash'
 import properLockfile from 'proper-lockfile'
 import { Project } from 'ts-morph'
-import { NEXT_INTL_GET_TRANSLATIONS_FUNCTION, NEXT_INTL_USE_TRANSLATIONS_FUNCTION } from './constants.js'
+import {
+	DEFAULT_TAB_WIDTH,
+	NEXT_INTL_GET_TRANSLATIONS_FUNCTION,
+	NEXT_INTL_USE_TRANSLATIONS_FUNCTION,
+} from './constants.js'
 import { log } from './logger.js'
 import { extractTranslationKeysFromProject } from './parser.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
@@ -31,6 +35,12 @@ export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): Intl
 				translationFunctions: [NEXT_INTL_USE_TRANSLATIONS_FUNCTION, NEXT_INTL_GET_TRANSLATIONS_FUNCTION],
 			}
 
+	let tabWidth = options.tabWidth ?? DEFAULT_TAB_WIDTH
+	if (tabWidth <= 0 || !Number.isInteger(tabWidth)) {
+		log.warn(`Invalid tabWidth value: ${tabWidth}. Using default value of ${DEFAULT_TAB_WIDTH}.`)
+		tabWidth = DEFAULT_TAB_WIDTH
+	}
+
 	return {
 		dictionaryPaths: options.dictionaryPaths.map((dictionaryPath) => path.resolve(dictionaryPath)),
 		scanDelay: options.scanDelay ?? 500,
@@ -38,6 +48,8 @@ export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): Intl
 		removeUnusedKeys: options.removeUnusedKeys ?? false,
 		watchPaths: options.watchPaths ?? ['./src'],
 		tsConfigFilePath: options.tsConfigFilePath ?? 'tsconfig.json',
+		useTabs: options.useTabs ?? true,
+		tabWidth,
 		...partitioningOptions,
 	}
 }
@@ -140,7 +152,7 @@ export class IntlWatcher {
 			const updatedMessages = unflattenDictionary(flatMessages)
 
 			this.enabledSelfTriggerGuard()
-			writeDictionaryFile(dictionaryPath, updatedMessages)
+			writeDictionaryFile(dictionaryPath, updatedMessages, this._options.useTabs, this._options.tabWidth)
 
 			if (this._options.applyPartitioning) {
 				this.partitionTranslationKeys(
@@ -179,8 +191,18 @@ export class IntlWatcher {
 		const serverMessages = unflattenDictionary(serverDictionary)
 
 		const { dir, ext, name } = path.parse(dictionaryPath)
-		writeDictionaryFile(path.join(dir, `${name}.client${ext}`), clientMessages)
-		writeDictionaryFile(path.join(dir, `${name}.server${ext}`), serverMessages)
+		writeDictionaryFile(
+			path.join(dir, `${name}.client${ext}`),
+			clientMessages,
+			this._options.useTabs,
+			this._options.tabWidth,
+		)
+		writeDictionaryFile(
+			path.join(dir, `${name}.server${ext}`),
+			serverMessages,
+			this._options.useTabs,
+			this._options.tabWidth,
+		)
 	}
 
 	private enabledSelfTriggerGuard(): void {

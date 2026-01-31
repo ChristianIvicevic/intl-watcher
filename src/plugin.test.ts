@@ -97,6 +97,69 @@ describe('intl-watcher plugin', () => {
 		expect(getNormalizedConsoleOutput()).toMatchSnapshot()
 	}
 
+	describe('buildIntlWatcherOptions', () => {
+		test('validates tabWidth and logs warning for invalid values', () => {
+			const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+
+			const optionsNegative = buildIntlWatcherOptions({
+				dictionaryPaths: ['./i18n/en.json'],
+				tabWidth: -1,
+			})
+			expect(optionsNegative.tabWidth).toBe(4)
+			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: -1'))
+			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
+
+			consoleLogSpy.mockClear()
+
+			const optionsFloat = buildIntlWatcherOptions({
+				dictionaryPaths: ['./i18n/en.json'],
+				tabWidth: 2.5,
+			})
+			expect(optionsFloat.tabWidth).toBe(4)
+			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: 2.5'))
+			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
+
+			consoleLogSpy.mockClear()
+
+			const optionsZero = buildIntlWatcherOptions({
+				dictionaryPaths: ['./i18n/en.json'],
+				tabWidth: 0,
+			})
+			expect(optionsZero.tabWidth).toBe(4)
+			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: 0'))
+			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
+
+			consoleLogSpy.mockRestore()
+		})
+
+		test('accepts valid tabWidth values', () => {
+			const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+
+			const options2 = buildIntlWatcherOptions({
+				dictionaryPaths: ['./i18n/en.json'],
+				tabWidth: 2,
+			})
+			expect(options2.tabWidth).toBe(2)
+			expect(consoleLogSpy).not.toHaveBeenCalled()
+
+			const options4 = buildIntlWatcherOptions({
+				dictionaryPaths: ['./i18n/en.json'],
+				tabWidth: 4,
+			})
+			expect(options4.tabWidth).toBe(4)
+			expect(consoleLogSpy).not.toHaveBeenCalled()
+
+			const options8 = buildIntlWatcherOptions({
+				dictionaryPaths: ['./i18n/en.json'],
+				tabWidth: 8,
+			})
+			expect(options8.tabWidth).toBe(8)
+			expect(consoleLogSpy).not.toHaveBeenCalled()
+
+			consoleLogSpy.mockRestore()
+		})
+	})
+
 	describe('flat dictionaries', () => {
 		describe('single language', () => {
 			test('default options', async () => doTest(['default-server.tsx', 'default-client.tsx']))
@@ -219,6 +282,41 @@ describe('intl-watcher plugin', () => {
 		describe('error handling', () => {
 			test('dynamic namespace', async () => doTest(['dynamic-namespaces.tsx']))
 		})
+	})
+
+	describe('indentation options', () => {
+		test('custom indentation - 4 spaces', async () =>
+			doTest(['default-server.tsx', 'default-client.tsx'], {
+				pluginOptions: { useTabs: false, tabWidth: 4 },
+			}))
+
+		test('custom indentation - 2 spaces', async () =>
+			doTest(['default-server.tsx', 'default-client.tsx'], {
+				pluginOptions: { useTabs: false, tabWidth: 2 },
+			}))
+
+		test('custom indentation - spaces with default width', async () =>
+			doTest(['default-server.tsx', 'default-client.tsx'], {
+				pluginOptions: { useTabs: false },
+			}))
+
+		test('custom indentation - explicit tabs', async () =>
+			doTest(['default-server.tsx', 'default-client.tsx'], {
+				pluginOptions: { useTabs: true },
+			}))
+
+		test('custom indentation with partitioning', async () =>
+			doTest(['default-server.tsx', 'default-client.tsx'], {
+				pluginOptions: {
+					useTabs: false,
+					tabWidth: 2,
+					applyPartitioning: true,
+					partitioningOptions: {
+						clientFunction: NEXT_INTL_USE_TRANSLATIONS_FUNCTION,
+						serverFunction: NEXT_INTL_GET_TRANSLATIONS_FUNCTION,
+					},
+				},
+			}))
 	})
 
 	describe('error handling', () => {
