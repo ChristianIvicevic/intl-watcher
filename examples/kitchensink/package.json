@@ -9,15 +9,15 @@
 		"start": "next start"
 	},
 	"devDependencies": {
-		"@types/node": "22.13.13",
-		"@types/react": "19.0.12",
-		"@types/react-dom": "19.0.4",
+		"@types/node": "24.10.9",
+		"@types/react": "19.2.10",
+		"@types/react-dom": "19.2.3",
 		"intl-watcher": "../..",
-		"next": "15.2.3",
-		"next-intl": "4.0.2",
-		"react": "19.0.0",
-		"react-dom": "19.0.0",
-		"typescript": "5.8.2"
+		"next": "16.1.6",
+		"next-intl": "4.8.1",
+		"react": "19.2.4",
+		"react-dom": "19.2.4",
+		"typescript": "5.9.3"
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
