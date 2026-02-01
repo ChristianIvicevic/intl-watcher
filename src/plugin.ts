@@ -153,7 +153,7 @@ export class IntlWatcher {
 			const flatMessages = lodash.pick(messages, Object.keys(messages).toSorted())
 			const updatedMessages = unflattenDictionary(flatMessages)
 
-			this.enabledSelfTriggerGuard()
+			this.enableSelfTriggerGuard()
 			writeDictionaryFile(dictionaryPath, updatedMessages, this._options.useTabs, this._options.tabWidth)
 
 			if (this._options.applyPartitioning) {
@@ -207,7 +207,7 @@ export class IntlWatcher {
 		)
 	}
 
-	private enabledSelfTriggerGuard(): void {
+	private enableSelfTriggerGuard(): void {
 		this._isSelfTriggerGuardActive = true
 		setTimeout(() => {
 			this._isSelfTriggerGuardActive = false
