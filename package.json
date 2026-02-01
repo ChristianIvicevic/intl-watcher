@@ -33,16 +33,19 @@
 	"files": [
 		"LICENSE.md",
 		"README.md",
-		"lib/",
+		"lib/**/*.mjs",
+		"lib/**/*.d.mts",
+		"!lib/**/*.map",
 		"package.json"
 	],
 	"type": "module",
-	"main": "lib/index.js",
+	"module": "lib/index.mjs",
+	"types": "lib/index.d.mts",
 	"publishConfig": {
 		"provenance": true
 	},
 	"scripts": {
-		"build": "tsup",
+		"build": "tsdown",
 		"format": "oxfmt",
 		"format:check": "oxfmt --check",
 		"lint": "oxlint",
@@ -60,7 +63,8 @@
 		"lodash": "4.17.23",
 		"picocolors": "1.1.1",
 		"proper-lockfile": "4.1.2",
-		"ts-morph": "27.0.2"
+		"ts-morph": "27.0.2",
+		"type-fest": "5.4.1"
 	},
 	"devDependencies": {
 		"@changesets/cli": "2.29.8",
@@ -77,8 +81,7 @@
 		"lint-staged": "16.2.7",
 		"oxfmt": "0.27.0",
 		"oxlint": "1.42.0",
-		"tsup": "8.5.1",
-		"type-fest": "5.4.1",
+		"tsdown": "0.20.1",
 		"typescript": "5.9.3",
 		"vitest": "4.0.18"
 	},
