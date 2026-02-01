@@ -33,7 +33,10 @@ describe('intl-watcher plugin', () => {
 	}
 
 	function getNormalizedConsoleOutput(): string {
-		const output = vi.mocked(console.log).mock.calls.join('\n')
+		const logs = vi.mocked(console.log).mock.calls
+		const warns = vi.mocked(console.warn).mock.calls
+		const errors = vi.mocked(console.error).mock.calls
+		const output = [...logs, ...warns, ...errors].join('\n')
 		return output
 			.replaceAll(TIMING_REGEX, 'Finished in <timing>')
 			.split('\n')
@@ -47,6 +50,8 @@ describe('intl-watcher plugin', () => {
 			filter: (src) => path.basename(src) !== 'node_modules' && !src.includes('/fixtures/'),
 		})
 		vi.spyOn(console, 'log')
+		vi.spyOn(console, 'warn')
+		vi.spyOn(console, 'error')
 	})
 
 	afterEach(async () => {
@@ -101,64 +106,64 @@ describe('intl-watcher plugin', () => {
 
 	describe('buildIntlWatcherOptions', () => {
 		test('validates tabWidth and logs warning for invalid values', () => {
-			const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+			const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
 			const optionsNegative = buildIntlWatcherOptions({
 				dictionaryPaths: ['./i18n/en.json'],
 				tabWidth: -1,
 			})
 			expect(optionsNegative.tabWidth).toBe(4)
-			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: -1'))
-			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
+			expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: -1'))
+			expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
 
-			consoleLogSpy.mockClear()
+			consoleWarnSpy.mockClear()
 
 			const optionsFloat = buildIntlWatcherOptions({
 				dictionaryPaths: ['./i18n/en.json'],
 				tabWidth: 2.5,
 			})
 			expect(optionsFloat.tabWidth).toBe(4)
-			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: 2.5'))
-			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
+			expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: 2.5'))
+			expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
 
-			consoleLogSpy.mockClear()
+			consoleWarnSpy.mockClear()
 
 			const optionsZero = buildIntlWatcherOptions({
 				dictionaryPaths: ['./i18n/en.json'],
 				tabWidth: 0,
 			})
 			expect(optionsZero.tabWidth).toBe(4)
-			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: 0'))
-			expect(consoleLogSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
+			expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('Invalid tabWidth value: 0'))
+			expect(consoleWarnSpy).toHaveBeenCalledWith(expect.stringContaining('Using default value of 4'))
 
-			consoleLogSpy.mockRestore()
+			consoleWarnSpy.mockRestore()
 		})
 
 		test('accepts valid tabWidth values', () => {
-			const consoleLogSpy = vi.spyOn(console, 'log').mockImplementation(() => {})
+			const consoleWarnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
 			const options2 = buildIntlWatcherOptions({
 				dictionaryPaths: ['./i18n/en.json'],
 				tabWidth: 2,
 			})
 			expect(options2.tabWidth).toBe(2)
-			expect(consoleLogSpy).not.toHaveBeenCalled()
+			expect(consoleWarnSpy).not.toHaveBeenCalled()
 
 			const options4 = buildIntlWatcherOptions({
 				dictionaryPaths: ['./i18n/en.json'],
 				tabWidth: 4,
 			})
 			expect(options4.tabWidth).toBe(4)
-			expect(consoleLogSpy).not.toHaveBeenCalled()
+			expect(consoleWarnSpy).not.toHaveBeenCalled()
 
 			const options8 = buildIntlWatcherOptions({
 				dictionaryPaths: ['./i18n/en.json'],
 				tabWidth: 8,
 			})
 			expect(options8.tabWidth).toBe(8)
-			expect(consoleLogSpy).not.toHaveBeenCalled()
+			expect(consoleWarnSpy).not.toHaveBeenCalled()
 
-			consoleLogSpy.mockRestore()
+			consoleWarnSpy.mockRestore()
 		})
 	})
 

@@ -15,8 +15,8 @@ export const TRACE = pc.magenta(pc.bold('»'))
 export const log = {
 	info: (message = ''): void => console.log(message),
 	success: (message: string): void => console.log(` ${SUCCESS} ${message}`),
-	warn: (message: string): void => console.log(` ${WARN} ${message}`),
-	error: (message: string): void => console.log(` ${ERROR} ${message}`),
+	warn: (message: string): void => console.warn(` ${WARN} ${message}`),
+	error: (message: string): void => console.error(` ${ERROR} ${message}`),
 	waiting: (message: string): void => console.log(` ${WAITING} ${message}`),
 	trace: (message: string): void => console.log(` ${TRACE} ${message}`),
 }

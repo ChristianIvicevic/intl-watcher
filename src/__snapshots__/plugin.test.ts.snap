@@ -15,6 +15,9 @@ exports[`intl-watcher plugin > error handling > unsupported expression 1`] = `
 
 exports[`intl-watcher plugin > error handling > unsupported expression 2`] = `
 "[37m[1m○[22m[39m Scanning...
+
+
+[34m[1m✓[22m[39m Finished in <timing>
 [33m[1m⚠[22m[39m src/app/fixtures/unsupported-expression.tsx:10:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [33m[1m⚠[22m[39m [33mUnsupported expression of kind ConditionalExpression detected.[39m
@@ -25,7 +28,6 @@ exports[`intl-watcher plugin > error handling > unsupported expression 2`] = `
 [32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
 detailing the syntax kind and the entire expression. Submit your request here:
 https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
-
 [33m[1m⚠[22m[39m src/app/fixtures/unsupported-expression.tsx:12:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [33m[1m⚠[22m[39m [33mUnsupported expression of kind CallExpression detected.[39m
@@ -36,11 +38,9 @@ https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature
 [32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
 detailing the syntax kind and the entire expression. Submit your request here:
 https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
-
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > edge cases > server-side options 1`] = `
@@ -59,11 +59,11 @@ exports[`intl-watcher plugin > flat dictionaries > edge cases > server-side opti
 
 exports[`intl-watcher plugin > flat dictionaries > edge cases > server-side options 2`] = `
 "[37m[1m○[22m[39m Scanning...
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
+[34m[1m✓[22m[39m Finished in <timing>
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > default options 1`] = `
@@ -114,9 +114,6 @@ exports[`intl-watcher plugin > flat dictionaries > multiple languages > default 
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > default options 3`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -127,7 +124,10 @@ exports[`intl-watcher plugin > flat dictionaries > multiple languages > default 
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 1`] = `
@@ -222,9 +222,6 @@ exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictiona
 
 exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictionary partitioning 7`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
@@ -235,7 +232,10 @@ exports[`intl-watcher plugin > flat dictionaries > multiple languages > dictiona
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom fallback for new keys 1`] = `
@@ -263,9 +263,6 @@ exports[`intl-watcher plugin > flat dictionaries > single language > custom fall
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom fallback for new keys 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -276,7 +273,10 @@ exports[`intl-watcher plugin > flat dictionaries > single language > custom fall
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom partitioning function names 1`] = `
@@ -322,9 +322,6 @@ exports[`intl-watcher plugin > flat dictionaries > single language > custom part
 
 exports[`intl-watcher plugin > flat dictionaries > single language > custom partitioning function names 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newCustomClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`customKey1\`
 [34m[1m✓[22m[39m Added new i18n key \`customKey1Suffix\`
@@ -333,7 +330,10 @@ exports[`intl-watcher plugin > flat dictionaries > single language > custom part
 [34m[1m✓[22m[39m Added new i18n key \`customKey3\`
 [34m[1m✓[22m[39m Added new i18n key \`customKey3Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`newCustomServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > default options 1`] = `
@@ -361,9 +361,6 @@ exports[`intl-watcher plugin > flat dictionaries > single language > default opt
 
 exports[`intl-watcher plugin > flat dictionaries > single language > default options 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -374,7 +371,10 @@ exports[`intl-watcher plugin > flat dictionaries > single language > default opt
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > dictionary partitioning 1`] = `
@@ -424,9 +424,6 @@ exports[`intl-watcher plugin > flat dictionaries > single language > dictionary 
 
 exports[`intl-watcher plugin > flat dictionaries > single language > dictionary partitioning 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
@@ -437,7 +434,10 @@ exports[`intl-watcher plugin > flat dictionaries > single language > dictionary 
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > flat dictionaries > single language > unused key removal 1`] = `
@@ -499,9 +499,6 @@ exports[`intl-watcher plugin > indentation options > custom indentation - 2 spac
 
 exports[`intl-watcher plugin > indentation options > custom indentation - 2 spaces 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -512,7 +509,10 @@ exports[`intl-watcher plugin > indentation options > custom indentation - 2 spac
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > indentation options > custom indentation - 4 spaces 1`] = `
@@ -540,9 +540,6 @@ exports[`intl-watcher plugin > indentation options > custom indentation - 4 spac
 
 exports[`intl-watcher plugin > indentation options > custom indentation - 4 spaces 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -553,7 +550,10 @@ exports[`intl-watcher plugin > indentation options > custom indentation - 4 spac
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > indentation options > custom indentation - explicit tabs 1`] = `
@@ -581,9 +581,6 @@ exports[`intl-watcher plugin > indentation options > custom indentation - explic
 
 exports[`intl-watcher plugin > indentation options > custom indentation - explicit tabs 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -594,7 +591,10 @@ exports[`intl-watcher plugin > indentation options > custom indentation - explic
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > indentation options > custom indentation - spaces with default width 1`] = `
@@ -622,9 +622,6 @@ exports[`intl-watcher plugin > indentation options > custom indentation - spaces
 
 exports[`intl-watcher plugin > indentation options > custom indentation - spaces with default width 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
 [34m[1m✓[22m[39m Added new i18n key \`key2\`
@@ -635,7 +632,10 @@ exports[`intl-watcher plugin > indentation options > custom indentation - spaces
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > indentation options > custom indentation with partitioning 1`] = `
@@ -685,9 +685,6 @@ exports[`intl-watcher plugin > indentation options > custom indentation with par
 
 exports[`intl-watcher plugin > indentation options > custom indentation with partitioning 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1\`
 [34m[1m✓[22m[39m Added new i18n key \`key1Suffix\`
@@ -698,7 +695,10 @@ exports[`intl-watcher plugin > indentation options > custom indentation with par
 [34m[1m✓[22m[39m Added new i18n key \`literal\`
 [34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
 [34m[1m✓[22m[39m Added new i18n key \`richText\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-side options 1`] = `
@@ -721,11 +721,11 @@ exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-sid
 
 exports[`intl-watcher plugin > namespaced dictionaries > edge cases > server-side options 2`] = `
 "[37m[1m○[22m[39m Scanning...
+[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
+[34m[1m✓[22m[39m Finished in <timing>
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynamic namespace 1`] = `
@@ -743,6 +743,11 @@ exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynami
 
 exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynamic namespace 2`] = `
 "[37m[1m○[22m[39m Scanning...
+
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [31m[1m⨯[22m[39m src/app/fixtures/dynamic-namespaces.tsx:7:34 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [31m[1m⨯[22m[39m [31mA dynamic namespace value was provided instead of a literal string.[39m
@@ -751,12 +756,7 @@ exports[`intl-watcher plugin > namespaced dictionaries > error handling > dynami
 |                                 [31m^^^^^^^^^^^^^^^^^[39m
 
 [32m[1mℹ[22m[39m [32mFor reliable extraction of translation keys, please ensure that the namespace is defined
-as a static string literal (or a variable that unequivocally resolves to one).[39m
-
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+as a static string literal (or a variable that unequivocally resolves to one).[39m"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > default options 1`] = `
@@ -799,12 +799,12 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > de
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > default options 3`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 1`] = `
@@ -891,12 +891,12 @@ exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > di
 
 exports[`intl-watcher plugin > namespaced dictionaries > multiple languages > dictionary partitioning 7`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom fallback for new keys 1`] = `
@@ -920,12 +920,12 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom fallback for new keys 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom partitioning function names 1`] = `
@@ -971,12 +971,12 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > custo
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > custom partitioning function names 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > default options 1`] = `
@@ -1000,12 +1000,12 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > defau
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > default options 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > dictionary partitioning 1`] = `
@@ -1051,12 +1051,12 @@ exports[`intl-watcher plugin > namespaced dictionaries > single language > dicti
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > dictionary partitioning 4`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newClientKey\`
 [34m[1m✓[22m[39m Added new i18n key \`nestedNamespace.deeplyNestedNamespace.newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > namespaced dictionaries > single language > unused key removal 1`] = `
@@ -1102,16 +1102,16 @@ exports[`intl-watcher plugin > regressions > property access expression in templ
 
 exports[`intl-watcher plugin > regressions > property access expression in template literal 2`] = `
 "[37m[1m○[22m[39m Scanning...
-[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
 [34m[1m✓[22m[39m Added new i18n key \`key1PropertyAccessExpressionInTemplateLiteral\`
 [34m[1m✓[22m[39m Added new i18n key \`key1PropertyAccessExpressionInTemplateLiteralDeep\`
 [34m[1m✓[22m[39m Added new i18n key \`key2PropertyAccessExpressionInTemplateLiteral\`
 [34m[1m✓[22m[39m Added new i18n key \`key2PropertyAccessExpressionInTemplateLiteralDeep\`
 [34m[1m✓[22m[39m Added new i18n key \`key3PropertyAccessExpressionInTemplateLiteral\`
 [34m[1m✓[22m[39m Added new i18n key \`key3PropertyAccessExpressionInTemplateLiteralDeep\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
 
 exports[`intl-watcher plugin > regressions > shorthand property assignment in server options 1`] = `
@@ -1130,9 +1130,9 @@ exports[`intl-watcher plugin > regressions > shorthand property assignment in se
 
 exports[`intl-watcher plugin > regressions > shorthand property assignment in server options 2`] = `
 "[37m[1m○[22m[39m Scanning...
+[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
+[34m[1m✓[22m[39m Finished in <timing>
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
-[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`
-[34m[1m✓[22m[39m Added new i18n key \`newServerKey\`
-[34m[1m✓[22m[39m Finished in <timing>"
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
 `;
