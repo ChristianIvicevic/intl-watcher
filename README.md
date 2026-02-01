@@ -3,7 +3,7 @@
 <p align="center">
 	<!-- prettier-ignore-start -->
 	<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 1" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-1-21bb42.svg" /></a>
+	<a href="#contributors" target="_blank"><img alt="👪 All Contributors: 2" src="https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-2-21bb42.svg" /></a>
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 	<!-- prettier-ignore-end -->
 	<a href="https://github.com/ChristianIvicevic/intl-watcher/blob/main/.github/CODE_OF_CONDUCT.md" target="_blank"><img alt="🤝 Code of Conduct: Kept" src="https://img.shields.io/badge/%F0%9F%A4%9D_code_of_conduct-kept-21bb42" /></a>
@@ -218,6 +218,7 @@ Thanks! 💖
   <tbody>
     <tr>
       <td align="center" valign="top" width="14.28%"><img src="https://avatars.githubusercontent.com/u/45569997?v=4?s=100" width="100px;" alt="Christian Ivicevic"/><br /><sub><b>Christian Ivicevic</b></sub><br /><a href="https://github.com/ChristianIvicevic/intl-watcher/commits?author=ChristianIvicevic" title="Code">💻</a> <a href="#content-ChristianIvicevic" title="Content">🖋</a> <a href="https://github.com/ChristianIvicevic/intl-watcher/commits?author=ChristianIvicevic" title="Documentation">📖</a> <a href="#ideas-ChristianIvicevic" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-ChristianIvicevic" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-ChristianIvicevic" title="Maintenance">🚧</a> <a href="#projectManagement-ChristianIvicevic" title="Project Management">📆</a> <a href="#tool-ChristianIvicevic" title="Tools">🔧</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/mlenser"><img src="https://avatars.githubusercontent.com/u/235857?v=4?s=100" width="100px;" alt="Mark Lenser"/><br /><sub><b>Mark Lenser</b></sub></a><br /><a href="#ideas-mlenser" title="Ideas, Planning, & Feedback">🤔</a></td>
     </tr>
   </tbody>
 </table>
