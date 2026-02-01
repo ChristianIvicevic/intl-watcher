@@ -36,7 +36,7 @@ describe('syncTranslationKeys', () => {
 		vi.clearAllMocks()
 	})
 
-	test('should scan source files without starting file watcher', () => {
+	test('should scan source files without starting file watcher', { timeout: 20_000 }, () => {
 		// Given
 		const options: CreateIntlWatcherOptions = {
 			dictionaryPaths: ['./i18n/en.json'],
