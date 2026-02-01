@@ -9,9 +9,6 @@ runs:
       with:
         cache: pnpm
         node-version-file: '.nvmrc'
-    - uses: biomejs/setup-biome@29711cbb52afee00eb13aeb30636592f9edc0088 # v2
-      with:
-        version: latest
     - run: pnpm install --frozen-lockfile
       shell: bash
   using: composite

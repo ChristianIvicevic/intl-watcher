@@ -18,8 +18,8 @@ jobs:
         with:
           version: pnpm version-package
           publish: pnpm changeset publish
-          title: "ci(repo): version package"
-          commit: "ci(repo): version package"
+          title: 'ci(repo): version package'
+          commit: 'ci(repo): version package'
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
