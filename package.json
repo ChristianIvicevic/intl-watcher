@@ -34,7 +34,9 @@
 		"translate",
 		"translation",
 		"next",
-		"next.js"
+		"next.js",
+		"cli",
+		"script"
 	],
 	"scripts": {
 		"build": "tsup",

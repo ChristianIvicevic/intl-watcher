@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
-import { type CreateIntlWatcherOptions, createIntlWatcher } from './index.js'
+import { type CreateIntlWatcherOptions, createIntlWatcher, syncTranslationKeys } from './index.js'
 import { IntlWatcher } from './plugin.js'
 
 describe('createIntlWatcher', () => {
@@ -12,7 +12,7 @@ describe('createIntlWatcher', () => {
 		vi.unstubAllEnvs()
 	})
 
-	test('should set up and start the IntlWatcher when called in development mode', () => {
+	test('should set up and start the IntlWatcher when called in development mode', { timeout: 20_000 }, () => {
 		// Given
 		const options: CreateIntlWatcherOptions = {
 			dictionaryPaths: ['./i18n/en.json'],
@@ -28,5 +28,28 @@ describe('createIntlWatcher', () => {
 		// Then
 		expect(IntlWatcher.prototype.scanSourceFilesForTranslationKeys).toHaveBeenCalledTimes(1)
 		expect(IntlWatcher.prototype.startWatching).toHaveBeenCalledTimes(1)
-	}, 20_000)
+	})
+})
+
+describe('syncTranslationKeys', () => {
+	beforeEach(() => {
+		vi.clearAllMocks()
+	})
+
+	test('should scan source files without starting file watcher', () => {
+		// Given
+		const options: CreateIntlWatcherOptions = {
+			dictionaryPaths: ['./i18n/en.json'],
+			watchPaths: ['./src'],
+		}
+		vi.spyOn(IntlWatcher.prototype, 'scanSourceFilesForTranslationKeys').mockImplementation(() => {})
+		vi.spyOn(IntlWatcher.prototype, 'startWatching').mockImplementation(() => {})
+
+		// When
+		syncTranslationKeys(options)
+
+		// Then
+		expect(IntlWatcher.prototype.scanSourceFilesForTranslationKeys).toHaveBeenCalledTimes(1)
+		expect(IntlWatcher.prototype.startWatching).not.toHaveBeenCalled()
+	})
 })
