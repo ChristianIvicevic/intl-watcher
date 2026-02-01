@@ -59,7 +59,47 @@ export default withIntlWatcher({
 })
 ```
 
+## Single-Run Mode
+
+For use cases where you need to perform a one-time sync without file watching (e.g., in CI/CD pipelines, custom build scripts, or pre-commit hooks), use the `syncTranslationKeys` function:
+
+```ts
+// scripts/sync-translations.ts
+import { syncTranslationKeys } from 'intl-watcher'
+
+syncTranslationKeys({
+	dictionaryPaths: ['./i18n/en.json', './i18n/de.json'],
+	// ... other options
+})
+```
+
+Run this script manually or as part of your build process:
+
+```bash
+# Using ts-node
+npx ts-node scripts/sync-translations.ts
+
+# Using tsx
+npx tsx scripts/sync-translations.ts
+
+# In package.json scripts
+{
+  "scripts": {
+    "sync-translations": "tsx scripts/sync-translations.ts"
+  }
+}
+```
+
+### Use Cases
+
+- **CI/CD Validation**: Ensure translation keys are synchronized before deployment
+- **Pre-commit Hooks**: Automatically update dictionaries when committing changes
+- **Custom Build Steps**: Integrate into existing build pipelines
+- **Testing**: Programmatically verify translation coverage
+
 ## Configuration Options
+
+The following options apply to both `createIntlWatcher` and `syncTranslationKeys`:
 
 ### Required Options
 

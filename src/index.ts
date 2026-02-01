@@ -31,6 +31,30 @@ export function createIntlWatcher(options: CreateIntlWatcherOptions): (config: N
 	}
 }
 
+/**
+ * Synchronizes translation keys between source files and dictionary files.
+ *
+ * Unlike `createIntlWatcher`, this function does not set up file watching and can be used
+ * in custom scripts, CI/CD pipelines, or any scenario where a single synchronization is needed.
+ *
+ * This function will modify your dictionary files by adding new keys and optionally removing unused ones.
+ *
+ * @param options Configuration for scanning and dictionary synchronization.
+ *
+ * @example
+ * // In a custom script (e.g., scripts/sync-translations.ts)
+ * import { syncTranslationKeys } from 'intl-watcher'
+ *
+ * syncTranslationKeys({
+ *   dictionaryPaths: ['./i18n/en.json', './i18n/de.json'],
+ * })
+ */
+export function syncTranslationKeys(options: CreateIntlWatcherOptions): void {
+	const fullOptions = buildIntlWatcherOptions(options)
+	const watcher = new IntlWatcher(fullOptions)
+	watcher.scanSourceFilesForTranslationKeys()
+}
+
 function setupIntlWatcher(options: IntlWatcherOptions): void {
 	const env = process.env['NODE_ENV'.trim()]
 	if (env !== 'development') {
