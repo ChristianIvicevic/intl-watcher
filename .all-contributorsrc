@@ -1,27 +1,40 @@
 {
-	"badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"👪 All Contributors: <%= contributors.length %>\" src=\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\" /></a>",
-	"contributors": [
-		{
-			"avatar_url": "https://avatars.githubusercontent.com/u/45569997?v=4",
-			"contributions": [
-				"code",
-				"content",
-				"doc",
-				"ideas",
-				"infra",
-				"maintenance",
-				"projectManagement",
-				"tool"
-			],
-			"login": "ChristianIvicevic",
-			"name": "Christian Ivicevic",
-			"profile": ""
-		}
-	],
-	"contributorsSortAlphabetically": true,
-	"projectName": "intl-watcher",
-	"projectOwner": "ChristianIvicevic",
-	"repoType": "github",
-	"commitConvention": "angular"
+  "badgeTemplate": "\t<a href=\"#contributors\" target=\"_blank\"><img alt=\"👪 All Contributors: <%= contributors.length %>\" src=\"https://img.shields.io/badge/%F0%9F%91%AA_all_contributors-<%= contributors.length %>-21bb42.svg\" /></a>",
+  "contributors": [
+    {
+      "avatar_url": "https://avatars.githubusercontent.com/u/45569997?v=4",
+      "contributions": [
+        "code",
+        "content",
+        "doc",
+        "ideas",
+        "infra",
+        "maintenance",
+        "projectManagement",
+        "tool"
+      ],
+      "login": "ChristianIvicevic",
+      "name": "Christian Ivicevic",
+      "profile": ""
+    },
+    {
+      "login": "mlenser",
+      "name": "Mark Lenser",
+      "avatar_url": "https://avatars.githubusercontent.com/u/235857?v=4",
+      "profile": "https://github.com/mlenser",
+      "contributions": [
+        "ideas"
+      ]
+    }
+  ],
+  "contributorsSortAlphabetically": true,
+  "projectName": "intl-watcher",
+  "projectOwner": "ChristianIvicevic",
+  "repoType": "github",
+  "commitConvention": "angular",
+  "files": [
+    "README.md"
+  ],
+  "commitType": "docs",
+  "contributorsPerLine": 7
 }
-
