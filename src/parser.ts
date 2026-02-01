@@ -13,6 +13,7 @@ import { NEXT_INTL_GET_TRANSLATIONS_LOCALE, NEXT_INTL_GET_TRANSLATIONS_NAMESPACE
 import { printDiagnostic, Severity } from './diagnostics.js'
 import type { IntlWatcherOptions } from './types.js'
 
+/** @internal */
 export function extractTranslationKeysFromProject(
 	project: Project,
 	options: IntlWatcherOptions,

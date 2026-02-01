@@ -27,6 +27,7 @@ type BaseOptions = {
 	tabWidth?: number
 }
 
+/** @internal */
 export type WithPartitioning = BaseOptions & {
 	/** Enable splitting translation keys into separate client and server bundles. */
 	applyPartitioning: true
@@ -39,6 +40,7 @@ export type WithPartitioning = BaseOptions & {
 	}
 }
 
+/** @internal */
 export type WithoutPartitioning = BaseOptions & {
 	/** Disable partitioning; scan all translation functions together. */
 	applyPartitioning?: false
@@ -46,4 +48,5 @@ export type WithoutPartitioning = BaseOptions & {
 	translationFunctions?: string[]
 }
 
+/** @internal */
 export type IntlWatcherOptions = SimplifyDeep<RequiredDeep<CreateIntlWatcherOptions>>

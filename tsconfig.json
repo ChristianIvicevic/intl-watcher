@@ -9,6 +9,7 @@
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"strict": true,
+		"stripInternal": true,
 		"target": "ES2023"
 	},
 	"include": ["src"]

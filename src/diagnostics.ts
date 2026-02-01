@@ -4,7 +4,9 @@ import type { Node, SourceFile } from 'ts-morph'
 import { ERROR, log, WARN } from './logger.js'
 import { getCommonPrefix } from './utils.js'
 
+/** @internal */
 export const Severity = { Error: 'Error', Warn: 'Warn' } as const
+/** @internal */
 export type Severity = (typeof Severity)[keyof typeof Severity]
 
 type DiagnosticConfig = {
@@ -70,6 +72,7 @@ function formatSuggestions(suggestions: string[]): string {
 	return suggestions.join('\n').replaceAll('\n', `\n${' '.repeat(10)}`)
 }
 
+/** @internal */
 export function printDiagnostic(
 	targetNode: Node,
 	contextNode: Node,

@@ -21,6 +21,7 @@ import {
 	writeDictionaryFile,
 } from './utils.js'
 
+/** @internal */
 export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): IntlWatcherOptions {
 	const partitioningOptions = options.applyPartitioning
 		? {
@@ -54,6 +55,7 @@ export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): Intl
 	}
 }
 
+/** @internal */
 export class IntlWatcher {
 	private _isSelfTriggerGuardActive = false
 	private readonly _changedFiles = new Set<string>()

@@ -3,6 +3,7 @@ import lodash from 'lodash'
 import { DEFAULT_TAB_WIDTH } from './constants.js'
 import { log } from './logger.js'
 
+/** @internal */
 export function runOnce(fn: () => void): void {
 	if (process.env.__INTL_WATCHER_INITIALIZED === 'true') {
 		return
@@ -11,6 +12,7 @@ export function runOnce(fn: () => void): void {
 	fn()
 }
 
+/** @internal */
 export function readDictionaryFile(filepath: string): Record<string, string | undefined> {
 	try {
 		const content = fs.readFileSync(filepath).toString()
@@ -21,6 +23,7 @@ export function readDictionaryFile(filepath: string): Record<string, string | un
 	}
 }
 
+/** @internal */
 export function writeDictionaryFile(
 	filepath: string,
 	messages: Record<string, unknown>,
@@ -41,6 +44,7 @@ export function writeDictionaryFile(
 	}
 }
 
+/** @internal */
 export function formatDuration(ms: number): string {
 	if (ms < 1_000) {
 		return `${ms.toFixed(0).toLocaleString()}ms`
@@ -48,6 +52,7 @@ export function formatDuration(ms: number): string {
 	return `${(ms / 1_000).toPrecision(2).toLocaleString()}s`
 }
 
+/** @internal */
 export function flattenDictionary(dictionary: Record<string, unknown>, prefix = ''): Record<string, unknown> {
 	return lodash.reduce(
 		dictionary,
@@ -64,6 +69,7 @@ export function flattenDictionary(dictionary: Record<string, unknown>, prefix = 
 	)
 }
 
+/** @internal */
 export function unflattenDictionary(dictionary: Record<string, unknown>): Record<string, unknown> {
 	return lodash.reduce(
 		dictionary,
@@ -75,6 +81,7 @@ export function unflattenDictionary(dictionary: Record<string, unknown>): Record
 	)
 }
 
+/** @internal */
 export function getCommonPrefix(words: string[]): string {
 	if (!words[0] || words.length === 1) {
 		return words[0] ?? ''
