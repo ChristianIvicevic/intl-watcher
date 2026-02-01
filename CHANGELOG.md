@@ -1,5 +1,24 @@
 # Changelog
 
+## 1.2.0
+
+### Minor Changes
+
+- Add single-run export function for use in custom scripts and CI/CD pipelines. ([#209](https://github.com/ChristianIvicevic/intl-watcher/pull/209)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
+  Added a new `syncTranslationKeys` export that performs a one-time synchronization without file watching. This enables integration into custom scripts, build processes, and CI/CD pipelines.
+
+  **Example usage:**
+
+  ```typescript
+  // scripts/sync-translations.ts
+  import { syncTranslationKeys } from "intl-watcher";
+
+  syncTranslationKeys({
+    dictionaryPaths: ["./i18n/en.json", "./i18n/de.json"],
+  });
+  ```
+
 ## 1.1.0
 
 ### Minor Changes
