@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1
+
+### Patch Changes
+
+- Fix logger to use appropriate console methods (`console.warn` and `console.error`) instead of `console.log` for warnings and errors by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
 ## 1.2.0
 
 ### Minor Changes
