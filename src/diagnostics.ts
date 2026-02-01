@@ -22,7 +22,7 @@ function getDiagnosticConfig(severity: Severity): DiagnosticConfig {
 function generateHeader(sourceFile: SourceFile, targetLine: number, targetColumn: number): string {
 	const projectFiles = sourceFile.getProject().getSourceFiles()
 	const rootDirectory = getCommonPrefix(projectFiles.map((file) => file.getFilePath()))
-	const filePath = sourceFile.getFilePath().substring(rootDirectory.length)
+	const filePath = sourceFile.getFilePath().slice(rootDirectory.length)
 	return `${filePath}:${targetLine}:${targetColumn} ${'━'.repeat(
 		Math.max(0, 100 - filePath.length - targetLine.toString().length - targetColumn.toString().length - 2),
 	)}`
@@ -46,8 +46,8 @@ function buildSnippet(contextNode: Node, targetNode: Node): string {
 			if (index === targetRelativeLineIndex) {
 				const leadingText =
 					targetLine === contextStartLine
-						? line.substring(contextStartColumn - 1, targetColumn - 1)
-						: line.substring(0, targetColumn - 1)
+						? line.slice(contextStartColumn - 1, targetColumn - 1)
+						: line.slice(0, targetColumn - 1)
 				const expandedLeadingText = expandTabs(leadingText)
 				const effectiveOffset = expandedLeadingText.length
 				const targetText = targetNode.getText()
@@ -67,7 +67,7 @@ function buildSnippet(contextNode: Node, targetNode: Node): string {
 }
 
 function formatSuggestions(suggestions: string[]): string {
-	return suggestions.join('\n').replace(/\n/g, `\n${' '.repeat(10)}`)
+	return suggestions.join('\n').replaceAll('\n', `\n${' '.repeat(10)}`)
 }
 
 export function printDiagnostic(
@@ -99,5 +99,5 @@ ${snippet}
 }
 
 function expandTabs(line: string, tabSize = 2): string {
-	return line.replace(/\t/g, ' '.repeat(tabSize))
+	return line.replaceAll('\t', ' '.repeat(tabSize))
 }

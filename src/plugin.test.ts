@@ -59,11 +59,13 @@ describe('intl-watcher plugin', () => {
 		options?: { pluginOptions?: PartialDeep<CreateIntlWatcherOptions>; enableMultiLanguage?: boolean },
 	) {
 		// Given
-		for (const fixtureFile of fixtureFiles) {
-			const sourcePath = path.join(__dirname, '../test/fixture/src/app/fixtures', fixtureFile)
-			const destinationPath = path.join(tempDir, 'src/app/fixtures', fixtureFile)
-			await fs.copy(sourcePath, destinationPath)
-		}
+		await Promise.all(
+			fixtureFiles.map((fixtureFile) => {
+				const sourcePath = path.join(__dirname, '../test/fixture/src/app/fixtures', fixtureFile)
+				const destinationPath = path.join(tempDir, 'src/app/fixtures', fixtureFile)
+				return fs.copy(sourcePath, destinationPath)
+			}),
+		)
 		const [mainDictionary, clientDictionary, serverDictionary] = getDictionaryPaths()
 		const [otherMainDictionary, otherClientDictionary, otherServerDictionary] = getDictionaryPaths('de')
 		const watcherOptions = createDefaultWatcherOptions(

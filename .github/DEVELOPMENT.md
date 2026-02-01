@@ -24,13 +24,13 @@ pnpm build --watch
 
 ## Formatting
 
-[Biome](https://biomejs.dev) is used to format code.
+[Oxfmt](https://oxc.rs/docs/guide/usage/formatter.html) is used to format code.
 It should be applied automatically when you save files in VS Code or make a Git commit.
 
 To manually reformat all files, you can run:
 
 ```shell
-pnpm format --write
+pnpm format
 ```
 
 ## Linting
@@ -38,7 +38,7 @@ pnpm format --write
 This package includes several forms of linting to enforce consistent code quality and styling.
 Each should be shown in VS Code, and can be run manually on the command-line:
 
-- `pnpm lint` ([Biome](https://biomejs.dev)): Lints JavaScript and TypeScript source files
+- `pnpm lint` ([Oxlint](https://oxc.rs/docs/guide/usage/linter.html)): Lints JavaScript and TypeScript source files
 
 Read the individual documentation for each linter to understand how it can be configured and used best.
 

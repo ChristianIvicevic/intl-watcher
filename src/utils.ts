@@ -32,6 +32,7 @@ export function writeDictionaryFile(
 	let currentContent: string | null = null
 	try {
 		currentContent = fs.readFileSync(filepath, 'utf8')
+		// oxlint-disable-next-line no-unused-vars
 	} catch (_error) {
 		// File will be created.
 	}

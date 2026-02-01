@@ -2,14 +2,27 @@
 	"name": "intl-watcher",
 	"version": "1.2.0",
 	"description": "Automated translation key extraction and dictionary management plugin for Next.js",
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/ChristianIvicevic/intl-watcher.git"
-	},
+	"keywords": [
+		"cli",
+		"i18n",
+		"internationalization",
+		"intl",
+		"localization",
+		"next",
+		"next.js",
+		"react",
+		"script",
+		"translate",
+		"translation"
+	],
 	"license": "MIT",
 	"author": {
 		"name": "Christian Ivicevic",
 		"email": "mail@christian-ivicevic.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/ChristianIvicevic/intl-watcher.git"
 	},
 	"funding": [
 		{
@@ -17,38 +30,28 @@
 			"url": "https://github.com/sponsors/ChristianIvicevic"
 		}
 	],
-	"type": "module",
-	"main": "lib/index.js",
 	"files": [
 		"LICENSE.md",
 		"README.md",
 		"lib/",
 		"package.json"
 	],
-	"keywords": [
-		"react",
-		"intl",
-		"i18n",
-		"internationalization",
-		"localization",
-		"translate",
-		"translation",
-		"next",
-		"next.js",
-		"cli",
-		"script"
-	],
+	"type": "module",
+	"main": "lib/index.js",
+	"publishConfig": {
+		"provenance": true
+	},
 	"scripts": {
 		"build": "tsup",
-		"format": "biome check --write .",
-		"lint": "biome check .",
+		"format": "oxfmt",
+		"format:check": "oxfmt --check",
+		"lint": "oxlint",
+		"lint:fix": "oxlint --fix",
+		"lint:github": "oxlint --format=github --deny-warnings",
 		"prepare": "husky",
 		"test": "FORCE_COLOR=1 vitest",
 		"tsc": "tsc",
-		"version-package": "changeset version && biome check --write ."
-	},
-	"lint-staged": {
-		"*": "biome check --write ."
+		"version-package": "changeset version && oxfmt"
 	},
 	"dependencies": {
 		"chokidar": "5.0.0",
@@ -60,7 +63,6 @@
 		"ts-morph": "27.0.2"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "2.3.11",
 		"@changesets/cli": "2.29.8",
 		"@changesets/get-github-info": "0.7.0",
 		"@changesets/types": "6.1.0",
@@ -73,6 +75,8 @@
 		"fs-extra": "11.3.3",
 		"husky": "9.1.7",
 		"lint-staged": "16.2.7",
+		"oxfmt": "0.27.0",
+		"oxlint": "1.42.0",
 		"tsup": "8.5.1",
 		"type-fest": "5.4.1",
 		"typescript": "5.9.3",
@@ -81,16 +85,11 @@
 	"peerDependencies": {
 		"next": "^14.0.0 || ^15.0.0 || ^16.0.0"
 	},
-	"packageManager": "pnpm@10.28.1",
+	"lint-staged": {
+		"*": "oxfmt && oxlint"
+	},
 	"engines": {
 		"node": ">=18.3.0"
 	},
-	"publishConfig": {
-		"provenance": true
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": [
-			"@biomejs/biome"
-		]
-	}
+	"packageManager": "pnpm@10.28.1"
 }

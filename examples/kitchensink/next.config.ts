@@ -7,7 +7,8 @@ const nextConfig: NextConfig = {}
 const withIntlWatcher = createIntlWatcher({
 	dictionaryPaths: ['./src/i18n/en.json', './src/i18n/de.json'],
 	applyPartitioning: true,
-	useTabs: false, // Use spaces instead of tabs (defaults to 4 spaces)
+	// Use spaces instead of tabs (defaults to 4 spaces)
+	useTabs: false,
 })
 const withNextIntl = createNextIntlPlugin({
 	experimental: {

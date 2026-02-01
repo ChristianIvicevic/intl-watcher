@@ -22,7 +22,7 @@ const getDependencyReleaseLine = async (changesets, dependenciesUpdated) => {
 			}),
 		)
 	)
-		.filter((_) => _)
+		.filter(Boolean)
 		.join(', ')}]:`
 
 	const updatedDependenciesList = dependenciesUpdated.map(

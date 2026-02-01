@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
-import { type CreateIntlWatcherOptions, createIntlWatcher, syncTranslationKeys } from './index.js'
 import { IntlWatcher } from './plugin.js'
+import { type CreateIntlWatcherOptions, createIntlWatcher, syncTranslationKeys } from './index.js'
 
 describe('createIntlWatcher', () => {
 	beforeEach(() => {

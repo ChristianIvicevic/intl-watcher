@@ -1,0 +1,21 @@
+{
+	"$schema": "./node_modules/oxfmt/configuration_schema.json",
+	"ignorePatterns": [".all-contributorsrc", "CHANGELOG.md", "README.md", "next-intl.d.ts"],
+	"printWidth": 110,
+	"tabWidth": 2,
+	"useTabs": true,
+	"semi": false,
+	"singleQuote": true,
+	"experimentalSortImports": {
+		"groups": [
+			["side-effect"],
+			["builtin"],
+			["external", "type-external"],
+			["internal", "type-internal"],
+			["parent", "type-parent"],
+			["sibling", "type-sibling"],
+			["index", "type-index"]
+		],
+		"newlinesBetween": false
+	}
+}
