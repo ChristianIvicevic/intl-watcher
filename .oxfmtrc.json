@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/oxfmt/configuration_schema.json",
-	"ignorePatterns": [".all-contributorsrc", "CHANGELOG.md", "README.md", "next-intl.d.ts"],
+	"ignorePatterns": [".all-contributorsrc", "*.md", "next-intl.d.ts"],
 	"printWidth": 110,
 	"tabWidth": 2,
 	"useTabs": true,
