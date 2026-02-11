@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.3.0
+
+### Minor Changes
+
+- Add `suppressExpressionWarnings` option to silence diagnostics for specific unsupported expression kinds ([#224](https://github.com/ChristianIvicevic/intl-watcher/pull/224)) by [@ChristianIvicevic](https://github.com/ChristianIvicevic)
+
+  Unsupported expressions now include a hint in the diagnostic suggesting how to suppress the warning. Any suppression entry that does not match an expression encountered during a scan emits a warning to prompt cleanup of stale config.
+
+### Patch Changes
+
+- Update dependency type-fest to v5.4.2 ([#217](https://github.com/ChristianIvicevic/intl-watcher/pull/217)) by [@renovate](https://github.com/apps/renovate)
+
+- Update dependency type-fest to v5.4.3 ([#222](https://github.com/ChristianIvicevic/intl-watcher/pull/222)) by [@renovate](https://github.com/apps/renovate)
+
 ## 1.2.1
 
 ### Patch Changes
