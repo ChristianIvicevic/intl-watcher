@@ -1,5 +1,26 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+exports[`intl-watcher plugin > error handling > suppressed expression kind emits no diagnostic 1`] = `
+"{
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
+		},
+		"unusedNestedKey": ""
+	}
+}
+"
+`;
+
+exports[`intl-watcher plugin > error handling > suppressed expression kind emits no diagnostic 2`] = `
+"[37m[1m○[22m[39m Scanning...
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
+`;
+
 exports[`intl-watcher plugin > error handling > unsupported expression 1`] = `
 "{
 	"unusedKey": "No longer referenced in any source file",
@@ -27,7 +48,9 @@ exports[`intl-watcher plugin > error handling > unsupported expression 2`] = `
 
 [32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
 detailing the syntax kind and the entire expression. Submit your request here:
-https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
+https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml
+
+To suppress this warning, add 'ConditionalExpression' to suppressExpressionWarnings in your config.[39m
 [33m[1m⚠[22m[39m src/app/fixtures/unsupported-expression.tsx:12:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [33m[1m⚠[22m[39m [33mUnsupported expression of kind CallExpression detected.[39m
@@ -37,7 +60,65 @@ https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature
 
 [32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
 detailing the syntax kind and the entire expression. Submit your request here:
-https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml[39m
+https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml
+
+To suppress this warning, add 'CallExpression' to suppressExpressionWarnings in your config.[39m
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
+`;
+
+exports[`intl-watcher plugin > error handling > unsuppressed kind still emits diagnostic when other kinds are suppressed 1`] = `
+"{
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
+		},
+		"unusedNestedKey": ""
+	}
+}
+"
+`;
+
+exports[`intl-watcher plugin > error handling > unsuppressed kind still emits diagnostic when other kinds are suppressed 2`] = `
+"[37m[1m○[22m[39m Scanning...
+
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m src/app/fixtures/suppress-mixed-expressions.tsx:12:4 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[33m[1m⚠[22m[39m [33mUnsupported expression of kind CallExpression detected.[39m
+
+12 | t(randomKey())
+|   [31m^^^^^^^^^^^[39m
+
+[32m[1mℹ[22m[39m [32mThis syntax is not currently supported. If you need support for it, please open a feature request
+detailing the syntax kind and the entire expression. Submit your request here:
+https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml
+
+To suppress this warning, add 'CallExpression' to suppressExpressionWarnings in your config.[39m
+[33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
+[33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"
+`;
+
+exports[`intl-watcher plugin > error handling > unused suppression entry emits a warning 1`] = `
+"{
+	"unusedKey": "No longer referenced in any source file",
+	"unusedNestedNamespace": {
+		"unusedDeeplyNestedNamespace": {
+			"unusedDeeplyNestedKey": ""
+		},
+		"unusedNestedKey": ""
+	}
+}
+"
+`;
+
+exports[`intl-watcher plugin > error handling > unused suppression entry emits a warning 2`] = `
+"[37m[1m○[22m[39m Scanning...
+[34m[1m✓[22m[39m Finished in <timing>
+[33m[1m⚠[22m[39m 'BinaryExpression' in suppressExpressionWarnings did not suppress any warnings. Consider removing it.
 [33m[1m⚠[22m[39m Unused i18n key \`unusedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedDeeplyNestedNamespace.unusedDeeplyNestedKey\`
 [33m[1m⚠[22m[39m Unused i18n key \`unusedNestedNamespace.unusedNestedKey\`"

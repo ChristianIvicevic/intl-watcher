@@ -25,6 +25,11 @@ type BaseOptions = {
 	useTabs?: boolean
 	/** Number of spaces per indentation level (only used when useTabs is false). */
 	tabWidth?: number
+	/**
+	 * Expression kind names (as reported by the unsupported expression diagnostic) for which
+	 * the warning should be silenced. Prefer filing a feature request for any kind listed here.
+	 */
+	suppressExpressionWarnings?: string[]
 }
 
 /** @internal */

@@ -328,6 +328,23 @@ describe('intl-watcher plugin', () => {
 
 	describe('error handling', () => {
 		test('unsupported expression', async () => doTest(['unsupported-expression.tsx']))
+
+		test('suppressed expression kind emits no diagnostic', async () =>
+			doTest(['suppress-conditional-expression.tsx'], {
+				pluginOptions: { suppressExpressionWarnings: ['ConditionalExpression'] },
+			}))
+
+		test('unsuppressed kind still emits diagnostic when other kinds are suppressed', async () =>
+			doTest(['suppress-mixed-expressions.tsx'], {
+				pluginOptions: { suppressExpressionWarnings: ['ConditionalExpression'] },
+			}))
+
+		test('unused suppression entry emits a warning', async () =>
+			doTest(['suppress-conditional-expression.tsx'], {
+				pluginOptions: {
+					suppressExpressionWarnings: ['ConditionalExpression', 'BinaryExpression'],
+				},
+			}))
 	})
 
 	describe('regressions', () => {

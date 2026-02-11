@@ -11,6 +11,7 @@ import {
 } from 'ts-morph'
 import { NEXT_INTL_GET_TRANSLATIONS_LOCALE, NEXT_INTL_GET_TRANSLATIONS_NAMESPACE } from './constants.js'
 import { printDiagnostic, Severity } from './diagnostics.js'
+import { log } from './logger.js'
 import type { IntlWatcherOptions } from './types.js'
 
 /** @internal */
@@ -22,6 +23,8 @@ export function extractTranslationKeysFromProject(
 
 	const clientTranslationKeys: string[] = []
 	const serverTranslationKeys: string[] = []
+	const suppressedExpressionKinds = options.suppressExpressionWarnings
+	const encounteredKinds = new Set<string>()
 
 	const clientFunctions = options.applyPartitioning ? [options.partitioningOptions.clientFunction] : []
 	const serverFunctions = options.applyPartitioning
@@ -40,6 +43,8 @@ export function extractTranslationKeysFromProject(
 						translationAlias,
 						fnName,
 						TranslationCallMode.Client,
+						suppressedExpressionKinds,
+						encounteredKinds,
 					),
 				)
 			}
@@ -51,9 +56,17 @@ export function extractTranslationKeysFromProject(
 						translationAlias,
 						fnName,
 						TranslationCallMode.Server,
+						suppressedExpressionKinds,
+						encounteredKinds,
 					),
 				)
 			}
+		}
+	}
+
+	for (const kind of suppressedExpressionKinds) {
+		if (!encounteredKinds.has(kind)) {
+			log.warn(`'${kind}' in suppressExpressionWarnings did not suppress any warnings. Consider removing it.`)
 		}
 	}
 
@@ -68,12 +81,16 @@ function extractTranslationKeysForAlias(
 	translationAlias: string,
 	translationFunction: string,
 	mode: TranslationCallMode,
+	suppressedExpressionKinds: string[],
+	encounteredKinds: Set<string>,
 ): readonly string[] {
 	const result = isTranslationAliasDeclaration(variableDeclaration, translationFunction, mode)
 	if (result.valid) {
 		const translationKeys = extractTranslationKeysFromSourceFile(
 			variableDeclaration.getSourceFile(),
 			translationAlias,
+			suppressedExpressionKinds,
+			encounteredKinds,
 		)
 		return translationKeys.map((key) => (result.namespace ? `${result.namespace}.${key}` : key))
 	}
@@ -160,6 +177,8 @@ function resolveStringLiteral(node: Node): string | undefined {
 function extractTranslationKeysFromSourceFile(
 	sourceFile: SourceFile,
 	translationAlias: string,
+	suppressedExpressionKinds: string[],
+	encounteredKinds: Set<string>,
 ): readonly string[] {
 	const translationKeys: string[] = []
 	const callExpressions = sourceFile
@@ -172,7 +191,9 @@ function extractTranslationKeysFromSourceFile(
 		}
 		const firstArgument = args[0]
 		if (Node.isExpression(firstArgument)) {
-			translationKeys.push(...extractTranslationKeysFromExpression(firstArgument))
+			translationKeys.push(
+				...extractTranslationKeysFromExpression(firstArgument, suppressedExpressionKinds, encounteredKinds),
+			)
 		}
 	}
 	return translationKeys
@@ -194,7 +215,11 @@ function isTranslationCall(callExpression: CallExpression, expectedTranslationAl
 	return false
 }
 
-function extractTranslationKeysFromExpression(expression: Expression): readonly string[] {
+function extractTranslationKeysFromExpression(
+	expression: Expression,
+	suppressedExpressionKinds: string[],
+	encounteredKinds: Set<string>,
+): readonly string[] {
 	if (Node.isStringLiteral(expression)) {
 		return [expression.getLiteralText()]
 	}
@@ -202,19 +227,26 @@ function extractTranslationKeysFromExpression(expression: Expression): readonly 
 		return extractLiteralValuesFromExpression(expression)
 	}
 	if (Node.isTemplateExpression(expression)) {
-		return extractTranslationKeysFromTemplateLiteral(expression)
+		return extractTranslationKeysFromTemplateLiteral(expression, suppressedExpressionKinds, encounteredKinds)
 	}
 	if (Node.isPropertyAccessExpression(expression)) {
 		return extractLiteralValuesFromExpression(expression)
+	}
+	const kindName = expression.getKindName()
+	if (suppressedExpressionKinds.includes(kindName)) {
+		encounteredKinds.add(kindName)
+		return []
 	}
 	printDiagnostic(
 		expression,
 		expression.getParentOrThrow(),
 		Severity.Warn,
-		`Unsupported expression of kind ${expression.getKindName()} detected.`,
+		`Unsupported expression of kind ${kindName} detected.`,
 		'This syntax is not currently supported. If you need support for it, please open a feature request',
 		'detailing the syntax kind and the entire expression. Submit your request here:',
 		'https://github.com/ChristianIvicevic/intl-watcher/issues/new?template=03-feature.yml',
+		'',
+		`To suppress this warning, add '${kindName}' to suppressExpressionWarnings in your config.`,
 	)
 	return []
 }
@@ -235,12 +267,18 @@ function extractLiteralValuesFromExpression(expression: Expression): readonly st
 
 function extractTranslationKeysFromTemplateLiteral(
 	templateExpression: TemplateExpression,
+	suppressedExpressionKinds: string[],
+	encounteredKinds: Set<string>,
 ): readonly string[] {
 	const translationKeys: string[] = []
 	const head = templateExpression.getHead().getLiteralText()
 
 	for (const span of templateExpression.getTemplateSpans()) {
-		const expressionKeys = extractTranslationKeysFromExpression(span.getExpression())
+		const expressionKeys = extractTranslationKeysFromExpression(
+			span.getExpression(),
+			suppressedExpressionKinds,
+			encounteredKinds,
+		)
 		const suffix = span.getLiteral().getLiteralText()
 		for (const value of expressionKeys) {
 			translationKeys.push(`${head}${value}${suffix}`)
