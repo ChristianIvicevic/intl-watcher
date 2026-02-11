@@ -29,6 +29,7 @@ It keeps your translation dictionaries up-to-date by extracting new keys, removi
 - **Unused Keys Handling**: Warns or removes unused keys.
 - **Client/Server Partitioning**: Separates translation keys into client-side and server-side bundles.
 - **Debounced Scanning**: Efficiently handles rapid file changes.
+- **Suppression Escape Hatch**: Silence warnings for specific unsupported expression kinds while native support is pending.
 
 ## Installation
 
@@ -155,6 +156,18 @@ This does not change which files belong to your TypeScript project; that is cont
 - **Type:** `number`
 - **Default:** `4`
 - **Description:** Number of spaces per indentation level. Only applies when `useTabs` is `false`.
+
+#### `suppressExpressionWarnings`
+
+- **Type:** `string[]`
+- **Default:** `[]`
+- **Description:** Expression kind names for which the unsupported-expression diagnostic is silenced.
+  Each entry must match a kind name as reported in the warning — for example `'ConditionalExpression'` or `'CallExpression'`.
+  Any entry that does not suppress at least one warning during a scan will itself emit a warning, prompting you to remove the stale entry.
+
+> [!NOTE]
+> This option is intended as a temporary escape hatch while native support for a given expression kind is pending.
+> Before adding a kind here, consider opening a feature request so that support can be added properly.
 
 ### Non-Partitioning Mode (default)
 

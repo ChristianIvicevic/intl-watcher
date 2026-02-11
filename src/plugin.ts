@@ -51,6 +51,7 @@ export function buildIntlWatcherOptions(options: CreateIntlWatcherOptions): Intl
 		tsConfigFilePath: options.tsConfigFilePath ?? 'tsconfig.json',
 		useTabs: options.useTabs ?? true,
 		tabWidth,
+		suppressExpressionWarnings: options.suppressExpressionWarnings ?? [],
 		...partitioningOptions,
 	}
 }
