@@ -67,7 +67,7 @@
 		"type-fest": "5.4.4"
 	},
 	"devDependencies": {
-		"@changesets/cli": "2.29.8",
+		"@changesets/cli": "2.30.0",
 		"@changesets/get-github-info": "0.7.0",
 		"@changesets/types": "6.1.0",
 		"@types/fs-extra": "11.0.4",
