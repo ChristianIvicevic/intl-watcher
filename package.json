@@ -79,8 +79,8 @@
 		"fs-extra": "11.3.4",
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0",
-		"oxfmt": "0.35.0",
-		"oxlint": "1.50.0",
+		"oxfmt": "0.40.0",
+		"oxlint": "1.55.0",
 		"tsdown": "0.21.2",
 		"typescript": "5.9.3",
 		"vitest": "4.0.18"
