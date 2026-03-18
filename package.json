@@ -74,8 +74,8 @@
 		"@types/lodash": "4.17.24",
 		"@types/node": "24.12.0",
 		"@types/proper-lockfile": "4.1.4",
-		"@vitest/coverage-v8": "4.0.18",
-		"@vitest/ui": "4.0.18",
+		"@vitest/coverage-v8": "4.1.0",
+		"@vitest/ui": "4.1.0",
 		"fs-extra": "11.3.4",
 		"husky": "9.1.7",
 		"lint-staged": "16.4.0",
@@ -83,7 +83,7 @@
 		"oxlint": "1.55.0",
 		"tsdown": "0.21.2",
 		"typescript": "5.9.3",
-		"vitest": "4.0.18"
+		"vitest": "4.1.0"
 	},
 	"peerDependencies": {
 		"next": "^14.0.0 || ^15.0.0 || ^16.0.0"
