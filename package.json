@@ -39,8 +39,15 @@
 		"package.json"
 	],
 	"type": "module",
-	"module": "lib/index.mjs",
+	"main": "lib/index.mjs",
 	"types": "lib/index.d.mts",
+	"exports": {
+		".": {
+			"types": "lib/index.d.mts",
+			"import": "lib/index.mjs",
+			"default": "lib/index.mjs"
+		}
+	},
 	"publishConfig": {
 		"provenance": true
 	},
