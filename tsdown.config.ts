@@ -8,5 +8,5 @@ export default defineConfig({
 	format: 'esm',
 	outDir: 'lib',
 	target: false,
-	inlineOnly: [],
+	deps: { onlyBundle: [] },
 })
