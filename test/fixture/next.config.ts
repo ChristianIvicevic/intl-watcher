@@ -1,11 +1,10 @@
 import path from 'node:path'
-import { fileURLToPath } from 'node:url'
 import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
 	output: 'standalone',
-	outputFileTracingRoot: path.join(path.dirname(fileURLToPath(import.meta.url)), '../../'),
+	outputFileTracingRoot: path.join(import.meta.dirname, '../../'),
 }
 
 const withNextIntl = createNextIntlPlugin({
