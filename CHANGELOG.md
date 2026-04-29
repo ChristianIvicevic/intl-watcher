@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.3.2
+
+### Patch Changes
+
+- Update dependency lodash to v4.18.1 ([#276](https://github.com/ChristianIvicevic/intl-watcher/pull/276)) by [@renovate](https://github.com/apps/renovate)
+
+- Update dependency type-fest to v5.6.0 ([#295](https://github.com/ChristianIvicevic/intl-watcher/pull/295)) by [@renovate](https://github.com/apps/renovate)
+
+- Update dependency ts-morph to v28 ([#297](https://github.com/ChristianIvicevic/intl-watcher/pull/297)) by [@renovate](https://github.com/apps/renovate)
+
 ## 1.3.1
 
 ### Patch Changes
