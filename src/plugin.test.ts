@@ -7,7 +7,7 @@ import { NEXT_INTL_GET_TRANSLATIONS_FUNCTION, NEXT_INTL_USE_TRANSLATIONS_FUNCTIO
 import { buildIntlWatcherOptions, IntlWatcher } from './plugin.js'
 import type { CreateIntlWatcherOptions, IntlWatcherOptions } from './types.js'
 
-const TIMING_REGEX = /Finished in \d+(\.\d+)?(ms|s)/g
+const TIMING_REGEX = /Finished in \d+(\.\d+)?(ms|s)/gu
 
 describe('intl-watcher plugin', () => {
 	let tempDir: string

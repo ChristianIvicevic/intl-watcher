@@ -1,6 +1,6 @@
 {
 	"$schema": "./node_modules/oxlint/configuration_schema.json",
-	"plugins": null,
+	"plugins": [],
 	"categories": {
 		"correctness": "error",
 		"suspicious": "warn",
@@ -11,11 +11,11 @@
 		"ban-ts-comment": "off",
 		"max-lines": "off",
 		"max-lines-per-function": "off",
+		"no-underscore-dangle": "off",
 		"require-await": "off"
 	},
 	"settings": {
 		"jsx-a11y": {
-			"polymorphicPropName": null,
 			"components": {},
 			"attributes": {}
 		},
@@ -25,7 +25,6 @@
 		"react": {
 			"formComponents": [],
 			"linkComponents": [],
-			"version": null,
 			"componentWrapperFunctions": []
 		},
 		"jsdoc": {
