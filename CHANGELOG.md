@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.3
+
+### Patch Changes
+
+- Update dependency type-fest to v5.8.0 ([#319](https://github.com/ChristianIvicevic/intl-watcher/pull/319)) by [@renovate](https://github.com/apps/renovate)
+
 ## 1.3.2
 
 ### Patch Changes
