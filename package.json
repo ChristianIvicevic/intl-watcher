@@ -85,7 +85,7 @@
 		"@vitest/ui": "4.1.10",
 		"fs-extra": "11.4.0",
 		"husky": "9.1.7",
-		"lint-staged": "17.0.8",
+		"lint-staged": "17.2.0",
 		"oxfmt": "0.57.0",
 		"oxlint": "1.72.0",
 		"tsdown": "0.22.14",
