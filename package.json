@@ -83,7 +83,7 @@
 		"@types/proper-lockfile": "4.1.4",
 		"@vitest/coverage-v8": "4.1.10",
 		"@vitest/ui": "4.1.10",
-		"fs-extra": "11.3.6",
+		"fs-extra": "11.4.0",
 		"husky": "9.1.7",
 		"lint-staged": "17.0.8",
 		"oxfmt": "0.57.0",
