@@ -87,7 +87,7 @@
 		"husky": "9.1.7",
 		"lint-staged": "17.6.0",
 		"oxfmt": "0.70.0",
-		"oxlint": "1.76.0",
+		"oxlint": "1.86.0",
 		"tsdown": "0.22.14",
 		"typescript": "7.0.2",
 		"vitest": "4.1.11"
